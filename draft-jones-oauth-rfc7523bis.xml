@@ -122,10 +122,13 @@
       <t>The process by which the client obtains the JWT, prior to exchanging it with the authorization server or using it for client authentication, is out of scope.</t>
 
       <section title="Notational Conventions" anchor="NotationalConventions">
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-          "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-          document are to be interpreted as described in RFC 2119 <xref target="RFC2119"/>.
-        </t>
+        <t>
+	  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+	  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+	  "OPTIONAL" in this document are to be interpreted as described in
+	  BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
+	  only when, they appear in all capitals, as shown here.
+	</t>
         <t>
           Unless otherwise noted, all the protocol parameter names and values are case sensitive.
         </t>
@@ -534,91 +537,81 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
 
-<!--draft-ietf-jose-json-web-algorithms, in queue -->
-      <reference anchor="JWA" target="http://www.rfc-editor.org/info/rfc7518">
-        <front>
+      <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
+
+      <reference anchor="JWA" target="https://www.rfc-editor.org/info/rfc7518">
+	<front>
 	  <title>JSON Web Algorithms (JWA)</title>
-	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization>Microsoft</organization>
-	    <address>
-	      <email>mbj@microsoft.com</email>
-	      <uri>http://self-issued.info/</uri>
-	    </address>
-	  </author>
+	  <author fullname="M. Jones" initials="M." surname="Jones"/>
 	  <date month="May" year="2015"/>
-        </front>
-        <seriesInfo name="RFC" value="7518"/>
+	  <abstract>
+	    <t>This specification registers cryptographic algorithms and identifiers to be used with the JSON Web Signature (JWS), JSON Web Encryption (JWE), and JSON Web Key (JWK) specifications. It defines several IANA registries for these identifiers.</t>
+	  </abstract>
+	</front>
+	<seriesInfo name="RFC" value="7518"/>
+	<seriesInfo name="DOI" value="10.17487/RFC7518"/>
       </reference>
 
-<!--draft-ietf-oauth-json-web-token, in queue -->
-      <reference anchor="JWT" target='http://www.rfc-editor.org/info/rfc7519'>
-        <front>
-          <title>JSON Web Token (JWT)</title>
-	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization>Microsoft</organization>
-	    <address>
-	      <email>mbj@microsoft.com</email>
-	      <uri>http://self-issued.info/</uri>
-	    </address>
-	  </author>
-	  <author fullname="John Bradley" initials="J." surname="Bradley">
-	    <organization abbrev="Ping Identity">Ping Identity</organization>
-	    <address>
-	      <email>ve7jtb@ve7jtb.com</email>
-	    </address>
-	  </author>
-	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-	    <organization abbrev="NRI">Nomura Research Institute</organization>
-	    <address>
-	      <email>n-sakimura@nri.co.jp</email>
-	    </address>
-	  </author>
+      <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml with change to anchor="JWT" -->
+
+      <reference anchor="JWT" target="https://www.rfc-editor.org/info/rfc7519">
+	<front>
+	  <title>JSON Web Token (JWT)</title>
+	  <author fullname="M. Jones" initials="M." surname="Jones"/>
+	  <author fullname="J. Bradley" initials="J." surname="Bradley"/>
+	  <author fullname="N. Sakimura" initials="N." surname="Sakimura"/>
 	  <date month="May" year="2015"/>
-        </front>
-        <seriesInfo name="RFC" value="7519"/>
+	  <abstract>
+	    <t>JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.</t>
+	  </abstract>
+	</front>
+	<seriesInfo name="RFC" value="7519"/>
+	<seriesInfo name="DOI" value="10.17487/RFC7519"/>
       </reference>
+
     </references>
 
     <references title="Informative References">
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
-
-      <reference anchor="OpenID.Registration" target="http://openid.net/specs/openid-connect-registration-1_0.html">
+      <reference anchor="OpenID.Registration" target="https://openid.net/specs/openid-connect-registration-1_0.html">
 	<front>
-	  <title>OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 1</title>
+	  <title>OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 2</title>
 	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-	    <organization abbrev="NRI">Nomura Research Institute, Ltd.</organization>
+	    <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
 	  </author>
 	  <author fullname="John Bradley" initials="J." surname="Bradley">
-	    <organization abbrev="Ping Identity">Ping Identity</organization>
+	    <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
 	  </author>
 	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization abbrev="Microsoft">Microsoft</organization>
+	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
 	  </author>
-	  <date month="November" year="2014"/>
+          <date day="15" month="December" year="2023"/>
 	</front>
       </reference>
 
-      <reference anchor="OpenID.Discovery" target="http://openid.net/specs/openid-connect-discovery-1_0.html">
+      <reference anchor="OpenID.Discovery" target="https://openid.net/specs/openid-connect-discovery-1_0.html">
 	<front>
-	  <title>OpenID Connect Discovery 1.0 incorporating errata set 1</title>
+	  <title>OpenID Connect Discovery 1.0 incorporating errata set 2</title>
 	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-	    <organization abbrev="NRI">Nomura Research Institute, Ltd.</organization>
+	    <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
 	  </author>
 	  <author fullname="John Bradley" initials="J." surname="Bradley">
-	    <organization abbrev="Ping Identity">Ping Identity</organization>
+	    <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
 	  </author>
 	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization abbrev="Microsoft">Microsoft</organization>
+	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
 	  </author>
 	  <author fullname="Edmund Jay" initials="E." surname="Jay">
 	    <organization abbrev="Illumila">Illumila</organization>
 	  </author>
-	  <date month="November" year="2014"/>
+          <date day="15" month="December" year="2023"/>
 	</front>
       </reference>
+
     </references>
 
     <section title='Acknowledgements' anchor='Acknowledgements' numbered="no">
