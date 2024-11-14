@@ -53,7 +53,7 @@
     <keyword>Security Token</keyword>
 
     <abstract>
-      <t>This specification defines the use of a JSON Web Token (JWT) Bearer Token as a means for 
+      <t>This specification defines the use of a JSON Web Token (JWT) Bearer Token as a means for
         requesting an OAuth 2.0 access token as well as for client authentication.
       </t>
     </abstract>
@@ -63,7 +63,7 @@
     <section title="Introduction" anchor="Introduction">
       <t>
 	JSON Web Token (JWT) <xref target="JWT"/>
-	is a JSON-based <xref target="RFC7159"/> security token encoding 
+	is a JSON-based <xref target="RFC7159"/> security token encoding
         that enables
 	identity and security information to be shared across security
 	domains.
@@ -89,17 +89,17 @@
 
       <t>
 	"Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants"
-	<xref target="RFC7521"/> 
+	<xref target="RFC7521"/>
 	is an abstract extension to OAuth 2.0 that provides a general
         framework for the use of assertions (a.k.a. security tokens) as client credentials and/or authorization grants with OAuth 2.0.
-        This specification profiles 
+        This specification profiles
 	the OAuth Assertion Framework
 	<xref target="RFC7521"/>
 	to define an extension grant type that uses a JWT Bearer Token to
         request an OAuth 2.0 access token as well as for use as client credentials.
         The format and processing rules for the JWT defined in this specification are intentionally similar,
         though not identical, to those in the closely related specification "Security
-	Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication 
+	Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication
         and Authorization Grants"
 	<xref target="RFC7522"/>.
         The differences arise where the structure and semantics of JWTs differ from SAML Assertions.
@@ -145,7 +145,7 @@
     <section title="HTTP Parameter Bindings for Transporting Assertions" anchor="Transporting">
       <t>
 	The OAuth Assertion Framework
-	<xref target="RFC7521"/> 
+	<xref target="RFC7521"/>
 	defines generic HTTP parameters for transporting assertions (a.k.a. security tokens)
 	during interactions with a token endpoint.
 	This section defines specific parameters and treatments of those parameters
@@ -154,9 +154,9 @@
       <section title="Using JWTs as Authorization Grants" anchor="AuthGrants">
 	<t>
 	  To use a Bearer JWT as an authorization grant, the client uses an access token request as defined in
-	  Section 4 of 
+	  Section 4 of
 	  the OAuth Assertion Framework
-	  <xref target="RFC7521"/> 
+	  <xref target="RFC7521"/>
 	  with the following specific parameter values and encodings.
 	</t>
 	<t>The value of the <spanx style='verb'>grant_type</spanx> is
@@ -310,7 +310,6 @@
 	    time for which the JWT would be considered valid based
 	    on the applicable <spanx style="verb">exp</spanx> instant.
 	  </t>
-	
 	  <t>
 	    The JWT MAY contain other claims.
 	  </t>
@@ -321,7 +320,7 @@
 	  </t>
 	  <t>
 	    The authorization server MUST reject a JWT that is not
-	    valid in all other respects per 
+	    valid in all other respects per
 	    "JSON Web Token (JWT)" <xref target="JWT"/>.
 	  </t>
 	</list>
@@ -404,7 +403,7 @@
       <figure>
 	<preamble>
 	  The following example JSON object, used as the header of a
-	  JWT, declares that the JWT is signed with the Elliptic Curve 
+	  JWT, declares that the JWT is signed with the Elliptic Curve
           Digital Signature Algorithm (ECDSA) P-256
 	  SHA-256 using a key identified by the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
 	</preamble>
@@ -457,9 +456,9 @@
     </section>
 
     <section anchor="Security" title="Security Considerations">
-   
+
       <t>
-       The security considerations described within the following specifications are all applicable 
+       The security considerations described within the following specifications are all applicable
        to this document:
        "Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants"
        <xref target="RFC7521"/>,
@@ -470,7 +469,7 @@
         usage for either the authorization grant or for client
         authentication. It is an optional feature, which implementations may employ at their own discretion.
      </t>
-   
+
     </section>
     <section anchor="Privacy" title="Privacy Considerations">
 
