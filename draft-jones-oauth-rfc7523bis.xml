@@ -489,46 +489,23 @@
 	<xref target="RFC7521"/>.
       </t>
     </section>
+
     <section title='IANA Considerations' anchor="IANA">
-      <section title='Sub-Namespace Registration of urn:ietf:params:oauth:grant-type:jwt-bearer'
-	       anchor="grant-type_reg">
-	<t>
-	  This section registers the value
-	  <spanx style='verb'>grant-type:jwt-bearer</spanx> in the
-	  IANA "OAuth URI" registry established by
-	  "An IETF URN Sub-Namespace for OAuth" <xref target="RFC6755"/>.
-
-	  <list style='symbols'>
-	    <t>URN: urn:ietf:params:oauth:grant-type:jwt-bearer</t>
-	    <t>Common Name: JWT Bearer Token Grant Type Profile for OAuth 2.0</t>
-	    <t>Change Controller: IESG</t>
-	    <t>Specification Document: RFC 7523</t>
-	  </list>
-	</t>
-      </section>
-      <section title='Sub-Namespace Registration of urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
-	       anchor="client-assertion-type_reg">
-	<t>
-	  This section registers the value
-	  <spanx style='verb'>client-assertion-type:jwt-bearer</spanx> in the
-	  IANA "OAuth URI" registry established by
-	  "An IETF URN Sub-Namespace for OAuth" <xref target="RFC6755"/>.
-
-	  <list style='symbols'>
-	    <t>URN: urn:ietf:params:oauth:client-assertion-type:jwt-bearer</t>
-	    <t>Common Name: JWT Bearer Token Profile for OAuth 2.0 Client Authentication </t>
-	    <t>Change Controller: IESG</t>
-	    <t>Specification Document: RFC 7523</t>
-	  </list>
-	</t>
-      </section>
+      <t>
+	The IANA actions of registering the URNs
+	<spanx style="verb">urn:ietf:params:oauth:grant-type:jwt-bearer</spanx>
+	and
+	<spanx style="verb">urn:ietf:params:oauth:client-assertion-type:jwt-bearer</spanx>
+	in the IANA "OAuth URI" registry <xref target="IANA.OAuth.Parameters"/>
+	established by
+	"An IETF URN Sub-Namespace for OAuth" <xref target="RFC6755"/>
+	were performed by <xref target="RFC7523"/>.
+	No IANA actions are requested by this specification.
+      </t>
     </section>
   </middle>
 
-  <!-- *****BACK MATTER ***** -->
-
   <back>
-
 
     <references title="Normative References">
 
@@ -576,6 +553,7 @@
     <references title="Informative References">
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
       <reference anchor="OpenID.Registration" target="https://openid.net/specs/openid-connect-registration-1_0.html">
 	<front>
@@ -610,6 +588,16 @@
 	  </author>
           <date day="15" month="December" year="2023"/>
 	</front>
+      </reference>
+
+      <reference anchor="IANA.OAuth.Parameters" target="https://www.iana.org/assignments/oauth-parameters">
+        <front>
+          <title>OAuth Parameters</title>
+          <author>
+            <organization>IANA</organization>
+          </author>
+	  <date/>
+        </front>
       </reference>
 
     </references>
