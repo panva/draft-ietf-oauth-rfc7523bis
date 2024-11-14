@@ -144,8 +144,10 @@ Table of Contents
 1.1.  Notational Conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in RFC 2119 [RFC2119].
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
    Unless otherwise noted, all the protocol parameter names and values
    are case sensitive.
@@ -469,12 +471,13 @@ Table of Contents
 
 9.1.  Normative References
 
-   [JWA]      Jones, M.B., "JSON Web Algorithms (JWA)", RFC 7518, May
-              2015, <http://www.rfc-editor.org/info/rfc7518>.
+   [JWA]      Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
+              DOI 10.17487/RFC7518, May 2015,
+              <https://www.rfc-editor.org/info/rfc7518>.
 
-   [JWT]      Jones, M.B., Bradley, J., and N. Sakimura, "JSON Web Token
-              (JWT)", RFC 7519, May 2015,
-              <http://www.rfc-editor.org/info/rfc7519>.
+   [JWT]      Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
+              (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
+              <https://www.rfc-editor.org/info/rfc7519>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -499,18 +502,22 @@ Table of Contents
               and Authorization Grants", RFC 7521, DOI 10.17487/RFC7521,
               May 2015, <https://www.rfc-editor.org/info/rfc7521>.
 
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
 9.2.  Informative References
 
    [OpenID.Discovery]
               Sakimura, N., Bradley, J., Jones, M.B., and E. Jay,
-              "OpenID Connect Discovery 1.0 incorporating errata set 1",
-              November 2014, <http://openid.net/specs/openid-connect-
-              discovery-1_0.html>.
+              "OpenID Connect Discovery 1.0 incorporating errata set 2",
+              15 December 2023, <https://openid.net/specs/openid-
+              connect-discovery-1_0.html>.
 
    [OpenID.Registration]
               Sakimura, N., Bradley, J., and M.B. Jones, "OpenID Connect
               Dynamic Client Registration 1.0 incorporating errata set
-              1", November 2014, <http://openid.net/specs/openid-
+              2", 15 December 2023, <https://openid.net/specs/openid-
               connect-registration-1_0.html>.
 
    [RFC6755]  Campbell, B. and H. Tschofenig, "An IETF URN Sub-Namespace
