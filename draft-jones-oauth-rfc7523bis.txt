@@ -71,6 +71,7 @@ Table of Contents
    9.  References
      9.1.  Normative References
      9.2.  Informative References
+   Appendix A.  Document History
    Acknowledgements
    Authors' Addresses
 
@@ -515,6 +516,17 @@ Table of Contents
               P. Hunt, "OAuth 2.0 Dynamic Client Registration Protocol",
               RFC 7591, DOI 10.17487/RFC7591, July 2015,
               <https://www.rfc-editor.org/info/rfc7591>.
+
+Appendix A.  Document History
+
+   [[ to be removed by the RFC Editor before publication as an RFC ]]
+
+   -00
+
+   *  Initial draft starting with rfc7523.xml, updated to use current
+      references and affiliations and modern xml2rfc syntax, removing
+      the IANA actions already performed, and adding the Document
+      History section.
 
 Acknowledgements
 
