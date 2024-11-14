@@ -1232,14 +1232,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-sub-namespace-registration-" class="internal xref">Sub-Namespace Registration of urn:ietf:params:oauth:grant-type:jwt-bearer</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-sub-namespace-registration-o" class="internal xref">Sub-Namespace Registration of urn:ietf:params:oauth:client-assertion-type:jwt-bearer</a></p>
-</li>
-            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
@@ -1714,58 +1706,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="grant-type_reg">
-<section id="section-8.1">
-        <h3 id="name-sub-namespace-registration-">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-sub-namespace-registration-" class="section-name selfRef">Sub-Namespace Registration of urn:ietf:params:oauth:grant-type:jwt-bearer</a>
-        </h3>
-<p id="section-8.1-1">
-   This section registers the value
-   <code>grant-type:jwt-bearer</code> in the
-   IANA "OAuth URI" registry established by
-   "An IETF URN Sub-Namespace for OAuth" <span>[<a href="#RFC6755" class="cite xref">RFC6755</a>]</span>.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-8.1-2.1">
-            <p id="section-8.1-2.1.1">URN: urn:ietf:params:oauth:grant-type:jwt-bearer<a href="#section-8.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.1-2.2">
-            <p id="section-8.1-2.2.1">Common Name: JWT Bearer Token Grant Type Profile for OAuth 2.0<a href="#section-8.1-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.1-2.3">
-            <p id="section-8.1-2.3.1">Change Controller: IESG<a href="#section-8.1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.1-2.4">
-            <p id="section-8.1-2.4.1">Specification Document: RFC 7523<a href="#section-8.1-2.4.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-</section>
-</div>
-<div id="client-assertion-type_reg">
-<section id="section-8.2">
-        <h3 id="name-sub-namespace-registration-o">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-sub-namespace-registration-o" class="section-name selfRef">Sub-Namespace Registration of urn:ietf:params:oauth:client-assertion-type:jwt-bearer</a>
-        </h3>
-<p id="section-8.2-1">
-   This section registers the value
-   <code>client-assertion-type:jwt-bearer</code> in the
-   IANA "OAuth URI" registry established by
-   "An IETF URN Sub-Namespace for OAuth" <span>[<a href="#RFC6755" class="cite xref">RFC6755</a>]</span>.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-8.2-2.1">
-            <p id="section-8.2-2.1.1">URN: urn:ietf:params:oauth:client-assertion-type:jwt-bearer<a href="#section-8.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.2-2.2">
-            <p id="section-8.2-2.2.1">Common Name: JWT Bearer Token Profile for OAuth 2.0 Client Authentication<a href="#section-8.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.2-2.3">
-            <p id="section-8.2-2.3.1">Change Controller: IESG<a href="#section-8.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-8.2-2.4">
-            <p id="section-8.2-2.4.1">Specification Document: RFC 7523<a href="#section-8.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-</section>
-</div>
+<p id="section-8-1">
+ The IANA actions of registering the URNs
+ <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code>
+ and
+ <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code>
+ in the IANA "OAuth URI" registry <span>[<a href="#IANA.OAuth.Parameters" class="cite xref">IANA.OAuth.Parameters</a>]</span>
+ established by
+ "An IETF URN Sub-Namespace for OAuth" <span>[<a href="#RFC6755" class="cite xref">RFC6755</a>]</span>
+ were performed by <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>.
+ No IANA actions are requested by this specification.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-9">
@@ -1816,6 +1766,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="IANA.OAuth.Parameters">[IANA.OAuth.Parameters]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"OAuth Parameters"</span>, <span>&lt;<a href="https://www.iana.org/assignments/oauth-parameters">https://www.iana.org/assignments/oauth-parameters</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="OpenID.Discovery">[OpenID.Discovery]</dt>
         <dd>
 <span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Jones, M.B.</span>, and <span class="refAuthor">E. Jay</span>, <span class="refTitle">"OpenID Connect Discovery 1.0 incorporating errata set 2"</span>, <time datetime="2023-12-15" class="refDate">15 December 2023</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-discovery-1_0.html">https://openid.net/specs/openid-connect-discovery-1_0.html</a>&gt;</span>. </dd>
@@ -1831,6 +1785,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC7522">[RFC7522]</dt>
         <dd>
 <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Mortimore, C.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7522</span>, <span class="seriesInfo">DOI 10.17487/RFC7522</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7522">https://www.rfc-editor.org/info/rfc7522</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7523">[RFC7523]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Campbell, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7523</span>, <span class="seriesInfo">DOI 10.17487/RFC7523</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7523">https://www.rfc-editor.org/info/rfc7523</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7591">[RFC7591]</dt>
       <dd>
