@@ -4,7 +4,8 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
-  docName="draft-jones-oauth-rfc7523bis-latest">
+  docName="draft-jones-oauth-rfc7523bis-latest"
+  obsoletes="7523" updates="7521">
 
   <?rfc toc="yes"?>
   <?rfc tocompact="yes"?>
@@ -19,10 +20,10 @@
     <title abbrev="OAuth JWT Assertion Profiles">JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants</title>
 
     <author fullname="Michael B. Jones" surname="Jones" initials="M.B.">
-      <organization>Microsoft</organization>
+      <organization>Self-Issued Consulting</organization>
       <address>
-        <email>mbj@microsoft.com</email>
-        <uri>http://self-issued.info/</uri>
+        <email>michael_b_jones@hotmail.com</email>
+        <uri>https://self-issued.info/</uri>
       </address>
     </author>
 
@@ -34,9 +35,9 @@
     </author>
 
     <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
-      <organization abbrev="Salesforce">Salesforce</organization>
+      <organization abbrev="Disney">Disney</organization>
       <address>
-        <email>cmortimore@salesforce.com</email>
+        <email>charliemortimore@gmail.com</email>
       </address>
     </author>
 
