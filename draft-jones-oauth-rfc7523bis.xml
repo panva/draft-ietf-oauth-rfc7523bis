@@ -602,8 +602,27 @@
 
     </references>
 
-    <section title='Acknowledgements' anchor='Acknowledgements' numbered="no">
+    <section title="Document History" anchor="History">
+      <t>
+        [[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
 
+      <t>
+        -00
+        <list style="symbols">
+          <t>
+	    Initial draft starting with rfc7523.xml,
+	    updated to use current references and affiliations
+	    and modern xml2rfc syntax,
+	    removing the IANA actions already performed,
+	    and adding the Document History section.
+          </t>
+        </list>
+      </t>
+
+    </section>
+
+    <section title='Acknowledgements' anchor='Acknowledgements' numbered="no">
       <t>
 	This profile was derived from
 	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and Authorization Grants"
@@ -611,5 +630,6 @@
 	which has the same authors as this document.
       </t>
     </section>
+
   </back>
 </rfc>
