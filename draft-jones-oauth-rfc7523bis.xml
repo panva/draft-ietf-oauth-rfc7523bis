@@ -239,6 +239,15 @@
 	<list style="numbers">
 
 	  <t>
+	    The JWT MUST be explicitly typed,
+	    as defined in Section 3.11 of <xref target="RFC8725"/>.
+	    The <spanx style="verb">typ</spanx> header parameter values
+	    that MUST be used are defined in <xref target="GrantProcessing"/>
+	    and <xref target="ClientProcessing"/>.
+	    The authorization server MUST reject JWTs that do not use
+	    the specified explicit type value.
+	  </t>
+	  <t>
 	    The JWT MUST contain an <spanx style="verb">iss</spanx>
 	    (issuer) claim that contains a unique identifier for the
 	    entity that issued the JWT.
@@ -332,6 +341,13 @@
       <section title="Authorization Grant Processing" anchor="GrantProcessing">
 
 	<t>
+	  Authorization grant JWTs MUST be explicitly typed by using the
+	  <spanx style="verb">typ</spanx> header parameter value
+	  <spanx style="verb">authorization-grant+jwt</spanx>.
+	  Authorization grant JWTs not using this explicit type value
+	  MUST be rejected by the authorization server.
+	</t>
+	<t>
 	  JWT authorization grants may be used with or without client authentication
 	  or identification. Whether or not client authentication is needed in
 	  conjunction with a JWT authorization grant, as well as the supported types
@@ -365,6 +381,13 @@
 
       <section title="Client Authentication Processing" anchor="ClientProcessing">
 
+	<t>
+	  Client authentication JWTs MUST be explicitly typed by using the
+	  <spanx style="verb">typ</spanx> header parameter value
+	  <spanx style="verb">client-authentication+jwt</spanx>.
+	  Client authentication JWTs not using this explicit type value
+	  MUST be rejected by the authorization server.
+	</t>
 	<t>If the client JWT is not valid, the
 	authorization server constructs an error response as defined in
 	OAuth 2.0 <xref target="RFC6749"/>.
@@ -500,8 +523,156 @@
 	established by
 	"An IETF URN Sub-Namespace for OAuth" <xref target="RFC6755"/>
 	were performed by <xref target="RFC7523"/>.
-	No IANA actions are requested by this specification.
       </t>
+
+      <section title="Media Type Registration" anchor="MediaReg">
+        <t>
+          This section registers the following media types <xref target="RFC2046"/>
+          in the "Media Types" registry <xref target="IANA.MediaTypes"/>
+          in the manner described in <xref target="RFC6838"/>.
+        </t>
+
+        <section title="Registry Contents" anchor="MediaContents">
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Type name: application
+              </t>
+              <t>
+                Subtype name: authorization-grant+jwt
+              </t>
+              <t>
+                Required parameters: n/a
+              </t>
+              <t>
+                Optional parameters: n/a
+              </t>
+              <t>
+                Encoding considerations: binary;
+                An authorization grant JWT is a JWT;
+                JWT values are encoded as a
+                series of base64url-encoded values (some of which may be the
+                empty string) separated by period ('.') characters.
+              </t>
+              <t>
+                Security considerations: See <xref target="Security"/> of this specification
+              </t>
+              <t>
+                Interoperability considerations: n/a
+              </t>
+              <t>
+                Published specification: <xref target="GrantProcessing"/> of this specification
+              </t>
+              <t>
+                Applications that use this media type:
+                Applications that use this specification
+              </t>
+              <t>
+                Fragment identifier considerations: n/a
+              </t>
+              <t>
+                Additional information:<list style="empty">
+                <t>Magic number(s): n/a</t>
+                <t>File extension(s): n/a</t>
+                <t>Macintosh file type code(s): n/a </t></list>
+                <vspace/>
+              </t>
+              <t>
+                Person &amp; email address to contact for further information:
+                <vspace/>
+                Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Intended usage: COMMON
+              </t>
+              <t>
+                Restrictions on usage: none
+              </t>
+              <t>
+                Author: Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Change controller: OpenID Foundation Artifact Binding Working Group - openid-specs-ab@lists.openid.net
+              </t>
+              <t>
+                Provisional registration? No
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Type name: application
+              </t>
+              <t>
+                Subtype name: client-authentication+jwt
+              </t>
+              <t>
+                Required parameters: n/a
+              </t>
+              <t>
+                Optional parameters: n/a
+              </t>
+              <t>
+                Encoding considerations: binary;
+                A client authentication JWT is a JWT;
+                JWT values are encoded as a
+                series of base64url-encoded values (some of which may be the
+                empty string) separated by period ('.') characters.
+              </t>
+              <t>
+                Security considerations: See <xref target="Security"/> of this specification
+              </t>
+              <t>
+                Interoperability considerations: n/a
+              </t>
+              <t>
+                Published specification: <xref target="ClientProcessing"/> of this specification
+              </t>
+              <t>
+                Applications that use this media type:
+                Applications that use this specification
+              </t>
+              <t>
+                Fragment identifier considerations: n/a
+              </t>
+              <t>
+                Additional information:<list style="empty">
+                <t>Magic number(s): n/a</t>
+                <t>File extension(s): n/a</t>
+                <t>Macintosh file type code(s): n/a </t></list>
+                <vspace/>
+              </t>
+              <t>
+                Person &amp; email address to contact for further information:
+                <vspace/>
+                Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Intended usage: COMMON
+              </t>
+              <t>
+                Restrictions on usage: none
+              </t>
+              <t>
+                Author: Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Change controller: OpenID Foundation Artifact Binding Working Group - openid-specs-ab@lists.openid.net
+              </t>
+              <t>
+                Provisional registration? No
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+        </section>
+
+      </section>
     </section>
   </middle>
 
@@ -515,6 +686,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
 
@@ -551,7 +723,9 @@
     </references>
 
     <references title="Informative References">
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2046.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6838.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
@@ -600,6 +774,16 @@
         </front>
       </reference>
 
+      <reference anchor="IANA.MediaTypes" target="https://www.iana.org/assignments/media-types">
+        <front>
+          <title>Media Types</title>
+          <author>
+            <organization>IANA</organization>
+          </author>
+          <date/>
+        </front>
+      </reference>
+
     </references>
 
     <section title="Document History" anchor="History">
@@ -617,6 +801,9 @@
 	    removing the IANA actions already performed,
 	    and adding the Document History section.
           </t>
+	  <t>
+	    Explicitly typed authorization grant JWTs and client authentication JWTs.
+	  </t>
         </list>
       </t>
 
