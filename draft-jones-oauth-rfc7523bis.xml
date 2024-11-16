@@ -503,6 +503,56 @@
 	No IANA actions are requested by this specification.
       </t>
     </section>
+
+    <section title="Updates to RFC 7521" anchor="RFC7521Updates">
+      <t>
+	This section updates
+	"Assertion Framework for OAuth 2.0 Client Authentication and
+	Authorization Grants" <xref target="RFC7521"/>
+	to tighten its audience requirements to prevent attacks.
+      </t>
+      <t>
+	The description of the Audience parameter
+	in Section 5.1 of <xref target="RFC7521"/> (Assertion Metamodel)
+	is replaced by:
+	<list style="hanging">
+
+	  <t hangText="Audience">
+	    <vspace/>
+            A value that identifies the party intended to process the assertion.
+	    The audience MUST contain the issuer identifier <xref target="RFC8414"/>
+	    of the authorization server as its sole value.
+	    Unlike the audience value specified
+	    in <xref target="RFC7521"/>, there MUST be no value other than
+	    the issuer identifier of the intended authorization server
+	    used as the audience of the assertion;
+	    this includes that the token endpoint URL of the authorization server
+	    MUST NOT be used as an audience value.
+	  </t>
+	</list>
+      </t>
+      <t>
+	The description of the Audience parameter
+	in Section 5.2 of <xref target="RFC7521"/> (General Assertion Format and Processing Rules)
+	is replaced by:
+	<list style="symbols">
+	  <t>
+	    The assertion MUST contain an audience that identifies the
+            authorization server as the intended audience,
+	    with the issuer identifier <xref target="RFC8414"/>
+	    of the authorization server as its sole value.
+            The authorization server MUST reject any assertion that does not
+            contain its own issuer identifier as the sole audience value.
+	  </t>
+	</list>
+      </t>
+      <t>
+	In the list of agreements required by participants
+	in Section 7 of <xref target="RFC7521"/> (Interoperability Considerations),
+	"Audience identifiers" is removed from the list.
+      </t>
+    </section>
+
   </middle>
 
   <back>
@@ -515,6 +565,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
 
@@ -617,6 +668,11 @@
 	    removing the IANA actions already performed,
 	    and adding the Document History section.
           </t>
+	  <t>
+	    Update audience requirements in
+	    "Assertion Framework for OAuth 2.0 Client Authentication and
+	    Authorization Grants" <xref target="RFC7521"/>.
+	  </t>
         </list>
       </t>
 
