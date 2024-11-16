@@ -1617,9 +1617,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
    produce the JWT Claims Set for a JWT:<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4-4">
 <pre>
-  {"iss":"https://jwt-idp.example.com",
+  {"aud":"https://authz.example.net",
+   "iss":"https://jwt-idp.example.com",
    "sub":"mailto:mike@example.com",
-   "aud":"https://authz.example.net",
    "iat":1731721541,
    "exp":1731725141,
    "http://claims.example.com/member":true
