@@ -401,9 +401,9 @@
 	  produce the JWT Claims Set for a JWT:
 	</preamble>
 	<artwork><![CDATA[
-  {"iss":"https://jwt-idp.example.com",
+  {"aud":"https://authz.example.net",
+   "iss":"https://jwt-idp.example.com",
    "sub":"mailto:mike@example.com",
-   "aud":"https://authz.example.net",
    "iat":1731721541,
    "exp":1731725141,
    "http://claims.example.com/member":true
