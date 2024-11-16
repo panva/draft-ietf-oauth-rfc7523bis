@@ -1486,6 +1486,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
      used as the audience of the JWT;
      this includes that the token endpoint URL of the authorization server
      MUST NOT be used as an audience value.
+     It is RECOMMENDED that the <code>aud</code> claim value
+     be a JSON string, and not a single-valued JSON array.
       The authorization server MUST reject any JWT that does not
       contain its issuer identifier as its sole audience value.
       In the absence of an application profile specifying

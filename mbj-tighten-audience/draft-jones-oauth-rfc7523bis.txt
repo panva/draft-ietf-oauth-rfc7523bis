@@ -261,12 +261,14 @@ Table of Contents
         the issuer identifier of the intended authorization server used
         as the audience of the JWT; this includes that the token
         endpoint URL of the authorization server MUST NOT be used as an
-        audience value.  The authorization server MUST reject any JWT
-        that does not contain its issuer identifier as its sole audience
-        value.  In the absence of an application profile specifying
-        otherwise, compliant applications MUST compare the audience
-        values using the Simple String Comparison method defined in
-        Section 6.2.1 of RFC 3986 [RFC3986].
+        audience value.  It is RECOMMENDED that the aud claim value be a
+        JSON string, and not a single-valued JSON array.  The
+        authorization server MUST reject any JWT that does not contain
+        its issuer identifier as its sole audience value.  In the
+        absence of an application profile specifying otherwise,
+        compliant applications MUST compare the audience values using
+        the Simple String Comparison method defined in Section 6.2.1 of
+        RFC 3986 [RFC3986].
 
    4.   The JWT MUST contain an exp (expiration time) claim that limits
         the time window during which the JWT can be used.  The
