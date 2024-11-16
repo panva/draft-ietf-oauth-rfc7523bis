@@ -187,8 +187,9 @@
   Content-Type: application/x-www-form-urlencoded
 
   grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-  &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-  eyJpc3Mi[...omitted for brevity...].
+  &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+    VTMjU2Iiwia2lkIjoiMTYifQ.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   J9l-ZhwP[...omitted for brevity...]
 ]]></artwork>
         </figure>
@@ -218,8 +219,9 @@
   code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
   client-assertion-type%3Ajwt-bearer&
-  client_assertion=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyIn0.
-  eyJpc3Mi[...omitted for brevity...].
+  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0Iiwi
+    YWxnIjoiUlMyNTYiLCJraWQiOiIyMiJ9.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   cC4hiUPo[...omitted for brevity...]
 ]]></artwork>
         </figure>
@@ -417,24 +419,26 @@
 	  produce the JWT Claims Set for a JWT:
 	</preamble>
 	<artwork><![CDATA[
-  {"iss":"https://jwt-idp.example.com",
+  {"aud":"https://authz.example.net",
+   "iss":"https://jwt-idp.example.com",
    "sub":"mailto:mike@example.com",
-   "aud":"https://jwt-rp.example.net",
-   "nbf":1300815780,
-   "exp":1300819380,
-   "http://claims.example.com/member":true}
+   "iat":1731721541,
+   "exp":1731725141,
+   "http://claims.example.com/member":true
+  }
 ]]></artwork>
       </figure>
 
       <figure>
 	<preamble>
-	  The following example JSON object, used as the header of a
-	  JWT, declares that the JWT is signed with the Elliptic Curve
-          Digital Signature Algorithm (ECDSA) P-256
-	  SHA-256 using a key identified by the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
+	  The following example JSON object, used as the header parameters of a JWT,
+	  declares that the JWT is an authorization grant JWT,
+	  is signed with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256 with SHA-256,
+	  and was signed with a key identified by
+	  the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
 	</preamble>
 	<artwork><![CDATA[
-  {"alg":"ES256","kid":"16"}
+  {"typ":"authorization-grant+jwt","alg":"ES256","kid":"16"}
 ]]></artwork>
       </figure>
 
@@ -450,8 +454,9 @@
   Content-Type: application/x-www-form-urlencoded
 
   grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-  &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-  eyJpc3Mi[...omitted for brevity...].
+  &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+    VTMjU2Iiwia2lkIjoiMTYifQ.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   J9l-ZhwP[...omitted for brevity...]
 ]]></artwork>
       </figure>
