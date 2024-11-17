@@ -1,0 +1,141 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-11-17T01:49:06.326426+00:00",
+  "repo": "selfissued/draft-jones-oauth-rfc7523bis",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDONPDDUs6CHHte",
+      "title": "Use AS issuer identifier as the sole audience value",
+      "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/1",
+      "state": "OPEN",
+      "author": "selfissued",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is the primary change for RFC 7523 bis",
+      "createdAt": "2024-11-16T02:10:52Z",
+      "updatedAt": "2024-11-16T23:11:28Z",
+      "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
+      "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "headRefName": "mbj-tighten-audience",
+      "headRefOid": "4a2218d2e3bef01d68595cdf37be9e7a5d0d3181",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SECtim",
+          "authorAssociation": "NONE",
+          "body": "I suggest adding an explanation as to why `aud` must be the issuer identifier as a string (and not just as an element of an array). Otherwise, people may be inclined to think that it is sufficient to just add the issuer identifier to some existing array (I do realize that the currently proposed text very clearly says to use the issuer identifier as the _sole_ value, but I think it would still be helpful to explain the reasoning behind this change).",
+          "createdAt": "2024-11-16T10:06:31Z",
+          "updatedAt": "2024-11-16T10:06:31Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDONPDDUs6CI2fP",
+      "title": "Explicitly type JWTs",
+      "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/2",
+      "state": "OPEN",
+      "author": "selfissued",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "As suggested by @panva",
+      "createdAt": "2024-11-16T20:22:00Z",
+      "updatedAt": "2024-11-16T23:06:56Z",
+      "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
+      "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "headRefName": "mbj-explicit-typing",
+      "headRefOid": "87153e41c05aecc5e77fd0c1da59820597880c2d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDONPDDUs6CI6Ev",
+      "title": "Update audience requirements in other RFCs",
+      "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/3",
+      "state": "OPEN",
+      "author": "selfissued",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-16T21:20:00Z",
+      "updatedAt": "2024-11-17T01:19:06Z",
+      "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
+      "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "headRefName": "mbj-update-other-specs",
+      "headRefOid": "beb8e49f058d816d04f5ee3e8061a5e14bf0f744",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
