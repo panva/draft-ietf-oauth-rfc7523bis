@@ -1105,7 +1105,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7523" class="eref">7523</a> (if approved)</dd>
 <dt class="label-updates">Updates:</dt>
 <dd class="updates">
-<a href="https://www.rfc-editor.org/rfc/rfc7521" class="eref">7521</a> (if approved)</dd>
+<a href="https://www.rfc-editor.org/rfc/rfc7521" class="eref">7521</a>, <a href="https://www.rfc-editor.org/rfc/rfc7522" class="eref">7522</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2024-11-13" class="published">13 November 2024</time>
@@ -1237,24 +1237,27 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-updates-to-rfc-7521" class="internal xref">Updates to RFC 7521</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-updates-to-rfc-7522" class="internal xref">Updates to RFC 7522</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-document-history" class="internal xref">Document History</a></p>
-</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-document-history" class="internal xref">Document History</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1774,13 +1777,125 @@ svg :is([fill="white"], [fill^="#fff"]) {
  "Audience identifiers" is removed from the list.<a href="#section-9-6" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="RFC7522Updates">
 <section id="section-10">
-      <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+      <h2 id="name-updates-to-rfc-7522">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-updates-to-rfc-7522" class="section-name selfRef">Updates to RFC 7522</a>
       </h2>
-<section id="section-10.1">
+<p id="section-10-1">
+ This section updates
+ "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
+ Client Authentication and Authorization Grants" <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>
+ to tighten its audience requirements to prevent attacks.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-2">
+ The description of the Audience element in Item 2 of
+ Section 3 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Assertion Format and Processing Requirements)
+ is replaced by:<a href="#section-10-2" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-10-3.1">
+          <p id="section-10-3.1.1">
+     The Assertion MUST contain a &lt;Conditions&gt; element
+     with an &lt;AudienceRestriction&gt; element
+     with a single &lt;Audience&gt; element that identifies the
+     authorization server as the intended audience.
+     The value of the &lt;Audience&gt; element MUST be
+     the issuer identifier <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span> of the authorization server.
+     Section 2.5.1.4 of
+     "Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"
+     <span>[<a href="#OASIS.saml-core-2.0-os" class="cite xref">OASIS.saml-core-2.0-os</a>]</span>
+     defines the &lt;AudienceRestriction&gt; and &lt;Audience&gt; elements.
+     Unlike the audience value specified in <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>,
+     there MUST be no value other than
+     the issuer identifier of the intended authorization server
+     used as the audience of the assertion;
+     this includes that the token endpoint URL of the authorization server
+     MUST NOT be used as an audience value.<a href="#section-10-3.1.1" class="pilcrow">¶</a></p>
+<p id="section-10-3.1.2">
+
+     The authorization server MUST reject any assertion that does not
+     contain its own issuer identifier as the sole audience value.<a href="#section-10-3.1.2" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-10-4">
+ In Section 4 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Authorization Grant Example),
+ the sentence:<a href="#section-10-4" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-10-5.1">
+          <p id="section-10-5.1.1">
+     The intended audience of the Assertion is
+     <code>https://saml-sp.example.net</code>,
+     which is an identifier for a SAML Service Provider
+     with which the authorization server identifies itself.<a href="#section-10-5.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-10-6">
+ is replaced by:<a href="#section-10-6" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-10-7.1">
+          <p id="section-10-7.1.1">
+     The intended audience of the Assertion is
+     <code>https://authz.example.net</code>,
+     which is the authorization server's issuer identifier.<a href="#section-10-7.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-10-8" class="keepWithNext">
+   In the same section, the SAML 2.0 Assertion example is replaced by:<a href="#section-10-8" class="pilcrow">¶</a></p>
+<span id="name-example-saml-20-assertion"></span><div id="assertion">
+<figure id="figure-1">
+        <div class="alignLeft art-text artwork" id="section-10-9.1">
+<pre>
+  &lt;Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+    ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
+    Version="2.0"
+    xmlns="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
+   &lt;Issuer&gt;https://saml-idp.example.com&lt;/Issuer&gt;
+   &lt;ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+    [...omitted for brevity...]
+   &lt;/ds:Signature&gt;
+   &lt;Subject&gt;
+    &lt;NameID
+     Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"&gt;
+     brian@example.com
+    &lt;/NameID&gt;
+    &lt;SubjectConfirmation
+      Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
+     &lt;SubjectConfirmationData
+       NotOnOrAfter="2024-11-17T00:58:34.619Z"
+       Recipient="https://authz.example.net/token.oauth2"/&gt;
+     &lt;/SubjectConfirmation&gt;
+    &lt;/Subject&gt;
+    &lt;Conditions&gt;
+      &lt;AudienceRestriction&gt;
+        &lt;Audience&gt;https://authz.example.net&lt;/Audience&gt;
+      &lt;/AudienceRestriction&gt;
+    &lt;/Conditions&gt;
+    &lt;AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z"&gt;
+      &lt;AuthnContext&gt;
+        &lt;AuthnContextClassRef&gt;
+          urn:oasis:names:tc:SAML:2.0:ac:classes:X509
+        &lt;/AuthnContextClassRef&gt;
+      &lt;/AuthnContext&gt;
+    &lt;/AuthnStatement&gt;
+  &lt;/Assertion&gt;
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-example-saml-20-assertion" class="selfRef">Example SAML 2.0 Assertion</a>
+        </figcaption></figure>
+</div>
+<p id="section-10-10">
+ In the list of agreements required by participants
+ in Section 5 of <span>[<a href="#RFC7521" class="cite xref">RFC7521</a>]</span> (Interoperability Considerations),
+ "Audience identifiers" is removed from the list.<a href="#section-10-10" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-11">
+      <h2 id="name-references">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<section id="section-11.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="JWA">[JWA]</dt>
@@ -1790,6 +1905,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="JWT">[JWT]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="OASIS.saml-core-2.0-os">[OASIS.saml-core-2.0-os]</dt>
+        <dd>
+<span class="refAuthor">Cantor, S.</span>, <span class="refAuthor">Kemp, J.</span>, <span class="refAuthor">Philpott, R.</span>, and <span class="refAuthor">E. Maler</span>, <span class="refTitle">"Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"</span>, <span class="seriesInfo">OASIS Standard saml-core-2.0-os</span>, <time datetime="2005-03" class="refDate">March 2005</time>, <span>&lt;<a href="https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -1811,6 +1930,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Mortimore, C.</span>, <span class="refAuthor">Jones, M.</span>, and <span class="refAuthor">Y. Goland</span>, <span class="refTitle">"Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7521</span>, <span class="seriesInfo">DOI 10.17487/RFC7521</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7521">https://www.rfc-editor.org/info/rfc7521</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7522">[RFC7522]</dt>
+        <dd>
+<span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Mortimore, C.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7522</span>, <span class="seriesInfo">DOI 10.17487/RFC7522</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7522">https://www.rfc-editor.org/info/rfc7522</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7523">[RFC7523]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Campbell, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7523</span>, <span class="seriesInfo">DOI 10.17487/RFC7523</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7523">https://www.rfc-editor.org/info/rfc7523</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
@@ -1821,9 +1948,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-10.2">
+<section id="section-11.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="IANA.OAuth.Parameters">[IANA.OAuth.Parameters]</dt>
@@ -1841,14 +1968,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC6755">[RFC6755]</dt>
         <dd>
 <span class="refAuthor">Campbell, B.</span> and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"An IETF URN Sub-Namespace for OAuth"</span>, <span class="seriesInfo">RFC 6755</span>, <span class="seriesInfo">DOI 10.17487/RFC6755</span>, <time datetime="2012-10" class="refDate">October 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6755">https://www.rfc-editor.org/info/rfc6755</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7522">[RFC7522]</dt>
-        <dd>
-<span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Mortimore, C.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7522</span>, <span class="seriesInfo">DOI 10.17487/RFC7522</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7522">https://www.rfc-editor.org/info/rfc7522</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7523">[RFC7523]</dt>
-        <dd>
-<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Campbell, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants"</span>, <span class="seriesInfo">RFC 7523</span>, <span class="seriesInfo">DOI 10.17487/RFC7523</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7523">https://www.rfc-editor.org/info/rfc7523</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7591">[RFC7591]</dt>
       <dd>

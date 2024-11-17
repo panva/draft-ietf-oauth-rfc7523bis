@@ -5,7 +5,7 @@
 OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
-Updates: 7521 (if approved)                                Ping Identity
+Updates: 7521, 7522 (if approved)                          Ping Identity
 Intended status: Standards Track                            C. Mortimore
 Expires: 17 May 2025                                              Disney
                                                         13 November 2024
@@ -69,9 +69,10 @@ Table of Contents
    7.  Privacy Considerations
    8.  IANA Considerations
    9.  Updates to RFC 7521
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   10. Updates to RFC 7522
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Appendix A.  Document History
    Acknowledgements
    Authors' Addresses
@@ -474,9 +475,91 @@ Table of Contents
    [RFC7521] (Interoperability Considerations), "Audience identifiers"
    is removed from the list.
 
-10.  References
+10.  Updates to RFC 7522
 
-10.1.  Normative References
+   This section updates "Security Assertion Markup Language (SAML) 2.0
+   Profile for OAuth 2.0 Client Authentication and Authorization Grants"
+   [RFC7522] to tighten its audience requirements to prevent attacks.
+
+   The description of the Audience element in Item 2 of Section 3 of
+   [RFC7522] (Assertion Format and Processing Requirements) is replaced
+   by:
+
+      The Assertion MUST contain a <Conditions> element with an
+      <AudienceRestriction> element with a single <Audience> element
+      that identifies the authorization server as the intended audience.
+      The value of the <Audience> element MUST be the issuer identifier
+      [RFC8414] of the authorization server.  Section 2.5.1.4 of
+      "Assertions and Protocols for the OASIS Security Assertion Markup
+      Language (SAML) V2.0" [OASIS.saml-core-2.0-os] defines the
+      <AudienceRestriction> and <Audience> elements.  Unlike the
+      audience value specified in [RFC7522], there MUST be no value
+      other than the issuer identifier of the intended authorization
+      server used as the audience of the assertion; this includes that
+      the token endpoint URL of the authorization server MUST NOT be
+      used as an audience value.
+
+      The authorization server MUST reject any assertion that does not
+      contain its own issuer identifier as the sole audience value.
+
+   In Section 4 of [RFC7522] (Authorization Grant Example), the
+   sentence:
+
+      The intended audience of the Assertion is https://saml-
+      sp.example.net, which is an identifier for a SAML Service Provider
+      with which the authorization server identifies itself.
+
+   is replaced by:
+
+      The intended audience of the Assertion is
+      https://authz.example.net, which is the authorization server's
+      issuer identifier.
+
+   In the same section, the SAML 2.0 Assertion example is replaced by:
+
+     <Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+       ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
+       Version="2.0"
+       xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+      <Issuer>https://saml-idp.example.com</Issuer>
+      <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+       [...omitted for brevity...]
+      </ds:Signature>
+      <Subject>
+       <NameID
+        Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+        brian@example.com
+       </NameID>
+       <SubjectConfirmation
+         Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <SubjectConfirmationData
+          NotOnOrAfter="2024-11-17T00:58:34.619Z"
+          Recipient="https://authz.example.net/token.oauth2"/>
+        </SubjectConfirmation>
+       </Subject>
+       <Conditions>
+         <AudienceRestriction>
+           <Audience>https://authz.example.net</Audience>
+         </AudienceRestriction>
+       </Conditions>
+       <AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z">
+         <AuthnContext>
+           <AuthnContextClassRef>
+             urn:oasis:names:tc:SAML:2.0:ac:classes:X509
+           </AuthnContextClassRef>
+         </AuthnContext>
+       </AuthnStatement>
+     </Assertion>
+
+                    Figure 1: Example SAML 2.0 Assertion
+
+   In the list of agreements required by participants in Section 5 of
+   [RFC7521] (Interoperability Considerations), "Audience identifiers"
+   is removed from the list.
+
+11.  References
+
+11.1.  Normative References
 
    [JWA]      Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
@@ -485,6 +568,13 @@ Table of Contents
    [JWT]      Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
+
+   [OASIS.saml-core-2.0-os]
+              Cantor, S., Kemp, J., Philpott, R., and E. Maler,
+              "Assertions and Protocols for the OASIS Security Assertion
+              Markup Language (SAML) V2.0", OASIS Standard saml-core-
+              2.0-os, March 2005, <https://docs.oasis-
+              open.org/security/saml/v2.0/saml-core-2.0-os.pdf>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -509,6 +599,17 @@ Table of Contents
               and Authorization Grants", RFC 7521, DOI 10.17487/RFC7521,
               May 2015, <https://www.rfc-editor.org/info/rfc7521>.
 
+   [RFC7522]  Campbell, B., Mortimore, C., and M. Jones, "Security
+              Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
+              Client Authentication and Authorization Grants", RFC 7522,
+              DOI 10.17487/RFC7522, May 2015,
+              <https://www.rfc-editor.org/info/rfc7522>.
+
+   [RFC7523]  Jones, M., Campbell, B., and C. Mortimore, "JSON Web Token
+              (JWT) Profile for OAuth 2.0 Client Authentication and
+              Authorization Grants", RFC 7523, DOI 10.17487/RFC7523, May
+              2015, <https://www.rfc-editor.org/info/rfc7523>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -518,7 +619,7 @@ Table of Contents
               DOI 10.17487/RFC8414, June 2018,
               <https://www.rfc-editor.org/info/rfc8414>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [IANA.OAuth.Parameters]
               IANA, "OAuth Parameters",
@@ -539,17 +640,6 @@ Table of Contents
    [RFC6755]  Campbell, B. and H. Tschofenig, "An IETF URN Sub-Namespace
               for OAuth", RFC 6755, DOI 10.17487/RFC6755, October 2012,
               <https://www.rfc-editor.org/info/rfc6755>.
-
-   [RFC7522]  Campbell, B., Mortimore, C., and M. Jones, "Security
-              Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
-              Client Authentication and Authorization Grants", RFC 7522,
-              DOI 10.17487/RFC7522, May 2015,
-              <https://www.rfc-editor.org/info/rfc7522>.
-
-   [RFC7523]  Jones, M., Campbell, B., and C. Mortimore, "JSON Web Token
-              (JWT) Profile for OAuth 2.0 Client Authentication and
-              Authorization Grants", RFC 7523, DOI 10.17487/RFC7523, May
-              2015, <https://www.rfc-editor.org/info/rfc7523>.
 
    [RFC7591]  Richer, J., Ed., Jones, M., Bradley, J., Machulak, M., and
               P. Hunt, "OAuth 2.0 Dynamic Client Registration Protocol",
