@@ -446,7 +446,7 @@ Table of Contents
 
    This section updates "Assertion Framework for OAuth 2.0 Client
    Authentication and Authorization Grants" [RFC7521] to tighten its
-   audience requirements to prevent attacks.
+   audience requirements.
 
    The description of the Audience parameter in Section 5.1 of [RFC7521]
    (Assertion Metamodel) is replaced by:
@@ -479,7 +479,7 @@ Table of Contents
 
    This section updates "Security Assertion Markup Language (SAML) 2.0
    Profile for OAuth 2.0 Client Authentication and Authorization Grants"
-   [RFC7522] to tighten its audience requirements to prevent attacks.
+   [RFC7522] to tighten its audience requirements.
 
    The description of the Audience element in Item 2 of Section 3 of
    [RFC7522] (Assertion Format and Processing Requirements) is replaced
@@ -659,6 +659,10 @@ Appendix A.  Document History
 
    *  Update audience requirements in "Assertion Framework for OAuth 2.0
       Client Authentication and Authorization Grants" [RFC7521].
+
+   *  Update audience requirements in "Security Assertion Markup
+      Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication
+      and Authorization Grants" [RFC7522].
 
 Acknowledgements
 
