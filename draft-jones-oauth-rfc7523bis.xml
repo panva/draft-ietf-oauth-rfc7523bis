@@ -5,7 +5,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
   docName="draft-jones-oauth-rfc7523bis-latest"
-  obsoletes="7523" updates="7521">
+  obsoletes="7523" updates="7521, 7522">
 
   <?rfc toc="yes"?>
   <?rfc tocompact="yes"?>
@@ -553,6 +553,109 @@
       </t>
     </section>
 
+    <section title="Updates to RFC 7522" anchor="RFC7522Updates">
+      <t>
+	This section updates
+	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
+	Client Authentication and Authorization Grants" <xref target="RFC7522"/>
+	to tighten its audience requirements to prevent attacks.
+      </t>
+      <t>
+	The description of the Audience element in Item 2 of
+	Section 3 of <xref target="RFC7522"/> (Assertion Format and Processing Requirements)
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    The Assertion MUST contain a &lt;Conditions&gt; element
+	    with an &lt;AudienceRestriction&gt; element
+	    with a single &lt;Audience&gt; element that identifies the
+	    authorization server as the intended audience.
+	    The value of the &lt;Audience&gt; element MUST be
+	    the issuer identifier <xref target="RFC8414"/> of the authorization server.
+	    Section 2.5.1.4 of
+	    "Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"
+	    <xref target="OASIS.saml-core-2.0-os"/>
+	    defines the &lt;AudienceRestriction&gt; and &lt;Audience&gt; elements.
+	    Unlike the audience value specified in <xref target="RFC7522"/>,
+	    there MUST be no value other than
+	    the issuer identifier of the intended authorization server
+	    used as the audience of the assertion;
+	    this includes that the token endpoint URL of the authorization server
+	    MUST NOT be used as an audience value.
+	    <vspace blankLine="1"/>
+
+	    The authorization server MUST reject any assertion that does not
+	    contain its own issuer identifier as the sole audience value.
+	  </t>
+	</list>
+      </t>
+      <t>
+	In Section 4 of <xref target="RFC7522"/> (Authorization Grant Example),
+	the sentence:
+	<list style="empty">
+	  <t>
+	    The intended audience of the Assertion is
+	    <spanx style='verb'>https://saml-sp.example.net</spanx>,
+	    which is an identifier for a SAML Service Provider
+	    with which the authorization server identifies itself.
+	  </t>
+	</list>
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    The intended audience of the Assertion is
+	    <spanx style='verb'>https://authz.example.net</spanx>,
+	    which is the authorization server's issuer identifier.
+	  </t>
+	</list>
+      </t>
+      <figure title='Example SAML 2.0 Assertion' anchor='assertion'>
+	<preamble>
+	  In the same section, the SAML 2.0 Assertion example is replaced by:
+	</preamble>
+	<artwork><![CDATA[
+  <Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+    ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
+    Version="2.0"
+    xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+   <Issuer>https://saml-idp.example.com</Issuer>
+   <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    [...omitted for brevity...]
+   </ds:Signature>
+   <Subject>
+    <NameID
+     Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+     brian@example.com
+    </NameID>
+    <SubjectConfirmation
+      Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+     <SubjectConfirmationData
+       NotOnOrAfter="2024-11-17T00:58:34.619Z"
+       Recipient="https://authz.example.net/token.oauth2"/>
+     </SubjectConfirmation>
+    </Subject>
+    <Conditions>
+      <AudienceRestriction>
+        <Audience>https://authz.example.net</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z">
+      <AuthnContext>
+        <AuthnContextClassRef>
+          urn:oasis:names:tc:SAML:2.0:ac:classes:X509
+        </AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+]]></artwork>
+      </figure>
+      <t>
+	In the list of agreements required by participants
+	in Section 5 of <xref target="RFC7521"/> (Interoperability Considerations),
+	"Audience identifiers" is removed from the list.
+      </t>
+    </section>
+
   </middle>
 
   <back>
@@ -564,6 +667,8 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
 
@@ -599,12 +704,26 @@
 	<seriesInfo name="DOI" value="10.17487/RFC7519"/>
       </reference>
 
+      <reference target="https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf" anchor="OASIS.saml-core-2.0-os">
+	<front><title>Assertions and Protocols for the OASIS Security Assertion Markup Language
+        (SAML) V2.0</title>
+	<author fullname="Scott Cantor" initials="S." surname="Cantor">
+	  <organization>Internet2</organization>
+	<address><email>cantor.2@osu.edu</email></address></author>
+	<author fullname="John Kemp" initials="J." surname="Kemp"><organization>Nokia</organization>
+	<address><email>John.Kemp@nokia.com</email></address></author><author fullname="Rob Philpott" initials="R." surname="Philpott">
+	<organization>RSA Security</organization>
+	<address><email>rphilpott@rsasecurity.com</email></address></author>
+	<author fullname="Eve Maler" initials="E." surname="Maler">
+	<organization>Sun Microsystems</organization><address><email>eve.maler@sun.com</email></address></author>
+	<date year="2005" month="March"/></front>
+	<seriesInfo name="OASIS Standard" value="saml-core-2.0-os"/>
+      </reference>
+
     </references>
 
     <references title="Informative References">
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
       <reference anchor="OpenID.Registration" target="https://openid.net/specs/openid-connect-registration-1_0.html">
 	<front>
