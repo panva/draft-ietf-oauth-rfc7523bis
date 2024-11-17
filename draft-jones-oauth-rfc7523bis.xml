@@ -509,7 +509,7 @@
 	This section updates
 	"Assertion Framework for OAuth 2.0 Client Authentication and
 	Authorization Grants" <xref target="RFC7521"/>
-	to tighten its audience requirements to prevent attacks.
+	to tighten its audience requirements.
       </t>
       <t>
 	The description of the Audience parameter
@@ -558,7 +558,7 @@
 	This section updates
 	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
 	Client Authentication and Authorization Grants" <xref target="RFC7522"/>
-	to tighten its audience requirements to prevent attacks.
+	to tighten its audience requirements.
       </t>
       <t>
 	The description of the Audience element in Item 2 of
@@ -791,6 +791,11 @@
 	    Update audience requirements in
 	    "Assertion Framework for OAuth 2.0 Client Authentication and
 	    Authorization Grants" <xref target="RFC7521"/>.
+	  </t>
+	  <t>
+	    Update audience requirements in
+	    "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
+	    Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
 	  </t>
         </list>
       </t>
