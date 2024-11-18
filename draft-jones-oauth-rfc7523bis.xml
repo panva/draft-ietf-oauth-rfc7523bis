@@ -278,14 +278,15 @@
 	    used as the audience of the JWT;
 	    this includes that the token endpoint URL of the authorization server
 	    MUST NOT be used as an audience value.
-	    It is RECOMMENDED that the <spanx style="verb">aud</spanx> claim value
+	    To simplify implementations,
+	    the <spanx style="verb">aud</spanx> claim value MUST
 	    be a JSON string, and not a single-valued JSON array.
-      The authorization server MUST reject any JWT that does not
-      contain its issuer identifier as its sole audience value.
-      In the absence of an application profile specifying
-      otherwise, compliant applications MUST compare the audience
-      values using the Simple String Comparison method defined in Section
-      6.2.1 of RFC 3986 <xref target="RFC3986"/>.
+	    The authorization server MUST reject any JWT that does not
+	    contain its issuer identifier as its sole audience value.
+	    In the absence of an application profile specifying
+	    otherwise, compliant applications MUST compare the audience
+	    values using the Simple String Comparison method defined in Section
+	    6.2.1 of RFC 3986 <xref target="RFC3986"/>.
 	  </t>
 	  <t>
 	    The JWT MUST contain an <spanx style="verb">exp</spanx>
@@ -458,7 +459,8 @@
 	the OAuth 2.0 Dynamic Client Registration Protocol <xref target="RFC7591"/>,
 	OAuth 2.0 Authorization Server Metadata <xref target="RFC8414"/>,
 	OpenID Connect Dynamic Client Registration 1.0 <xref target="OpenID.Registration"/>,
-	and OpenID Connect Discovery 1.0 <xref target="OpenID.Discovery"/>.
+	OpenID Connect Discovery 1.0 <xref target="OpenID.Discovery"/>,
+	and OpenID Federation 1.0  <xref target="OpenID.Federation"/>.
       </t>
       <t>
         The <spanx style="verb">RS256</spanx> algorithm, from <xref target="JWA"/>, is a mandatory-to-implement JSON Web
@@ -605,6 +607,31 @@
 	  </author>
           <date day="15" month="December" year="2023"/>
 	</front>
+      </reference>
+
+      <reference anchor="OpenID.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
+        <front>
+          <title>OpenID Federation 1.0</title>
+	  <author fullname="Roland Hedberg">
+            <organization>independent</organization>
+          </author>
+          <author fullname="Michael B. Jones">
+            <organization>Self-Issued Consulting</organization>
+          </author>
+          <author fullname="A. Solberg">
+            <organization>Sikt</organization>
+          </author>
+          <author fullname="John Bradley">
+            <organization>Yubico</organization>
+          </author>
+          <author fullname="Giuseppe De Marco">
+            <organization>independent</organization>
+          </author>
+          <author fullname="Vladimir Dzhuvinov">
+            <organization>Connect2id</organization>
+          </author>
+          <date day="24" month="October" year="2024"/>
+        </front>
       </reference>
 
       <reference anchor="IANA.OAuth.Parameters" target="https://www.iana.org/assignments/oauth-parameters">
