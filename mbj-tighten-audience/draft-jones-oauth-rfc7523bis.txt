@@ -261,11 +261,11 @@ Table of Contents
         the issuer identifier of the intended authorization server used
         as the audience of the JWT; this includes that the token
         endpoint URL of the authorization server MUST NOT be used as an
-        audience value.  It is RECOMMENDED that the aud claim value be a
-        JSON string, and not a single-valued JSON array.  The
-        authorization server MUST reject any JWT that does not contain
-        its issuer identifier as its sole audience value.  In the
-        absence of an application profile specifying otherwise,
+        audience value.  To simplify implementations, the aud claim
+        value MUST be a JSON string, and not a single-valued JSON array.
+        The authorization server MUST reject any JWT that does not
+        contain its issuer identifier as its sole audience value.  In
+        the absence of an application profile specifying otherwise,
         compliant applications MUST compare the audience values using
         the Simple String Comparison method defined in Section 6.2.1 of
         RFC 3986 [RFC3986].
@@ -400,8 +400,9 @@ Table of Contents
    be exchanged.  Examples of such profiles include the OAuth 2.0
    Dynamic Client Registration Protocol [RFC7591], OAuth 2.0
    Authorization Server Metadata [RFC8414], OpenID Connect Dynamic
-   Client Registration 1.0 [OpenID.Registration], and OpenID Connect
-   Discovery 1.0 [OpenID.Discovery].
+   Client Registration 1.0 [OpenID.Registration], OpenID Connect
+   Discovery 1.0 [OpenID.Discovery], and OpenID Federation 1.0
+   [OpenID.Federation].
 
    The RS256 algorithm, from [JWA], is a mandatory-to-implement JSON Web
    Signature algorithm for this profile.
@@ -502,6 +503,12 @@ Table of Contents
               "OpenID Connect Discovery 1.0 incorporating errata set 2",
               15 December 2023, <https://openid.net/specs/openid-
               connect-discovery-1_0.html>.
+
+   [OpenID.Federation]
+              Hedberg, R., Jones, M. B., Solberg, A., Bradley, J.,
+              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0",
+              24 October 2024,
+              <https://openid.net/specs/openid-federation-1_0.html>.
 
    [OpenID.Registration]
               Sakimura, N., Bradley, J., and M.B. Jones, "OpenID Connect
