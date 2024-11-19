@@ -5,7 +5,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
   docName="draft-jones-oauth-rfc7523bis-latest"
-  obsoletes="7523" updates="7521, 7522">
+  obsoletes="7523" updates="7521, 7522, 9126">
 
   <?rfc toc="yes"?>
   <?rfc tocompact="yes"?>
@@ -656,6 +656,36 @@
       </t>
     </section>
 
+    <section title="Updates to RFC 9126" anchor="RFC9126Updates">
+      <t>
+	This section updates
+	"OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>
+	to tighten its audience requirements.
+      </t>
+      <t>
+	The paragraph describing the audience value
+	in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    This update resolves the potential ambiguity regarding
+	    the appropriate audience value to use when employing
+	    JWT client assertion-based authentication
+	    (as defined in Section 2.2 of <xref target="RFC7523"/> with the
+	    <spanx style="verb">private_key_jwt</spanx> or
+	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
+	    per Section 9 of <xref target="OpenID.Core"/>)
+	    that was described in <xref target="RFC9126"/>.
+	    To address that ambiguity, the issuer identifier URL
+	    of the authorization server according to <xref target="RFC8414"/>
+	    MUST be used as the sole value of the audience.
+            The authorization server MUST reject any such JWT that does not
+            contain its own issuer identifier as the sole audience value.
+	  </t>
+	</list>
+      </t>
+    </section>
+
   </middle>
 
   <back>
@@ -671,6 +701,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
 
@@ -725,6 +756,35 @@
     <references title="Informative References">
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
+
+      <reference anchor="OpenID.Core" target="https://openid.net/specs/openid-connect-core-1_0.html">
+        <front>
+          <title>OpenID Connect Core 1.0 incorporating errata set 2</title>
+
+          <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
+            <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
+          </author>
+
+          <author fullname="John Bradley" initials="J." surname="Bradley">
+            <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
+          </author>
+
+          <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
+            <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
+          </author>
+
+          <author fullname="Breno de Medeiros" initials="B." surname="de Medeiros">
+            <organization abbrev="Google">Google</organization>
+          </author>
+
+	  <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
+	    <organization abbrev="Disney (was at Salesforce)">Disney</organization>
+	  </author>
+
+          <date day="15" month="December" year="2023"/>
+        </front>
+      </reference>
+
       <reference anchor="OpenID.Registration" target="https://openid.net/specs/openid-connect-registration-1_0.html">
 	<front>
 	  <title>OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 2</title>
@@ -796,6 +856,10 @@
 	    Update audience requirements in
 	    "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
 	    Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
+	  </t>
+	  <t>
+	    Update audience requirements in
+	    "OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>.
 	  </t>
         </list>
       </t>
