@@ -5,7 +5,7 @@
 OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
-Updates: 7521, 7522 (if approved)                          Ping Identity
+Updates: 7521, 7522, 9126 (if approved)                    Ping Identity
 Intended status: Standards Track                            C. Mortimore
 Expires: 17 May 2025                                              Disney
                                                         13 November 2024
@@ -70,9 +70,10 @@ Table of Contents
    8.  IANA Considerations
    9.  Updates to RFC 7521
    10. Updates to RFC 7522
-   11. References
-     11.1.  Normative References
-     11.2.  Informative References
+   11. Updates to RFC 9126
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Appendix A.  Document History
    Acknowledgements
    Authors' Addresses
@@ -557,9 +558,28 @@ Table of Contents
    [RFC7521] (Interoperability Considerations), "Audience identifiers"
    is removed from the list.
 
-11.  References
+11.  Updates to RFC 9126
 
-11.1.  Normative References
+   This section updates "OAuth 2.0 Pushed Authorization Requests"
+   [RFC9126] to tighten its audience requirements.
+
+   The paragraph describing the audience value in Section 2 of [RFC9126]
+   (Pushed Authorization Request Endpoint) is replaced by:
+
+      This update resolves the potential ambiguity regarding the
+      appropriate audience value to use when employing JWT client
+      assertion-based authentication (as defined in Section 2.2 of
+      [RFC7523] with the private_key_jwt or client_secret_jwt
+      authentication method names per Section 9 of [OpenID.Core]) that
+      was described in [RFC9126].  To address that ambiguity, the issuer
+      identifier URL of the authorization server according to [RFC8414]
+      MUST be used as the sole value of the audience.  The authorization
+      server MUST reject any such JWT that does not contain its own
+      issuer identifier as the sole audience value.
+
+12.  References
+
+12.1.  Normative References
 
    [JWA]      Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
@@ -619,11 +639,22 @@ Table of Contents
               DOI 10.17487/RFC8414, June 2018,
               <https://www.rfc-editor.org/info/rfc8414>.
 
-11.2.  Informative References
+   [RFC9126]  Lodderstedt, T., Campbell, B., Sakimura, N., Tonge, D.,
+              and F. Skokan, "OAuth 2.0 Pushed Authorization Requests",
+              RFC 9126, DOI 10.17487/RFC9126, September 2021,
+              <https://www.rfc-editor.org/info/rfc9126>.
+
+12.2.  Informative References
 
    [IANA.OAuth.Parameters]
               IANA, "OAuth Parameters",
               <https://www.iana.org/assignments/oauth-parameters>.
+
+   [OpenID.Core]
+              Sakimura, N., Bradley, J., Jones, M.B., de Medeiros, B.,
+              and C. Mortimore, "OpenID Connect Core 1.0 incorporating
+              errata set 2", 15 December 2023,
+              <https://openid.net/specs/openid-connect-core-1_0.html>.
 
    [OpenID.Discovery]
               Sakimura, N., Bradley, J., Jones, M.B., and E. Jay,
@@ -663,6 +694,9 @@ Appendix A.  Document History
    *  Update audience requirements in "Security Assertion Markup
       Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication
       and Authorization Grants" [RFC7522].
+
+   *  Update audience requirements in "OAuth 2.0 Pushed Authorization
+      Requests" [RFC9126].
 
 Acknowledgements
 
