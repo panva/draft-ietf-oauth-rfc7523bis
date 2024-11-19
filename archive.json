@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-17T01:49:06.326426+00:00",
+  "timestamp": "2024-11-19T01:44:59.839398+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -63,27 +63,46 @@
       "labels": [],
       "body": "This is the primary change for RFC 7523 bis",
       "createdAt": "2024-11-16T02:10:52Z",
-      "updatedAt": "2024-11-16T23:11:28Z",
+      "updatedAt": "2024-11-18T17:41:56Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
       "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
       "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "headRefName": "mbj-tighten-audience",
-      "headRefOid": "4a2218d2e3bef01d68595cdf37be9e7a5d0d3181",
+      "headRefOid": "eb709bcd67a770422256c2669ba9ec961272f050",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [
+      "comments": [],
+      "reviews": [
         {
-          "author": "SECtim",
+          "id": "PRR_kwDONPDDUs6Rgu2k",
+          "commit": {
+            "abbreviatedOid": "4a2218d"
+          },
+          "author": "RalphBragg",
           "authorAssociation": "NONE",
-          "body": "I suggest adding an explanation as to why `aud` must be the issuer identifier as a string (and not just as an element of an array). Otherwise, people may be inclined to think that it is sufficient to just add the issuer identifier to some existing array (I do realize that the currently proposed text very clearly says to use the issuer identifier as the _sole_ value, but I think it would still be helpful to explain the reasoning behind this change).",
-          "createdAt": "2024-11-16T10:06:31Z",
-          "updatedAt": "2024-11-16T10:06:31Z"
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T00:01:15Z",
+          "updatedAt": "2024-11-18T00:04:50Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Given this is going to be a breaking change, can i recommend that we remove the support for both  a string and array with a single string in it. For simplicity (which is its own security) and compute cycles and implementation cmplexity by both AS as and RPs wouldn't it make more sense to drop the ARRAY support with a single value in it, for just supporting and requiring a single string. my 2p",
+              "createdAt": "2024-11-18T00:01:15Z",
+              "updatedAt": "2024-11-18T00:04:50Z"
+            },
+            {
+              "originalPosition": 91,
+              "body": "Wouldn't oidc federation be a valid mechanism in this context as well",
+              "createdAt": "2024-11-18T00:04:45Z",
+              "updatedAt": "2024-11-18T00:04:50Z"
+            }
+          ]
         }
-      ],
-      "reviews": []
+      ]
     },
     {
       "number": 2,
@@ -123,13 +142,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-16T21:20:00Z",
-      "updatedAt": "2024-11-17T01:19:06Z",
+      "updatedAt": "2024-11-17T02:16:10Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
       "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
       "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "headRefName": "mbj-update-other-specs",
-      "headRefOid": "beb8e49f058d816d04f5ee3e8061a5e14bf0f744",
+      "headRefOid": "477848d65b17796e626ee52c4f8296b85d32d08f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
