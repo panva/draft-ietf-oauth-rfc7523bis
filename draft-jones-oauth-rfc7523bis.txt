@@ -68,6 +68,8 @@ Table of Contents
    6.  Security Considerations
    7.  Privacy Considerations
    8.  IANA Considerations
+     8.1.  Media Type Registration
+       8.1.1.  Registry Contents
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -193,8 +195,9 @@ Table of Contents
      Content-Type: application/x-www-form-urlencoded
 
      grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-     &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-     eyJpc3Mi[...omitted for brevity...].
+     &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+       VTMjU2Iiwia2lkIjoiMTYifQ.
+     eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
      J9l-ZhwP[...omitted for brevity...]
 
 2.2.  Using JWTs for Client Authentication
@@ -220,8 +223,9 @@ Table of Contents
      code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
      client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
      client-assertion-type%3Ajwt-bearer&
-     client_assertion=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyIn0.
-     eyJpc3Mi[...omitted for brevity...].
+     client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0Iiwi
+       YWxnIjoiUlMyNTYiLCJraWQiOiIyMiJ9.
+     eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
      cC4hiUPo[...omitted for brevity...]
 
 3.  JWT Format and Processing Requirements
@@ -232,14 +236,20 @@ Table of Contents
    below.  Application of additional restrictions and policy are at the
    discretion of the authorization server.
 
-   1.   The JWT MUST contain an iss (issuer) claim that contains a
+   1.   The JWT MUST be explicitly typed, as defined in Section 3.11 of
+        [RFC8725].  The typ header parameter values that MUST be used
+        are defined in Section 3.1 and Section 3.2.  The authorization
+        server MUST reject JWTs that do not use the specified explicit
+        type value.
+
+   2.   The JWT MUST contain an iss (issuer) claim that contains a
         unique identifier for the entity that issued the JWT.  In the
         absence of an application profile specifying otherwise,
         compliant applications MUST compare issuer values using the
         Simple String Comparison method defined in Section 6.2.1 of RFC
         3986 [RFC3986].
 
-   2.   The JWT MUST contain a sub (subject) claim identifying the
+   3.   The JWT MUST contain a sub (subject) claim identifying the
         principal that is the subject of the JWT.  Two cases need to be
         differentiated:
 
@@ -253,7 +263,7 @@ Table of Contents
         b.  For client authentication, the subject MUST be the client_id
             of the OAuth client.
 
-   3.   The JWT MUST contain an aud (audience) claim containing the
+   4.   The JWT MUST contain an aud (audience) claim containing the
         issuer identifier [RFC8414] of the authorization server as its
         sole value.  The authorization server MUST have an issuer
         identifier to be used with this specification.  Unlike the aud
@@ -270,39 +280,44 @@ Table of Contents
         the Simple String Comparison method defined in Section 6.2.1 of
         RFC 3986 [RFC3986].
 
-   4.   The JWT MUST contain an exp (expiration time) claim that limits
+   5.   The JWT MUST contain an exp (expiration time) claim that limits
         the time window during which the JWT can be used.  The
         authorization server MUST reject any JWT with an expiration time
         that has passed, subject to allowable clock skew between
         systems.  Note that the authorization server may reject JWTs
         with an exp claim value that is unreasonably far in the future.
 
-   5.   The JWT MAY contain an nbf (not before) claim that identifies
+   6.   The JWT MAY contain an nbf (not before) claim that identifies
         the time before which the token MUST NOT be accepted for
         processing.
 
-   6.   The JWT MAY contain an iat (issued at) claim that identifies the
+   7.   The JWT MAY contain an iat (issued at) claim that identifies the
         time at which the JWT was issued.  Note that the authorization
         server may reject JWTs with an iat claim value that is
         unreasonably far in the past.
 
-   7.   The JWT MAY contain a jti (JWT ID) claim that provides a unique
+   8.   The JWT MAY contain a jti (JWT ID) claim that provides a unique
         identifier for the token.  The authorization server MAY ensure
         that JWTs are not replayed by maintaining the set of used jti
         values for the length of time for which the JWT would be
         considered valid based on the applicable exp instant.
 
-   8.   The JWT MAY contain other claims.
+   9.   The JWT MAY contain other claims.
 
-   9.   The JWT MUST be digitally signed or have a Message
+   10.  The JWT MUST be digitally signed or have a Message
         Authentication Code (MAC) applied by the issuer.  The
         authorization server MUST reject JWTs with an invalid signature
         or MAC.
 
-   10.  The authorization server MUST reject a JWT that is not valid in
+   11.  The authorization server MUST reject a JWT that is not valid in
         all other respects per "JSON Web Token (JWT)" [JWT].
 
 3.1.  Authorization Grant Processing
+
+   Authorization grant JWTs MUST be explicitly typed by using the typ
+   header parameter value authorization-grant+jwt.  Authorization grant
+   JWTs not using this explicit type value MUST be rejected by the
+   authorization server.
 
    JWT authorization grants may be used with or without client
    authentication or identification.  Whether or not client
@@ -332,6 +347,11 @@ Table of Contents
      }
 
 3.2.  Client Authentication Processing
+
+   Client authentication JWTs MUST be explicitly typed by using the typ
+   header parameter value client-authentication+jwt.  Client
+   authentication JWTs not using this explicit type value MUST be
+   rejected by the authorization server.
 
    If the client JWT is not valid, the authorization server constructs
    an error response as defined in OAuth 2.0 [RFC6749].  The value of
@@ -364,12 +384,13 @@ Table of Contents
       "http://claims.example.com/member":true
      }
 
-   The following example JSON object, used as the header of a JWT,
-   declares that the JWT is signed with the Elliptic Curve Digital
-   Signature Algorithm (ECDSA) P-256 SHA-256 using a key identified by
-   the kid value 16.
+   The following example JSON object, used as the header parameters of a
+   JWT, declares that the JWT is an authorization grant JWT, is signed
+   with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256
+   with SHA-256, and was signed with a key identified by the kid value
+   16.
 
-     {"alg":"ES256","kid":"16"}
+     {"typ":"authorization-grant+jwt","alg":"ES256","kid":"16"}
 
    To present the JWT with the claims and header shown in the previous
    example as part of an access token request, for example, the client
@@ -381,8 +402,9 @@ Table of Contents
      Content-Type: application/x-www-form-urlencoded
 
      grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-     &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-     eyJpc3Mi[...omitted for brevity...].
+     &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+       VTMjU2Iiwia2lkIjoiMTYifQ.
+     eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
      J9l-ZhwP[...omitted for brevity...]
 
 5.  Interoperability Considerations
@@ -445,8 +467,69 @@ Table of Contents
    type:jwt-bearer and urn:ietf:params:oauth:client-assertion-type:jwt-
    bearer in the IANA "OAuth URI" registry [IANA.OAuth.Parameters]
    established by "An IETF URN Sub-Namespace for OAuth" [RFC6755] were
-   performed by [RFC7523].  No IANA actions are requested by this
-   specification.
+   performed by [RFC7523].
+
+8.1.  Media Type Registration
+
+   This section registers the following media types [RFC2046] in the
+   "Media Types" registry [IANA.MediaTypes] in the manner described in
+   [RFC6838].
+
+8.1.1.  Registry Contents
+
+   *  Type name: application
+   *  Subtype name: authorization-grant+jwt
+   *  Required parameters: n/a
+   *  Optional parameters: n/a
+   *  Encoding considerations: binary; An authorization grant JWT is a
+      JWT; JWT values are encoded as a series of base64url-encoded
+      values (some of which may be the empty string) separated by period
+      ('.') characters.
+   *  Security considerations: See Section 6 of this specification
+   *  Interoperability considerations: n/a
+   *  Published specification: Section 3.1 of this specification
+   *  Applications that use this media type: Applications that use this
+      specification
+   *  Fragment identifier considerations: n/a
+   *  Additional information:
+         Magic number(s): n/a
+         File extension(s): n/a
+         Macintosh file type code(s): n/a
+   *  Person & email address to contact for further information:
+      Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Intended usage: COMMON
+   *  Restrictions on usage: none
+   *  Author: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Change controller: OpenID Foundation Artifact Binding Working
+      Group - openid-specs-ab@lists.openid.net
+   *  Provisional registration?  No
+
+   *  Type name: application
+   *  Subtype name: client-authentication+jwt
+   *  Required parameters: n/a
+   *  Optional parameters: n/a
+   *  Encoding considerations: binary; A client authentication JWT is a
+      JWT; JWT values are encoded as a series of base64url-encoded
+      values (some of which may be the empty string) separated by period
+      ('.') characters.
+   *  Security considerations: See Section 6 of this specification
+   *  Interoperability considerations: n/a
+   *  Published specification: Section 3.2 of this specification
+   *  Applications that use this media type: Applications that use this
+      specification
+   *  Fragment identifier considerations: n/a
+   *  Additional information:
+         Magic number(s): n/a
+         File extension(s): n/a
+         Macintosh file type code(s): n/a
+   *  Person & email address to contact for further information:
+      Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Intended usage: COMMON
+   *  Restrictions on usage: none
+   *  Author: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Change controller: OpenID Foundation Artifact Binding Working
+      Group - openid-specs-ab@lists.openid.net
+   *  Provisional registration?  No
 
 9.  References
 
@@ -492,7 +575,16 @@ Table of Contents
               DOI 10.17487/RFC8414, June 2018,
               <https://www.rfc-editor.org/info/rfc8414>.
 
+   [RFC8725]  Sheffer, Y., Hardt, D., and M. Jones, "JSON Web Token Best
+              Current Practices", BCP 225, RFC 8725,
+              DOI 10.17487/RFC8725, February 2020,
+              <https://www.rfc-editor.org/info/rfc8725>.
+
 9.2.  Informative References
+
+   [IANA.MediaTypes]
+              IANA, "Media Types",
+              <https://www.iana.org/assignments/media-types>.
 
    [IANA.OAuth.Parameters]
               IANA, "OAuth Parameters",
@@ -516,9 +608,19 @@ Table of Contents
               2", 15 December 2023, <https://openid.net/specs/openid-
               connect-registration-1_0.html>.
 
+   [RFC2046]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
+              Extensions (MIME) Part Two: Media Types", RFC 2046,
+              DOI 10.17487/RFC2046, November 1996,
+              <https://www.rfc-editor.org/info/rfc2046>.
+
    [RFC6755]  Campbell, B. and H. Tschofenig, "An IETF URN Sub-Namespace
               for OAuth", RFC 6755, DOI 10.17487/RFC6755, October 2012,
               <https://www.rfc-editor.org/info/rfc6755>.
+
+   [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
+              Specifications and Registration Procedures", BCP 13,
+              RFC 6838, DOI 10.17487/RFC6838, January 2013,
+              <https://www.rfc-editor.org/info/rfc6838>.
 
    [RFC7522]  Campbell, B., Mortimore, C., and M. Jones, "Security
               Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
@@ -553,6 +655,9 @@ Appendix A.  Document History
       History section.
 
    *  Use AS issuer identifier as the sole audience value.
+
+   *  Explicitly typed authorization grant JWTs and client
+      authentication JWTs.
 
 Acknowledgements
 
