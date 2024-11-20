@@ -41,7 +41,7 @@
       </address>
     </author>
 
-    <date day="13" month="November" year="2024" />
+    <date day="20" month="November" year="2024" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -63,7 +63,7 @@
     <section title="Introduction" anchor="Introduction">
       <t>
 	JSON Web Token (JWT) <xref target="JWT"/>
-	is a JSON-based <xref target="RFC7159"/> security token encoding
+	is a JSON-based <xref target="RFC8259"/> security token encoding
         that enables
 	identity and security information to be shared across security
 	domains.
@@ -886,11 +886,11 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
@@ -929,7 +929,7 @@
 
       <reference target="https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf" anchor="OASIS.saml-core-2.0-os">
 	<front><title>Assertions and Protocols for the OASIS Security Assertion Markup Language
-        (SAML) V2.0</title>
+	(SAML) V2.0</title>
 	<author fullname="Scott Cantor" initials="S." surname="Cantor">
 	  <organization>Internet2</organization>
 	<address><email>cantor.2@osu.edu</email></address></author>
@@ -952,31 +952,31 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
 
       <reference anchor="OpenID.Core" target="https://openid.net/specs/openid-connect-core-1_0.html">
-        <front>
-          <title>OpenID Connect Core 1.0 incorporating errata set 2</title>
+	<front>
+	  <title>OpenID Connect Core 1.0 incorporating errata set 2</title>
 
-          <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-            <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
-          </author>
+	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
+	    <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
+	  </author>
 
-          <author fullname="John Bradley" initials="J." surname="Bradley">
-            <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
-          </author>
+	  <author fullname="John Bradley" initials="J." surname="Bradley">
+	    <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
+	  </author>
 
-          <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-            <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
-          </author>
+	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
+	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
+	  </author>
 
-          <author fullname="Breno de Medeiros" initials="B." surname="de Medeiros">
-            <organization abbrev="Google">Google</organization>
-          </author>
+	  <author fullname="Breno de Medeiros" initials="B." surname="de Medeiros">
+	    <organization abbrev="Google">Google</organization>
+	  </author>
 
 	  <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
 	    <organization abbrev="Disney (was at Salesforce)">Disney</organization>
 	  </author>
 
-          <date day="15" month="December" year="2023"/>
-        </front>
+	  <date day="15" month="December" year="2023"/>
+	</front>
       </reference>
 
       <reference anchor="OpenID.Registration" target="https://openid.net/specs/openid-connect-registration-1_0.html">
@@ -991,7 +991,7 @@
 	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
 	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
 	  </author>
-          <date day="15" month="December" year="2023"/>
+	  <date day="15" month="December" year="2023"/>
 	</front>
       </reference>
 
@@ -1010,78 +1010,78 @@
 	  <author fullname="Edmund Jay" initials="E." surname="Jay">
 	    <organization abbrev="Illumila">Illumila</organization>
 	  </author>
-          <date day="15" month="December" year="2023"/>
+	  <date day="15" month="December" year="2023"/>
 	</front>
       </reference>
 
       <reference anchor="OpenID.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
-        <front>
-          <title>OpenID Federation 1.0</title>
+	<front>
+	  <title>OpenID Federation 1.0</title>
 	  <author fullname="Roland Hedberg">
-            <organization>independent</organization>
-          </author>
-          <author fullname="Michael B. Jones">
-            <organization>Self-Issued Consulting</organization>
-          </author>
-          <author fullname="A. Solberg">
-            <organization>Sikt</organization>
-          </author>
-          <author fullname="John Bradley">
-            <organization>Yubico</organization>
-          </author>
-          <author fullname="Giuseppe De Marco">
-            <organization>independent</organization>
-          </author>
-          <author fullname="Vladimir Dzhuvinov">
-            <organization>Connect2id</organization>
-          </author>
-          <date day="24" month="October" year="2024"/>
-        </front>
+	    <organization>independent</organization>
+	  </author>
+	  <author fullname="Michael B. Jones">
+	    <organization>Self-Issued Consulting</organization>
+	  </author>
+	  <author fullname="A. Solberg">
+	    <organization>Sikt</organization>
+	  </author>
+	  <author fullname="John Bradley">
+	    <organization>Yubico</organization>
+	  </author>
+	  <author fullname="Giuseppe De Marco">
+	    <organization>independent</organization>
+	  </author>
+	  <author fullname="Vladimir Dzhuvinov">
+	    <organization>Connect2id</organization>
+	  </author>
+	  <date day="24" month="October" year="2024"/>
+	</front>
       </reference>
 
       <reference anchor="IANA.OAuth.Parameters" target="https://www.iana.org/assignments/oauth-parameters">
-        <front>
-          <title>OAuth Parameters</title>
-          <author>
-            <organization>IANA</organization>
-          </author>
+	<front>
+	  <title>OAuth Parameters</title>
+	  <author>
+	    <organization>IANA</organization>
+	  </author>
 	  <date/>
-        </front>
+	</front>
       </reference>
 
       <reference anchor="IANA.MediaTypes" target="https://www.iana.org/assignments/media-types">
-        <front>
-          <title>Media Types</title>
-          <author>
-            <organization>IANA</organization>
-          </author>
-          <date/>
-        </front>
+	<front>
+	  <title>Media Types</title>
+	  <author>
+	    <organization>IANA</organization>
+	  </author>
+	  <date/>
+	</front>
       </reference>
 
     </references>
 
     <section title="Document History" anchor="History">
       <t>
-        [[ to be removed by the RFC Editor before publication as an RFC ]]
+	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
 
       <t>
-        -00
-        <list style="symbols">
-          <t>
+	-00
+	<list style="symbols">
+	  <t>
 	    Initial draft starting with rfc7523.xml,
 	    updated to use current references and affiliations
 	    and modern xml2rfc syntax,
 	    removing the IANA actions already performed,
 	    and adding the Document History section.
-          </t>
-          <t>
+	  </t>
+	  <t>
 	    Use AS issuer identifier as the sole audience value.
-          </t>
-          <t>
- 	    Explicitly typed authorization grant JWTs and client authentication JWTs.
-          </t>
+	  </t>
+	  <t>
+	    Explicitly typed authorization grant JWTs and client authentication JWTs.
+	  </t>
 	  <t>
 	    Update audience requirements in
 	    "Assertion Framework for OAuth 2.0 Client Authentication and
@@ -1096,17 +1096,26 @@
 	    Update audience requirements in
 	    "OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>.
 	  </t>
-        </list>
+	</list>
       </t>
 
     </section>
 
     <section title='Acknowledgements' anchor='Acknowledgements' numbered="no">
       <t>
-	This profile was derived from
+	The profile in <xref target="RFC7523"/> was derived from
 	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and Authorization Grants"
 	<xref target="RFC7522"/>,
 	which has the same authors as this document.
+      </t>
+      <t>
+	We would like to acknowledge the contributions of the following
+	people to this specification:
+	Pedram Hosseyni,
+	Aaron Parecki,
+	Filip Skokan,
+	and
+	Tim Würtele.
       </t>
     </section>
 
