@@ -7,8 +7,8 @@ Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
 Updates: 7521, 7522, 9126 (if approved)                    Ping Identity
 Intended status: Standards Track                            C. Mortimore
-Expires: 17 May 2025                                              Disney
-                                                        13 November 2024
+Expires: 24 May 2025                                              Disney
+                                                        20 November 2024
 
 
   JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 May 2025.
+   This Internet-Draft will expire on 24 May 2025.
 
 Copyright Notice
 
@@ -82,7 +82,7 @@ Table of Contents
 
 1.  Introduction
 
-   JSON Web Token (JWT) [JWT] is a JSON-based [RFC7159] security token
+   JSON Web Token (JWT) [JWT] is a JSON-based [RFC8259] security token
    encoding that enables identity and security information to be shared
    across security domains.  A security token is generally issued by an
    Identity Provider and consumed by a Relying Party that relies on its
@@ -701,10 +701,6 @@ Table of Contents
               RFC 6749, DOI 10.17487/RFC6749, October 2012,
               <https://www.rfc-editor.org/info/rfc6749>.
 
-   [RFC7159]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
-              Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March
-              2014, <https://www.rfc-editor.org/info/rfc7159>.
-
    [RFC7521]  Campbell, B., Mortimore, C., Jones, M., and Y. Goland,
               "Assertion Framework for OAuth 2.0 Client Authentication
               and Authorization Grants", RFC 7521, DOI 10.17487/RFC7521,
@@ -724,6 +720,11 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/info/rfc8259>.
 
    [RFC8414]  Jones, M., Sakimura, N., and J. Bradley, "OAuth 2.0
               Authorization Server Metadata", RFC 8414,
@@ -821,10 +822,14 @@ Appendix A.  Document History
 
 Acknowledgements
 
-   This profile was derived from "Security Assertion Markup Language
-   (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and
+   The profile in [RFC7523] was derived from "Security Assertion Markup
+   Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication and
    Authorization Grants" [RFC7522], which has the same authors as this
    document.
+
+   We would like to acknowledge the contributions of the following
+   people to this specification: Pedram Hosseyni, Aaron Parecki, Filip
+   Skokan, and Tim Würtele.
 
 Authors' Addresses
 
