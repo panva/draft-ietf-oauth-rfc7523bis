@@ -828,8 +828,8 @@ Acknowledgements
    document.
 
    We would like to acknowledge the contributions of the following
-   people to this specification: John Bradley, Pedram Hosseyni, Aaron
-   Parecki, Filip Skokan, and Tim Würtele.
+   people to this specification: John Bradley, Ralph Bragg, Pedram
+   Hosseyni, Aaron Parecki, Filip Skokan, and Tim Würtele.
 
 Authors' Addresses
 
