@@ -114,7 +114,9 @@
         authentication is orthogonal to and separable from using a security token as an
         authorization grant.  They can be used either in combination or separately.
         Client authentication using a JWT is nothing more than an alternative way for a client to authenticate
-        to the token endpoint and must be used in conjunction with some grant type to form a complete and
+        to the token endpoint or other endpoints
+	such as the pushed authorization endpoint <xref target="RFC9126"/>
+	and must be used in conjunction with some grant type to form a complete and
         meaningful protocol request. JWT authorization grants may be used with or without client authentication
         or identification. Whether or not client authentication is needed in conjunction with a JWT authorization
         grant, as well as the supported types of client authentication, are policy decisions at the discretion of the authorization server.
@@ -187,8 +189,9 @@
   Content-Type: application/x-www-form-urlencoded
 
   grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-  &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-  eyJpc3Mi[...omitted for brevity...].
+  &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+    VTMjU2Iiwia2lkIjoiMTYifQ.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   J9l-ZhwP[...omitted for brevity...]
 ]]></artwork>
         </figure>
@@ -218,8 +221,9 @@
   code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
   client-assertion-type%3Ajwt-bearer&
-  client_assertion=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyIn0.
-  eyJpc3Mi[...omitted for brevity...].
+  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0Iiwi
+    YWxnIjoiUlMyNTYiLCJraWQiOiIyMiJ9.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   cC4hiUPo[...omitted for brevity...]
 ]]></artwork>
         </figure>
@@ -238,6 +242,15 @@
       <t>
 	<list style="numbers">
 
+	  <t>
+	    The JWT MUST be explicitly typed,
+	    as defined in Section 3.11 of <xref target="RFC8725"/>.
+	    The <spanx style="verb">typ</spanx> header parameter values
+	    that MUST be used are defined in <xref target="GrantProcessing"/>
+	    and <xref target="ClientProcessing"/>.
+	    The authorization server MUST reject JWTs that do not use
+	    the specified explicit type value.
+	  </t>
 	  <t>
 	    The JWT MUST contain an <spanx style="verb">iss</spanx>
 	    (issuer) claim that contains a unique identifier for the
@@ -265,20 +278,26 @@
 	  </t>
 	  <t>
 	    The JWT MUST contain an <spanx style="verb">aud</spanx>
-	    (audience) claim containing a value that
-	    identifies the authorization server as an intended audience.
-	    The token endpoint URL of the authorization server MAY be used as a
-	    value for an <spanx style="verb">aud</spanx> element to identify
-	    the authorization server as an intended audience of the JWT.
-      The authorization server MUST reject any JWT that does not
-      contain its own identity as the intended audience.
-      In the absence of an application profile specifying
-      otherwise, compliant applications MUST compare the audience
-      values using the Simple String Comparison method defined in Section
-      6.2.1 of RFC 3986 <xref target="RFC3986"/>.
-      As noted in <xref target="Interoperability"/>, the precise strings to be used
-      as the audience for a given authorization server must be configured out of band
-      by the authorization server and the issuer of the JWT.
+	    (audience) claim containing
+	    the issuer identifier <xref target="RFC8414"/>
+	    of the authorization server as its sole value.
+	    The authorization server MUST have an issuer identifier
+	    to be used with this specification.
+	    Unlike the <spanx style="verb">aud</spanx> value specified
+	    in <xref target="RFC7523"/>, there MUST be no value other than
+	    the issuer identifier of the intended authorization server
+	    used as the audience of the JWT;
+	    this includes that the token endpoint URL of the authorization server
+	    MUST NOT be used as an audience value.
+	    To simplify implementations,
+	    the <spanx style="verb">aud</spanx> claim value MUST
+	    be a JSON string, and not a single-valued JSON array.
+	    The authorization server MUST reject any JWT that does not
+	    contain its issuer identifier as its sole audience value.
+	    In the absence of an application profile specifying
+	    otherwise, compliant applications MUST compare the audience
+	    values using the Simple String Comparison method defined in Section
+	    6.2.1 of RFC 3986 <xref target="RFC3986"/>.
 	  </t>
 	  <t>
 	    The JWT MUST contain an <spanx style="verb">exp</spanx>
@@ -332,6 +351,13 @@
       <section title="Authorization Grant Processing" anchor="GrantProcessing">
 
 	<t>
+	  Authorization grant JWTs MUST be explicitly typed by using the
+	  <spanx style="verb">typ</spanx> header parameter value
+	  <spanx style="verb">authorization-grant+jwt</spanx>.
+	  Authorization grant JWTs not using this explicit type value
+	  MUST be rejected by the authorization server.
+	</t>
+	<t>
 	  JWT authorization grants may be used with or without client authentication
 	  or identification. Whether or not client authentication is needed in
 	  conjunction with a JWT authorization grant, as well as the supported types
@@ -365,6 +391,13 @@
 
       <section title="Client Authentication Processing" anchor="ClientProcessing">
 
+	<t>
+	  Client authentication JWTs MUST be explicitly typed by using the
+	  <spanx style="verb">typ</spanx> header parameter value
+	  <spanx style="verb">client-authentication+jwt</spanx>.
+	  Client authentication JWTs not using this explicit type value
+	  MUST be rejected by the authorization server.
+	</t>
 	<t>If the client JWT is not valid, the
 	authorization server constructs an error response as defined in
 	OAuth 2.0 <xref target="RFC6749"/>.
@@ -383,8 +416,8 @@
 	The example shows a JWT issued and signed by the system entity identified as
 	<spanx style='verb'>https://jwt-idp.example.com</spanx>.
 	The subject of the JWT is identified by email address as <spanx style='verb'>mike@example.com</spanx>.
-	The intended audience of the JWT is <spanx style='verb'>https://jwt-rp.example.net</spanx>,
-	which is an identifier with which the authorization server identifies itself.
+	The intended audience of the JWT is <spanx style='verb'>https://authz.example.net</spanx>,
+	which is the authorization server's issuer identifier.
 	The JWT is sent as part of an access token request to the authorization server's
 	token endpoint at <spanx style='verb'>https://authz.example.net/token.oauth2</spanx>.
       </t>
@@ -394,24 +427,26 @@
 	  produce the JWT Claims Set for a JWT:
 	</preamble>
 	<artwork><![CDATA[
-  {"iss":"https://jwt-idp.example.com",
+  {"aud":"https://authz.example.net",
+   "iss":"https://jwt-idp.example.com",
    "sub":"mailto:mike@example.com",
-   "aud":"https://jwt-rp.example.net",
-   "nbf":1300815780,
-   "exp":1300819380,
-   "http://claims.example.com/member":true}
+   "iat":1731721541,
+   "exp":1731725141,
+   "http://claims.example.com/member":true
+  }
 ]]></artwork>
       </figure>
 
       <figure>
 	<preamble>
-	  The following example JSON object, used as the header of a
-	  JWT, declares that the JWT is signed with the Elliptic Curve
-          Digital Signature Algorithm (ECDSA) P-256
-	  SHA-256 using a key identified by the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
+	  The following example JSON object, used as the header parameters of a JWT,
+	  declares that the JWT is an authorization grant JWT,
+	  is signed with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256 with SHA-256,
+	  and was signed with a key identified by
+	  the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
 	</preamble>
 	<artwork><![CDATA[
-  {"alg":"ES256","kid":"16"}
+  {"typ":"authorization-grant+jwt","alg":"ES256","kid":"16"}
 ]]></artwork>
       </figure>
 
@@ -427,8 +462,9 @@
   Content-Type: application/x-www-form-urlencoded
 
   grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-  &assertion=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.
-  eyJpc3Mi[...omitted for brevity...].
+  &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
+    VTMjU2Iiwia2lkIjoiMTYifQ.
+  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
   J9l-ZhwP[...omitted for brevity...]
 ]]></artwork>
       </figure>
@@ -439,8 +475,8 @@
       <t>
 	Agreement between system entities regarding identifiers,
 	keys, and endpoints is required in order to achieve interoperable
-	deployments of this profile. Specific items that require agreement are as follows:
-	values for the issuer and audience identifiers, the location of the token endpoint, the key used to
+	deployments of this profile. Specific items that require agreement include
+	values for the issuer identifiers, the locations of endpoints, the key used to
 	apply and verify the digital signature or MAC over the JWT, one-time use restrictions on the JWT,
   maximum JWT lifetime allowed, and the specific subject and claim requirements of the JWT.
 	The exchange of such information is explicitly out of scope for this specification.
@@ -448,8 +484,10 @@
 	how they are to be exchanged.
 	Examples of such profiles include
 	the OAuth 2.0 Dynamic Client Registration Protocol <xref target="RFC7591"/>,
+	OAuth 2.0 Authorization Server Metadata <xref target="RFC8414"/>,
 	OpenID Connect Dynamic Client Registration 1.0 <xref target="OpenID.Registration"/>,
-	and OpenID Connect Discovery 1.0 <xref target="OpenID.Discovery"/>.
+	OpenID Connect Discovery 1.0 <xref target="OpenID.Discovery"/>,
+	and OpenID Federation 1.0  <xref target="OpenID.Federation"/>.
       </t>
       <t>
         The <spanx style="verb">RS256</spanx> algorithm, from <xref target="JWA"/>, is a mandatory-to-implement JSON Web
@@ -471,6 +509,11 @@
         The specification does not mandate replay protection for the JWT
         usage for either the authorization grant or for client
         authentication. It is an optional feature, which implementations may employ at their own discretion.
+     </t>
+     <t>
+       This specification tightens the JWT audience requirements to prevent attacks
+       that could result from exploiting audience ambiguities
+       allowed by <xref target="RFC7523"/>.
      </t>
 
     </section>
@@ -500,8 +543,156 @@
 	established by
 	"An IETF URN Sub-Namespace for OAuth" <xref target="RFC6755"/>
 	were performed by <xref target="RFC7523"/>.
-	No IANA actions are requested by this specification.
       </t>
+
+      <section title="Media Type Registration" anchor="MediaReg">
+        <t>
+          This section registers the following media types <xref target="RFC2046"/>
+          in the "Media Types" registry <xref target="IANA.MediaTypes"/>
+          in the manner described in <xref target="RFC6838"/>.
+        </t>
+
+        <section title="Registry Contents" anchor="MediaContents">
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Type name: application
+              </t>
+              <t>
+                Subtype name: authorization-grant+jwt
+              </t>
+              <t>
+                Required parameters: n/a
+              </t>
+              <t>
+                Optional parameters: n/a
+              </t>
+              <t>
+                Encoding considerations: binary;
+                An authorization grant JWT is a JWT;
+                JWT values are encoded as a
+                series of base64url-encoded values (some of which may be the
+                empty string) separated by period ('.') characters.
+              </t>
+              <t>
+                Security considerations: See <xref target="Security"/> of this specification
+              </t>
+              <t>
+                Interoperability considerations: n/a
+              </t>
+              <t>
+                Published specification: <xref target="GrantProcessing"/> of this specification
+              </t>
+              <t>
+                Applications that use this media type:
+                Applications that use this specification
+              </t>
+              <t>
+                Fragment identifier considerations: n/a
+              </t>
+              <t>
+                Additional information:<list style="empty">
+                <t>Magic number(s): n/a</t>
+                <t>File extension(s): n/a</t>
+                <t>Macintosh file type code(s): n/a </t></list>
+                <vspace/>
+              </t>
+              <t>
+                Person &amp; email address to contact for further information:
+                <vspace/>
+                Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Intended usage: COMMON
+              </t>
+              <t>
+                Restrictions on usage: none
+              </t>
+              <t>
+                Author: Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Change controller: OpenID Foundation Artifact Binding Working Group - openid-specs-ab@lists.openid.net
+              </t>
+              <t>
+                Provisional registration? No
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Type name: application
+              </t>
+              <t>
+                Subtype name: client-authentication+jwt
+              </t>
+              <t>
+                Required parameters: n/a
+              </t>
+              <t>
+                Optional parameters: n/a
+              </t>
+              <t>
+                Encoding considerations: binary;
+                A client authentication JWT is a JWT;
+                JWT values are encoded as a
+                series of base64url-encoded values (some of which may be the
+                empty string) separated by period ('.') characters.
+              </t>
+              <t>
+                Security considerations: See <xref target="Security"/> of this specification
+              </t>
+              <t>
+                Interoperability considerations: n/a
+              </t>
+              <t>
+                Published specification: <xref target="ClientProcessing"/> of this specification
+              </t>
+              <t>
+                Applications that use this media type:
+                Applications that use this specification
+              </t>
+              <t>
+                Fragment identifier considerations: n/a
+              </t>
+              <t>
+                Additional information:<list style="empty">
+                <t>Magic number(s): n/a</t>
+                <t>File extension(s): n/a</t>
+                <t>Macintosh file type code(s): n/a </t></list>
+                <vspace/>
+              </t>
+              <t>
+                Person &amp; email address to contact for further information:
+                <vspace/>
+                Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Intended usage: COMMON
+              </t>
+              <t>
+                Restrictions on usage: none
+              </t>
+              <t>
+                Author: Michael B. Jones, michael_b_jones@hotmail.com
+              </t>
+              <t>
+                Change controller: OpenID Foundation Artifact Binding Working Group - openid-specs-ab@lists.openid.net
+              </t>
+              <t>
+                Provisional registration? No
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+        </section>
+
+      </section>
     </section>
 
     <section title="Updates to RFC 7521" anchor="RFC7521Updates">
@@ -701,6 +892,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
@@ -754,7 +946,9 @@
     </references>
 
     <references title="Informative References">
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2046.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6838.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7591.xml"/>
 
       <reference anchor="OpenID.Core" target="https://openid.net/specs/openid-connect-core-1_0.html">
@@ -820,6 +1014,31 @@
 	</front>
       </reference>
 
+      <reference anchor="OpenID.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
+        <front>
+          <title>OpenID Federation 1.0</title>
+	  <author fullname="Roland Hedberg">
+            <organization>independent</organization>
+          </author>
+          <author fullname="Michael B. Jones">
+            <organization>Self-Issued Consulting</organization>
+          </author>
+          <author fullname="A. Solberg">
+            <organization>Sikt</organization>
+          </author>
+          <author fullname="John Bradley">
+            <organization>Yubico</organization>
+          </author>
+          <author fullname="Giuseppe De Marco">
+            <organization>independent</organization>
+          </author>
+          <author fullname="Vladimir Dzhuvinov">
+            <organization>Connect2id</organization>
+          </author>
+          <date day="24" month="October" year="2024"/>
+        </front>
+      </reference>
+
       <reference anchor="IANA.OAuth.Parameters" target="https://www.iana.org/assignments/oauth-parameters">
         <front>
           <title>OAuth Parameters</title>
@@ -827,6 +1046,16 @@
             <organization>IANA</organization>
           </author>
 	  <date/>
+        </front>
+      </reference>
+
+      <reference anchor="IANA.MediaTypes" target="https://www.iana.org/assignments/media-types">
+        <front>
+          <title>Media Types</title>
+          <author>
+            <organization>IANA</organization>
+          </author>
+          <date/>
         </front>
       </reference>
 
@@ -846,6 +1075,12 @@
 	    and modern xml2rfc syntax,
 	    removing the IANA actions already performed,
 	    and adding the Document History section.
+          </t>
+          <t>
+	    Use AS issuer identifier as the sole audience value.
+          </t>
+          <t>
+ 	    Explicitly typed authorization grant JWTs and client authentication JWTs.
           </t>
 	  <t>
 	    Update audience requirements in
