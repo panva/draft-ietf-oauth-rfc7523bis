@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-19T01:44:59.839398+00:00",
+  "timestamp": "2024-11-21T01:43:41.565024+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -56,25 +56,42 @@
       "id": "PR_kwDONPDDUs6CHHte",
       "title": "Use AS issuer identifier as the sole audience value",
       "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "This is the primary change for RFC 7523 bis",
       "createdAt": "2024-11-16T02:10:52Z",
-      "updatedAt": "2024-11-18T17:41:56Z",
+      "updatedAt": "2024-11-20T20:00:14Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
       "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
       "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "headRefName": "mbj-tighten-audience",
       "headRefOid": "eb709bcd67a770422256c2669ba9ec961272f050",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-11-20T20:00:14Z",
+      "mergedAt": "2024-11-20T20:00:14Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "bb89931cbb41ccd1891aba73162c9b9dc6d26def"
+      },
+      "comments": [
+        {
+          "author": "panva",
+          "authorAssociation": "NONE",
+          "body": "@aaronpk - double checking, did we discuss the audience of `urn:ietf:params:oauth:grant-type:jwt-bearer` being left the way it is or not? This PR updates the audience of both (`urn:ietf:params:oauth:grant-type:jwt-bearer`, and `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`)...\r\n\r\nI remember we did want to address the use case for the authorization grant in issuer-less environments.",
+          "createdAt": "2024-11-19T12:17:15Z",
+          "updatedAt": "2024-11-19T12:23:49Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "body": "When I looked at the draft, I would have had to do fairly unnatural things to the text to not keep the audiences for the two cases aligned.  Having them different would also raise significant questions about why we're changing one and not the other and if so, whether any change is necessary at all.  I'm also not convinced that the attack isn't possible for the authorization grant case with the old audience language.",
+          "createdAt": "2024-11-19T16:53:11Z",
+          "updatedAt": "2024-11-19T16:53:11Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDONPDDUs6Rgu2k",
@@ -101,6 +118,46 @@
               "updatedAt": "2024-11-18T00:04:50Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDONPDDUs6R9dF-",
+          "commit": {
+            "abbreviatedOid": "eb709bc"
+          },
+          "author": "aaronpk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-20T14:35:38Z",
+          "updatedAt": "2024-11-20T14:35:38Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "There are still valid uses of this specification when an authorization server doesn't have an issuer identifier.",
+              "createdAt": "2024-11-20T14:35:38Z",
+              "updatedAt": "2024-11-20T14:35:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDONPDDUs6SAZdH",
+          "commit": {
+            "abbreviatedOid": "af974a2"
+          },
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-20T19:59:39Z",
+          "updatedAt": "2024-11-20T19:59:39Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Deployments not needing the security fix need make no changes.  They can continue using RFC 7523 as is.\r\n\r\nWe should aim to be very clear in our public description of the problem when deployments do and do not require updates.",
+              "createdAt": "2024-11-20T19:59:39Z",
+              "updatedAt": "2024-11-20T19:59:39Z"
+            }
+          ]
         }
       ]
     },
@@ -109,24 +166,26 @@
       "id": "PR_kwDONPDDUs6CI2fP",
       "title": "Explicitly type JWTs",
       "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "As suggested by @panva",
       "createdAt": "2024-11-16T20:22:00Z",
-      "updatedAt": "2024-11-16T23:06:56Z",
+      "updatedAt": "2024-11-20T20:05:56Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
-      "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
+      "baseRefOid": "bb89931cbb41ccd1891aba73162c9b9dc6d26def",
       "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "headRefName": "mbj-explicit-typing",
-      "headRefOid": "87153e41c05aecc5e77fd0c1da59820597880c2d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "5b124d7b4920763556aacd65287f531d56b3cf17",
+      "closedAt": "2024-11-20T20:05:56Z",
+      "mergedAt": "2024-11-20T20:05:56Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "28c114cf220e1de0857add51a00b52d96ca531e3"
+      },
       "comments": [],
       "reviews": []
     },
@@ -135,24 +194,26 @@
       "id": "PR_kwDONPDDUs6CI6Ev",
       "title": "Update audience requirements in other RFCs",
       "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-16T21:20:00Z",
-      "updatedAt": "2024-11-17T02:16:10Z",
+      "updatedAt": "2024-11-20T20:11:17Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
-      "baseRefOid": "99afb90b99dc0559c7880cb4c52d9af6f47da46c",
+      "baseRefOid": "28c114cf220e1de0857add51a00b52d96ca531e3",
       "headRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "headRefName": "mbj-update-other-specs",
-      "headRefOid": "477848d65b17796e626ee52c4f8296b85d32d08f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "303e3163084fc6fa0b1ee4d16f5afd9b054c8f49",
+      "closedAt": "2024-11-20T20:11:16Z",
+      "mergedAt": "2024-11-20T20:11:16Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "df4c646adc45e12e75a0c35106fbd250a84dcace"
+      },
       "comments": [],
       "reviews": []
     }
