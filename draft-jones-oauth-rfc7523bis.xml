@@ -353,8 +353,9 @@
 	<t>
 	  Authorization grant JWTs MUST be explicitly typed by using the
 	  <spanx style="verb">typ</spanx> header parameter value
-	  <spanx style="verb">authorization-grant+jwt</spanx>.
-	  Authorization grant JWTs not using this explicit type value
+	  <spanx style="verb">authorization-grant+jwt</spanx> or
+    an extension-defined type.
+	  Authorization grant JWTs not using the explicit type value
 	  MUST be rejected by the authorization server.
 	</t>
 	<t>
@@ -394,8 +395,9 @@
 	<t>
 	  Client authentication JWTs MUST be explicitly typed by using the
 	  <spanx style="verb">typ</spanx> header parameter value
-	  <spanx style="verb">client-authentication+jwt</spanx>.
-	  Client authentication JWTs not using this explicit type value
+	  <spanx style="verb">client-authentication+jwt</spanx>
+    or an extension-defined type.
+	  Client authentication JWTs not using the explicit type value
 	  MUST be rejected by the authorization server.
 	</t>
 	<t>If the client JWT is not valid, the
