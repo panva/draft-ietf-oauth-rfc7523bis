@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-21T01:43:41.565024+00:00",
+  "timestamp": "2024-11-24T01:50:45.603637+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -216,6 +216,73 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDONPDDUs6C3fhL",
+      "title": "add option for extensions to define their own explicit jwt type",
+      "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/4",
+      "state": "OPEN",
+      "author": "aaronpk",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "See [Identity Assertion Authorization Grant](https://datatracker.ietf.org/doc/draft-parecki-oauth-identity-assertion-authz-grant/) for an example of an extension that defines its own JWT type for the authorization grant defined in the extension.",
+      "createdAt": "2024-11-22T20:54:08Z",
+      "updatedAt": "2024-11-22T21:42:50Z",
+      "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "910ddf124c5f66d9e89ce5e6593231491b28c436",
+      "headRepository": "aaronpk/draft-jones-oauth-rfc7523bis",
+      "headRefName": "main",
+      "headRefOid": "624b61a6f0144541950da02a1d8989ae6e5a5669",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDONPDDUs6SYDue",
+          "commit": {
+            "abbreviatedOid": "624b61a"
+          },
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-22T21:42:18Z",
+          "updatedAt": "2024-11-22T21:42:18Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification used by the application.\r\n```\r\n\r\nI elaborated on what an \"extension-defined type\" is.",
+              "createdAt": "2024-11-22T21:42:18Z",
+              "updatedAt": "2024-11-22T21:44:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDONPDDUs6SYD45",
+          "commit": {
+            "abbreviatedOid": "624b61a"
+          },
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-22T21:42:50Z",
+          "updatedAt": "2024-11-22T21:42:50Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification used by the application.\r\n```",
+              "createdAt": "2024-11-22T21:42:50Z",
+              "updatedAt": "2024-11-22T21:42:50Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
