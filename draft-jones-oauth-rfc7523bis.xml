@@ -41,7 +41,7 @@
       </address>
     </author>
 
-    <date day="20" month="November" year="2024" />
+    <date day="25" month="November" year="2024" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -1113,6 +1113,7 @@
 	people to this specification:
 	John Bradley,
 	Ralph Bragg,
+	Joseph Heenan,
 	Pedram Hosseyni,
 	Aaron Parecki,
 	Filip Skokan,
