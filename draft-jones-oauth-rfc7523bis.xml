@@ -354,7 +354,7 @@
 	  Authorization grant JWTs MUST be explicitly typed by using the
 	  <spanx style="verb">typ</spanx> header parameter value
 	  <spanx style="verb">authorization-grant+jwt</spanx> or
-    an extension-defined type.
+	  another more specific explicit type value defined by a specification profiling this specification.
 	  Authorization grant JWTs not using the explicit type value
 	  MUST be rejected by the authorization server.
 	</t>
