@@ -7,8 +7,8 @@ Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
 Updates: 7521, 7522, 9126 (if approved)                    Ping Identity
 Intended status: Standards Track                            C. Mortimore
-Expires: 24 May 2025                                              Disney
-                                                        20 November 2024
+Expires: 29 May 2025                                              Disney
+                                                        25 November 2024
 
 
   JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 May 2025.
+   This Internet-Draft will expire on 29 May 2025.
 
 Copyright Notice
 
@@ -828,8 +828,9 @@ Acknowledgements
    document.
 
    We would like to acknowledge the contributions of the following
-   people to this specification: John Bradley, Ralph Bragg, Pedram
-   Hosseyni, Aaron Parecki, Filip Skokan, and Tim Würtele.
+   people to this specification: John Bradley, Ralph Bragg, Joseph
+   Heenan, Pedram Hosseyni, Aaron Parecki, Filip Skokan, and Tim
+   Würtele.
 
 Authors' Addresses
 
