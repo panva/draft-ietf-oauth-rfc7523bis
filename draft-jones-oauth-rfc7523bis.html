@@ -1551,8 +1551,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.1-1">
    Authorization grant JWTs MUST be explicitly typed by using the
    <code>typ</code> header parameter value
-   <code>authorization-grant+jwt</code>.
-   Authorization grant JWTs not using this explicit type value
+   <code>authorization-grant+jwt</code> or
+   another more specific explicit type value defined by a specification profiling this specification.
+   Authorization grant JWTs not using the explicit type value
    MUST be rejected by the authorization server.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">
    JWT authorization grants may be used with or without client authentication
@@ -1591,8 +1592,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.2-1">
    Client authentication JWTs MUST be explicitly typed by using the
    <code>typ</code> header parameter value
-   <code>client-authentication+jwt</code>.
-   Client authentication JWTs not using this explicit type value
+   <code>client-authentication+jwt</code>
+   another more specific explicit type value defined by a specification profiling this specification.
+   Client authentication JWTs not using the explicit type value
    MUST be rejected by the authorization server.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">If the client JWT is not valid, the
  authorization server constructs an error response as defined in

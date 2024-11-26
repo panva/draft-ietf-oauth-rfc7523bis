@@ -318,9 +318,10 @@ Table of Contents
 3.1.  Authorization Grant Processing
 
    Authorization grant JWTs MUST be explicitly typed by using the typ
-   header parameter value authorization-grant+jwt.  Authorization grant
-   JWTs not using this explicit type value MUST be rejected by the
-   authorization server.
+   header parameter value authorization-grant+jwt or another more
+   specific explicit type value defined by a specification profiling
+   this specification.  Authorization grant JWTs not using the explicit
+   type value MUST be rejected by the authorization server.
 
    JWT authorization grants may be used with or without client
    authentication or identification.  Whether or not client
@@ -352,9 +353,10 @@ Table of Contents
 3.2.  Client Authentication Processing
 
    Client authentication JWTs MUST be explicitly typed by using the typ
-   header parameter value client-authentication+jwt.  Client
-   authentication JWTs not using this explicit type value MUST be
-   rejected by the authorization server.
+   header parameter value client-authentication+jwt another more
+   specific explicit type value defined by a specification profiling
+   this specification.  Client authentication JWTs not using the
+   explicit type value MUST be rejected by the authorization server.
 
    If the client JWT is not valid, the authorization server constructs
    an error response as defined in OAuth 2.0 [RFC6749].  The value of
