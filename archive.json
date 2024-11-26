@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-24T01:50:45.603637+00:00",
+  "timestamp": "2024-11-26T01:45:39.754538+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -125,7 +125,7 @@
             "abbreviatedOid": "eb709bc"
           },
           "author": "aaronpk",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-20T14:35:38Z",
@@ -222,24 +222,26 @@
       "id": "PR_kwDONPDDUs6C3fhL",
       "title": "add option for extensions to define their own explicit jwt type",
       "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aaronpk",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "See [Identity Assertion Authorization Grant](https://datatracker.ietf.org/doc/draft-parecki-oauth-identity-assertion-authz-grant/) for an example of an extension that defines its own JWT type for the authorization grant defined in the extension.",
       "createdAt": "2024-11-22T20:54:08Z",
-      "updatedAt": "2024-11-22T21:42:50Z",
+      "updatedAt": "2024-11-26T01:23:11Z",
       "baseRepository": "selfissued/draft-jones-oauth-rfc7523bis",
       "baseRefName": "main",
       "baseRefOid": "910ddf124c5f66d9e89ce5e6593231491b28c436",
       "headRepository": "aaronpk/draft-jones-oauth-rfc7523bis",
       "headRefName": "main",
-      "headRefOid": "624b61a6f0144541950da02a1d8989ae6e5a5669",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "cf723df8cab450a20543f927f797760f3ae1d13e",
+      "closedAt": "2024-11-26T01:23:11Z",
+      "mergedAt": "2024-11-26T01:23:11Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "576440e17d5dabc95a063247f5404a9990b2abf3"
+      },
       "comments": [],
       "reviews": [
         {
@@ -256,9 +258,9 @@
           "comments": [
             {
               "originalPosition": 7,
-              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification used by the application.\r\n```\r\n\r\nI elaborated on what an \"extension-defined type\" is.",
+              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification profiling this specification.\r\n```\r\n\r\nI elaborated on what an \"extension-defined type\" is.",
               "createdAt": "2024-11-22T21:42:18Z",
-              "updatedAt": "2024-11-22T21:44:03Z"
+              "updatedAt": "2024-11-25T23:12:45Z"
             }
           ]
         },
@@ -276,11 +278,24 @@
           "comments": [
             {
               "originalPosition": 19,
-              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification used by the application.\r\n```",
+              "body": "```suggestion\r\n\t  another more specific explicit type value defined by a specification profiling this specification.\r\n```",
               "createdAt": "2024-11-22T21:42:50Z",
-              "updatedAt": "2024-11-22T21:42:50Z"
+              "updatedAt": "2024-11-25T23:12:59Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDONPDDUs6Sn7nj",
+          "commit": {
+            "abbreviatedOid": "cf723df"
+          },
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-26T01:21:35Z",
+          "updatedAt": "2024-11-26T01:21:35Z",
+          "comments": []
         }
       ]
     }
