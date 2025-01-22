@@ -5,7 +5,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
   docName="draft-jones-oauth-rfc7523bis-latest"
-  obsoletes="7523" updates="7521, 7522, 9126">
+  obsoletes="7523" updates="7521, 7522, 9101, 9126">
 
   <?rfc toc="yes"?>
   <?rfc tocompact="yes"?>
@@ -41,7 +41,7 @@
       </address>
     </author>
 
-    <date day="25" month="November" year="2024" />
+    <date day="21" month="January" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -726,7 +726,7 @@
 	The description of the Audience parameter
 	in Section 5.2 of <xref target="RFC7521"/> (General Assertion Format and Processing Rules)
 	is replaced by:
-	<list style="symbols">
+	<list style="empty">
 	  <t>
 	    The assertion MUST contain an audience that identifies the
             authorization server as the intended audience,
@@ -847,6 +847,37 @@
       </t>
     </section>
 
+    <section title="Updates to RFC 9101" anchor="RFC9101Updates">
+      <t>
+	This section updates
+	"The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)" <xref target="RFC9101"/>
+	to tighten its audience requirements.
+      </t>
+      <t>
+	The second paragraph
+	in Section 4 of <xref target="RFC9101"/> (The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)),
+	which describes the audience value,
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    To sign, <xref target="RFC7515">JSON Web Signature (JWS)</xref> is used.
+	    The result is a JWS-signed <xref target="JWT"/>.
+	    If signed, the Authorization Request Object MUST contain the Claims
+	    <spanx style="verb">iss</spanx> (issuer) and
+	    <spanx style="verb">aud</spanx> (audience) as members
+	    with their semantics being the same as defined in
+	    the <xref target="JWT"/> specification.
+	    The issuer identifier of the authorization server,
+	    as defined in <xref target="RFC8414"/>,
+	    MUST be used as the sole value of
+	    the <spanx style="verb">aud</spanx> (audience) claim.
+            The authorization server MUST reject any such JWT that does not
+            contain its own issuer identifier as the sole audience value.
+	  </t>
+	</list>
+      </t>
+    </section>
+
     <section title="Updates to RFC 9126" anchor="RFC9126Updates">
       <t>
 	This section updates
@@ -886,6 +917,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7515.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
@@ -893,6 +925,7 @@
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9101.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7518.xml with change to anchor="JWA" -->
@@ -1091,6 +1124,10 @@
 	    Update audience requirements in
 	    "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
 	    Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
+	  </t>
+	  <t>
+	    Update audience requirements in
+	    "The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)" <xref target="RFC9101"/>.
 	  </t>
 	  <t>
 	    Update audience requirements in
