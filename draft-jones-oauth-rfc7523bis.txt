@@ -5,10 +5,10 @@
 OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
-Updates: 7521, 7522, 9126 (if approved)                    Ping Identity
+Updates: 7521, 7522, 9101, 9126 (if approved)              Ping Identity
 Intended status: Standards Track                            C. Mortimore
-Expires: 29 May 2025                                              Disney
-                                                        25 November 2024
+Expires: 25 July 2025                                             Disney
+                                                         21 January 2025
 
 
   JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and
@@ -36,11 +36,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 May 2025.
+   This Internet-Draft will expire on 25 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -72,10 +72,11 @@ Table of Contents
        8.1.1.  Registry Contents
    9.  Updates to RFC 7521
    10. Updates to RFC 7522
-   11. Updates to RFC 9126
-   12. References
-     12.1.  Normative References
-     12.2.  Informative References
+   11. Updates to RFC 9101
+   12. Updates to RFC 9126
+   13. References
+     13.1.  Normative References
+     13.2.  Informative References
    Appendix A.  Document History
    Acknowledgements
    Authors' Addresses
@@ -558,7 +559,7 @@ Table of Contents
    The description of the Audience parameter in Section 5.2 of [RFC7521]
    (General Assertion Format and Processing Rules) is replaced by:
 
-   *  The assertion MUST contain an audience that identifies the
+      The assertion MUST contain an audience that identifies the
       authorization server as the intended audience, with the issuer
       identifier [RFC8414] of the authorization server as its sole
       value.  The authorization server MUST reject any assertion that
@@ -651,7 +652,27 @@ Table of Contents
    [RFC7521] (Interoperability Considerations), "Audience identifiers"
    is removed from the list.
 
-11.  Updates to RFC 9126
+11.  Updates to RFC 9101
+
+   This section updates "The OAuth 2.0 Authorization Framework: JWT-
+   Secured Authorization Request (JAR)" [RFC9101] to tighten its
+   audience requirements.
+
+   The second paragraph in Section 4 of [RFC9101] (The OAuth 2.0
+   Authorization Framework: JWT-Secured Authorization Request (JAR)),
+   which describes the audience value, is replaced by:
+
+      To sign, JSON Web Signature (JWS) [RFC7515] is used.  The result
+      is a JWS-signed [JWT].  If signed, the Authorization Request
+      Object MUST contain the Claims iss (issuer) and aud (audience) as
+      members with their semantics being the same as defined in the
+      [JWT] specification.  The issuer identifier of the authorization
+      server, as defined in [RFC8414], MUST be used as the sole value of
+      the aud (audience) claim.  The authorization server MUST reject
+      any such JWT that does not contain its own issuer identifier as
+      the sole audience value.
+
+12.  Updates to RFC 9126
 
    This section updates "OAuth 2.0 Pushed Authorization Requests"
    [RFC9126] to tighten its audience requirements.
@@ -670,9 +691,9 @@ Table of Contents
       server MUST reject any such JWT that does not contain its own
       issuer identifier as the sole audience value.
 
-12.  References
+13.  References
 
-12.1.  Normative References
+13.1.  Normative References
 
    [JWA]      Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
@@ -702,6 +723,10 @@ Table of Contents
    [RFC6749]  Hardt, D., Ed., "The OAuth 2.0 Authorization Framework",
               RFC 6749, DOI 10.17487/RFC6749, October 2012,
               <https://www.rfc-editor.org/info/rfc6749>.
+
+   [RFC7515]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web
+              Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
+              2015, <https://www.rfc-editor.org/info/rfc7515>.
 
    [RFC7521]  Campbell, B., Mortimore, C., Jones, M., and Y. Goland,
               "Assertion Framework for OAuth 2.0 Client Authentication
@@ -738,12 +763,17 @@ Table of Contents
               DOI 10.17487/RFC8725, February 2020,
               <https://www.rfc-editor.org/info/rfc8725>.
 
+   [RFC9101]  Sakimura, N., Bradley, J., and M. Jones, "The OAuth 2.0
+              Authorization Framework: JWT-Secured Authorization Request
+              (JAR)", RFC 9101, DOI 10.17487/RFC9101, August 2021,
+              <https://www.rfc-editor.org/info/rfc9101>.
+
    [RFC9126]  Lodderstedt, T., Campbell, B., Sakimura, N., Tonge, D.,
               and F. Skokan, "OAuth 2.0 Pushed Authorization Requests",
               RFC 9126, DOI 10.17487/RFC9126, September 2021,
               <https://www.rfc-editor.org/info/rfc9126>.
 
-12.2.  Informative References
+13.2.  Informative References
 
    [IANA.MediaTypes]
               IANA, "Media Types",
@@ -818,6 +848,9 @@ Appendix A.  Document History
    *  Update audience requirements in "Security Assertion Markup
       Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication
       and Authorization Grants" [RFC7522].
+
+   *  Update audience requirements in "The OAuth 2.0 Authorization
+      Framework: JWT-Secured Authorization Request (JAR)" [RFC9101].
 
    *  Update audience requirements in "OAuth 2.0 Pushed Authorization
       Requests" [RFC9126].
