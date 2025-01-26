@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-23T01:37:31.536544+00:00",
+  "timestamp": "2025-01-26T01:39:47.771689+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -49,7 +49,32 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 5,
+      "id": "I_kwDONPDDUs6nhlxf",
+      "title": "scope overreach",
+      "url": "https://github.com/selfissued/draft-jones-oauth-rfc7523bis/issues/5",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7521 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
+      "createdAt": "2025-01-24T23:43:32Z",
+      "updatedAt": "2025-01-24T23:49:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "body": "The unifying factor in all these changes is consistently using the issuer identifier as the audience value for tokens sent to the authorization server.\n\nOne way to improve security in practice is to eliminate special cases.  We have a rare opportunity to do that right now.  This does that by always using the same audience value for the authorization server in all contexts.\n\nI hope you can choose to support that position on Monday.  At least, please seriously consider it.",
+          "createdAt": "2025-01-24T23:49:09Z",
+          "updatedAt": "2025-01-24T23:49:09Z"
+        }
+      ]
+    }
+  ],
   "pulls": [
     {
       "number": 1,
