@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-28T01:37:01.125425+00:00",
+  "timestamp": "2025-01-30T01:35:58.180989+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -62,7 +62,7 @@
       "labels": [],
       "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7521 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
       "createdAt": "2025-01-24T23:43:32Z",
-      "updatedAt": "2025-01-24T23:49:10Z",
+      "updatedAt": "2025-01-29T18:09:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -71,6 +71,34 @@
           "body": "The unifying factor in all these changes is consistently using the issuer identifier as the audience value for tokens sent to the authorization server.\n\nOne way to improve security in practice is to eliminate special cases.  We have a rare opportunity to do that right now.  This does that by always using the same audience value for the authorization server in all contexts.\n\nI hope you can choose to support that position on Monday.  At least, please seriously consider it.",
           "createdAt": "2025-01-24T23:49:09Z",
           "updatedAt": "2025-01-24T23:49:09Z"
+        },
+        {
+          "author": "brockallen",
+          "authorAssociation": "NONE",
+          "body": "> aud mandated to be a string value only\n\nCould this be relaxed to say that if it's an array then it can only have a single value?",
+          "createdAt": "2025-01-29T16:35:18Z",
+          "updatedAt": "2025-01-29T16:35:41Z"
+        },
+        {
+          "author": "brockallen",
+          "authorAssociation": "NONE",
+          "body": "> changes to authorization grant including explicit typing and audience handling\n\nHey Brian -- can you elaborate here, please? Aren't these changes fundamental to providing a mitigation? ",
+          "createdAt": "2025-01-29T16:37:02Z",
+          "updatedAt": "2025-01-29T16:37:32Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "body": "> Could this be relaxed to say that if it's an array then it can only have a single value?\n\nFAPI 2 requires that it be a string and not an array.  And that seems to have been the consensus position for the other specs as well, as it simplifies the check.  Simpler code in security contexts is often better.\n",
+          "createdAt": "2025-01-29T17:11:08Z",
+          "updatedAt": "2025-01-29T17:11:08Z"
+        },
+        {
+          "author": "brockallen",
+          "authorAssociation": "NONE",
+          "body": "> FAPI 2 requires that it be a string and not an array. \n\nAh, that makes sense.\n\n> And that seems to have been the consensus position for the other specs as well, as it simplifies the check. Simpler code in security contexts is often better.\n\nOh agreed for sure. \n\nI was just asking (perhaps naively) as a way to possibly compromise between the two stances. Thx.",
+          "createdAt": "2025-01-29T18:09:03Z",
+          "updatedAt": "2025-01-29T18:09:03Z"
         }
       ]
     }
