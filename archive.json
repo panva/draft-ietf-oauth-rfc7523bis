@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-06T01:39:16.956946+00:00",
+  "timestamp": "2025-02-09T01:42:43.044890+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -60,9 +60,9 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
-      "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7521 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
+      "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7522 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
       "createdAt": "2025-01-24T23:43:32Z",
-      "updatedAt": "2025-01-29T18:09:05Z",
+      "updatedAt": "2025-02-07T22:49:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -99,6 +99,41 @@
           "body": "> FAPI 2 requires that it be a string and not an array. \n\nAh, that makes sense.\n\n> And that seems to have been the consensus position for the other specs as well, as it simplifies the check. Simpler code in security contexts is often better.\n\nOh agreed for sure. \n\nI was just asking (perhaps naively) as a way to possibly compromise between the two stances. Thx.",
           "createdAt": "2025-01-29T18:09:03Z",
           "updatedAt": "2025-01-29T18:09:03Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "NONE",
+          "body": "> > changes to authorization grant including explicit typing and audience handling\n> \n> Hey Brian -- can you elaborate here, please? Aren't these changes fundamental to providing a mitigation?\n\nNo, they are not. Changes to the authorization grant would needlessly introduce confusion and interoperability problems along with maintenance and support burden.  ",
+          "createdAt": "2025-02-07T17:45:04Z",
+          "updatedAt": "2025-02-07T17:45:04Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "body": "When asked, the Stuttgart security researchers who identified the vulnerability also told us that the authorization grant is vulnerable for the same attacks.\n\nWe should fix all the vulnerabilities in a consistent manner, rather than picking and choosing which to fix and having to come back and fix more later.\n\nI'll also note that any interop problems are mitigated by @panva's suggestion to explicitly type the tokens.  You'll know that you're using rfc7523bis tokens when they're explicitly typed and you'll know that you aren't when they aren't.  Code can continue to allow the old behaviors when explicit types aren't present, if the context is such that the security risk is acceptable.",
+          "createdAt": "2025-02-07T19:26:33Z",
+          "updatedAt": "2025-02-07T19:26:33Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "NONE",
+          "body": "> When asked, the Stuttgart security researchers who identified the vulnerability also told us that the authorization grant is vulnerable for the same attacks.\n\nI was party to that conversation and what was described in telling us how the authorization grant is vulnerable was sufficiently contrived to the point of being vanishingly unrealistic (involving a 'local' AS doing token exchange with the client using different 'remote' AS's including one that is malicious). \n \n> I'll also note that any interop problems are mitigated by [@panva](https://github.com/panva)'s suggestion to explicitly type the tokens. You'll know that you're using rfc7523bis tokens when they're explicitly typed and you'll know that you aren't when they aren't. Code can continue to allow the old behaviors when explicit types aren't present, if the context is such that the security risk is acceptable.\n\nFilip's suggestion was for JWT client auth FWIW and explicitly typing the tokens provides some visibility and controls into the interop problems but does not make them go away.\n\nIt also can't be applied to SAML because there's no equivalent construct in a SAML assertion to the typ header in JWS/JWT.\n\nAnd it doesn't work for request objects because RFC 9101 already has a media type defined. \n",
+          "createdAt": "2025-02-07T20:18:55Z",
+          "updatedAt": "2025-02-07T20:18:55Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "body": "This is a good discussion with multiple facets.  It\u2019s what WG discussions should be.\n\nIn the JWT authorization grant case, I see our options as being to either definitively fixing the problem or having the authorization grant be a special case with different audience values than the cases we do fix.  I can see this going either way.\n\nIn the SAML case, yes, there isn\u2019t an explicit typing option.  I think that leaves a choice between fixing the SAML audiences or deprecating the SAML assertions draft entirely.  Again, I could see this going either way.\n\nIn the JAR case, all the draft does is change \u201cshould be the issuer identifier\u201d to \u201cMUST be solely the issuer identifier\u201d.  I think we should do this for consistency with the other fixes and it won\u2019t be a breaking change.  But again, the working group gets to decide.\n\nAnd of course, I think we have consensus about what to do for private_key_jwt JWTs.\n\nAs I see it, the fact we\u2019re discussing legitimate choices for some of the cases shouldn\u2019t stop us from adopting the draft to get going on fixing the things that there is consensus to fix right away.\n\n",
+          "createdAt": "2025-02-07T21:43:36Z",
+          "updatedAt": "2025-02-07T21:43:36Z"
+        },
+        {
+          "author": "SECtim",
+          "authorAssociation": "NONE",
+          "body": "> involving a 'local' AS doing token exchange with the client using different 'remote' AS's including one that is malicious\n\nInterestingly, it seems I (as one of the Stuttgart guys) was not part of the conversation referenced here, or there may be some misunderstanding.\n\nWhat basically happens is:\n\n1. Client requests assertion from STS (for use at compromised AS, say, to exchange for an AT for some user's resources)\n2. STS uses the token endpoint published by compromised AS (i.e., an honest AS's token ep) as `aud` when creating the assertion\n3. Client uses assertion at compromised AS (note that a compromised AS may of course show different metadata to different parties)\n=> Attacker now has an assertion that is valid at the honest AS and can be exchanged for an AT for some honest user's resources; and the client used exactly one AS and performed exactly one token exchange.\n\nI do agree that with the JWT Authorization Grant, there are additional preconditions, which likely reduce the risk of this vulnerability being exploited, but would argue to mitigate even small risk if it's cheap which seems to be the case here from my point of view. That said, I am in the comfortable position of not having to weigh compatibility, implementation changes, and more or less likely-to-be-exploited security issues.\nHowever, I do want to ensure any misunderstandings are clarified.",
+          "createdAt": "2025-02-07T22:43:02Z",
+          "updatedAt": "2025-02-07T22:49:50Z"
         }
       ]
     }
