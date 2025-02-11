@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-09T01:42:43.044890+00:00",
+  "timestamp": "2025-02-11T01:38:55.390159+00:00",
   "repo": "selfissued/draft-jones-oauth-rfc7523bis",
   "labels": [
     {
@@ -62,7 +62,7 @@
       "labels": [],
       "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7522 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
       "createdAt": "2025-01-24T23:43:32Z",
-      "updatedAt": "2025-02-07T22:49:50Z",
+      "updatedAt": "2025-02-11T00:06:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -134,6 +134,20 @@
           "body": "> involving a 'local' AS doing token exchange with the client using different 'remote' AS's including one that is malicious\n\nInterestingly, it seems I (as one of the Stuttgart guys) was not part of the conversation referenced here, or there may be some misunderstanding.\n\nWhat basically happens is:\n\n1. Client requests assertion from STS (for use at compromised AS, say, to exchange for an AT for some user's resources)\n2. STS uses the token endpoint published by compromised AS (i.e., an honest AS's token ep) as `aud` when creating the assertion\n3. Client uses assertion at compromised AS (note that a compromised AS may of course show different metadata to different parties)\n=> Attacker now has an assertion that is valid at the honest AS and can be exchanged for an AT for some honest user's resources; and the client used exactly one AS and performed exactly one token exchange.\n\nI do agree that with the JWT Authorization Grant, there are additional preconditions, which likely reduce the risk of this vulnerability being exploited, but would argue to mitigate even small risk if it's cheap which seems to be the case here from my point of view. That said, I am in the comfortable position of not having to weigh compatibility, implementation changes, and more or less likely-to-be-exploited security issues.\nHowever, I do want to ensure any misunderstandings are clarified.",
           "createdAt": "2025-02-07T22:43:02Z",
           "updatedAt": "2025-02-07T22:49:50Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "NONE",
+          "body": "> Interestingly, it seems I (as one of the Stuttgart guys) was not part of the conversation referenced here, or there may be some misunderstanding.\n\nIt was a thread in (one of) the slack channels in November-ish where some discussion took place before the issue was made more public. I believe Pedram was the main Stuttgart guy in the conversation but I think you might have chimed in towards the end. \n\n> I do agree that with the JWT Authorization Grant, there are additional preconditions, which likely reduce the risk of this vulnerability being exploited, but would argue to mitigate even small risk if it's cheap which seems to be the case here from my point of view. That said, I am in the comfortable position of not having to weigh compatibility, implementation changes, and more or less likely-to-be-exploited security issues. However, I do want to ensure any misunderstandings are clarified.\n\nThat's fair. From my perspective having some responsibility for currently deployed software using this stuff, changes to SAML or JWT authorization grants are not cheap at all. \n\n",
+          "createdAt": "2025-02-10T23:42:43Z",
+          "updatedAt": "2025-02-10T23:42:43Z"
+        },
+        {
+          "author": "brockallen",
+          "authorAssociation": "NONE",
+          "body": "FWIW, we plan to give our customers an options flag to say how strict they want to be given these recommendations.",
+          "createdAt": "2025-02-11T00:06:14Z",
+          "updatedAt": "2025-02-11T00:06:14Z"
         }
       ]
     }
