@@ -17,7 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-jones-oauth-rfc7523bis.xml
+draft-ietf-oauth-rfc7523bis.xml
 package-lock.json
 report.xml
 !requirements.txt
