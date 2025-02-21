@@ -13,16 +13,16 @@
         requesting an OAuth 2.0 access token as well as for client authentication.
        
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.27.0" name="generator">
 <meta content="OAuth" name="keyword">
 <meta content="JWT" name="keyword">
 <meta content="Assertion" name="keyword">
 <meta content="Token" name="keyword">
 <meta content="Security Token" name="keyword">
-<meta content="draft-jones-oauth-rfc7523bis-latest" name="ietf.draft">
+<meta content="draft-ietf-oauth-rfc7523bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
-    Python 3.12.8
+  xml2rfc 3.27.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -35,7 +35,7 @@
     setuptools 70.3.0
     wcwidth 0.2.13
 -->
-<link href="draft-jones-oauth-rfc7523bis.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ietf-oauth-rfc7523bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -443,7 +443,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1052,11 +1052,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">OAuth JWT Assertion Profiles</td>
-<td class="right">January 2025</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 31 July 2025</td>
+<td class="center">Expires 25 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,7 +1066,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">OAuth Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-jones-oauth-rfc7523bis-latest</dd>
+<dd class="internet-draft">draft-ietf-oauth-rfc7523bis-latest</dd>
 <dt class="label-obsoletes">Obsoletes:</dt>
 <dd class="obsoletes">
 <a href="https://www.rfc-editor.org/rfc/rfc7523" class="eref">7523</a> (if approved)</dd>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7521" class="eref">7521</a>, <a href="https://www.rfc-editor.org/rfc/rfc7522" class="eref">7522</a>, <a href="https://www.rfc-editor.org/rfc/rfc9101" class="eref">9101</a>, <a href="https://www.rfc-editor.org/rfc/rfc9126" class="eref">9126</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-27" class="published">27 January 2025</time>
+<time datetime="2025-02-21" class="published">21 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-31">31 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-25">25 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2312,41 +2312,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="normal">
 <li class="normal" id="appendix-A-3.1">
           <p id="appendix-A-3.1.1">
-     Initial draft starting with rfc7523.xml,
-     updated to use current references and affiliations
-     and modern xml2rfc syntax,
-     removing the IANA actions already performed,
-     and adding the Document History section.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.2">
-          <p id="appendix-A-3.2.1">
-     Use AS issuer identifier as the sole audience value.<a href="#appendix-A-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.3">
-          <p id="appendix-A-3.3.1">
-     Explicitly typed authorization grant JWTs and client authentication JWTs.<a href="#appendix-A-3.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.4">
-          <p id="appendix-A-3.4.1">
-     Update audience requirements in
-     "Assertion Framework for OAuth 2.0 Client Authentication and
-     Authorization Grants" <span>[<a href="#RFC7521" class="cite xref">RFC7521</a>]</span>.<a href="#appendix-A-3.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.5">
-          <p id="appendix-A-3.5.1">
-     Update audience requirements in
-     "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
-     Client Authentication and Authorization Grants" <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>.<a href="#appendix-A-3.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.6">
-          <p id="appendix-A-3.6.1">
-     Update audience requirements in
-     "The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)" <span>[<a href="#RFC9101" class="cite xref">RFC9101</a>]</span>.<a href="#appendix-A-3.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.7">
-          <p id="appendix-A-3.7.1">
-     Update audience requirements in
-     "OAuth 2.0 Pushed Authorization Requests" <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span>.<a href="#appendix-A-3.7.1" class="pilcrow">¶</a></p>
+     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>

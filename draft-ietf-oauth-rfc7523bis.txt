@@ -7,13 +7,13 @@ Internet-Draft                                    Self-Issued Consulting
 Obsoletes: 7523 (if approved)                                B. Campbell
 Updates: 7521, 7522, 9101, 9126 (if approved)              Ping Identity
 Intended status: Standards Track                            C. Mortimore
-Expires: 31 July 2025                                             Disney
-                                                         27 January 2025
+Expires: 25 August 2025                                           Disney
+                                                        21 February 2025
 
 
   JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and
                           Authorization Grants
-                  draft-jones-oauth-rfc7523bis-latest
+                   draft-ietf-oauth-rfc7523bis-latest
 
 Abstract
 
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 July 2025.
+   This Internet-Draft will expire on 25 August 2025.
 
 Copyright Notice
 
@@ -832,28 +832,8 @@ Appendix A.  Document History
 
    -00
 
-   *  Initial draft starting with rfc7523.xml, updated to use current
-      references and affiliations and modern xml2rfc syntax, removing
-      the IANA actions already performed, and adding the Document
-      History section.
-
-   *  Use AS issuer identifier as the sole audience value.
-
-   *  Explicitly typed authorization grant JWTs and client
-      authentication JWTs.
-
-   *  Update audience requirements in "Assertion Framework for OAuth 2.0
-      Client Authentication and Authorization Grants" [RFC7521].
-
-   *  Update audience requirements in "Security Assertion Markup
-      Language (SAML) 2.0 Profile for OAuth 2.0 Client Authentication
-      and Authorization Grants" [RFC7522].
-
-   *  Update audience requirements in "The OAuth 2.0 Authorization
-      Framework: JWT-Secured Authorization Request (JAR)" [RFC9101].
-
-   *  Update audience requirements in "OAuth 2.0 Pushed Authorization
-      Requests" [RFC9126].
+   *  Initial working group draft, replacing draft-jones-oauth-
+      rfc7523bis-00.
 
 Acknowledgements
 
