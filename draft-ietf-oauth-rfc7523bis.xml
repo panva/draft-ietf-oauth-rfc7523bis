@@ -4,7 +4,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
-  docName="draft-jones-oauth-rfc7523bis-latest"
+  docName="draft-ietf-oauth-rfc7523bis-latest"
   obsoletes="7523" updates="7521, 7522, 9101, 9126">
 
   <?rfc toc="yes"?>
@@ -41,7 +41,7 @@
       </address>
     </author>
 
-    <date day="27" month="January" year="2025" />
+    <date day="21" month="February" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -1105,35 +1105,7 @@
 	-00
 	<list style="symbols">
 	  <t>
-	    Initial draft starting with rfc7523.xml,
-	    updated to use current references and affiliations
-	    and modern xml2rfc syntax,
-	    removing the IANA actions already performed,
-	    and adding the Document History section.
-	  </t>
-	  <t>
-	    Use AS issuer identifier as the sole audience value.
-	  </t>
-	  <t>
-	    Explicitly typed authorization grant JWTs and client authentication JWTs.
-	  </t>
-	  <t>
-	    Update audience requirements in
-	    "Assertion Framework for OAuth 2.0 Client Authentication and
-	    Authorization Grants" <xref target="RFC7521"/>.
-	  </t>
-	  <t>
-	    Update audience requirements in
-	    "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
-	    Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
-	  </t>
-	  <t>
-	    Update audience requirements in
-	    "The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)" <xref target="RFC9101"/>.
-	  </t>
-	  <t>
-	    Update audience requirements in
-	    "OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>.
+	    Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.
 	  </t>
 	</list>
       </t>
