@@ -857,7 +857,7 @@ Authors' Addresses
 
    Brian Campbell
    Ping Identity
-   Email: brian.d.campbell@gmail.com
+   Email: bcampbell@pingidentity.com
 
 
    Chuck Mortimore
