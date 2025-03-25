@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-23T01:52:03.796811+00:00",
+  "timestamp": "2025-03-25T01:47:23.383625+00:00",
   "repo": "selfissued/draft-ietf-oauth-rfc7523bis",
   "labels": [
     {
@@ -57,7 +57,7 @@
       "url": "https://github.com/selfissued/draft-ietf-oauth-rfc7523bis/issues/5",
       "state": "OPEN",
       "author": "bc-pi",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "I worry that the current scope of this draft overreaches and will unnecessarily cause interop problems while also significantly impeding the goal of expedited publication. I do anticipate this to be one topic of discussion during the coming interim. So this is a heads up as much as a placeholder.\n\nHere are some areas that I believe overreach:\n- changes to authorization grant including explicit typing and audience handling \n- updates to SAML/RFC7522 (if anything, we should just say don't do SAML for client authentication and be done with it)\n- updates to RFC9101 JWT-Secured Authorization Request (JAR)\n- aud mandated to be a string value only\n\n",
@@ -102,7 +102,7 @@
         },
         {
           "author": "bc-pi",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> > changes to authorization grant including explicit typing and audience handling\n> \n> Hey Brian -- can you elaborate here, please? Aren't these changes fundamental to providing a mitigation?\n\nNo, they are not. Changes to the authorization grant would needlessly introduce confusion and interoperability problems along with maintenance and support burden.  ",
           "createdAt": "2025-02-07T17:45:04Z",
           "updatedAt": "2025-02-07T17:45:04Z"
@@ -116,7 +116,7 @@
         },
         {
           "author": "bc-pi",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> When asked, the Stuttgart security researchers who identified the vulnerability also told us that the authorization grant is vulnerable for the same attacks.\n\nI was party to that conversation and what was described in telling us how the authorization grant is vulnerable was sufficiently contrived to the point of being vanishingly unrealistic (involving a 'local' AS doing token exchange with the client using different 'remote' AS's including one that is malicious). \n \n> I'll also note that any interop problems are mitigated by [@panva](https://github.com/panva)'s suggestion to explicitly type the tokens. You'll know that you're using rfc7523bis tokens when they're explicitly typed and you'll know that you aren't when they aren't. Code can continue to allow the old behaviors when explicit types aren't present, if the context is such that the security risk is acceptable.\n\nFilip's suggestion was for JWT client auth FWIW and explicitly typing the tokens provides some visibility and controls into the interop problems but does not make them go away.\n\nIt also can't be applied to SAML because there's no equivalent construct in a SAML assertion to the typ header in JWS/JWT.\n\nAnd it doesn't work for request objects because RFC 9101 already has a media type defined. \n",
           "createdAt": "2025-02-07T20:18:55Z",
           "updatedAt": "2025-02-07T20:18:55Z"
@@ -137,7 +137,7 @@
         },
         {
           "author": "bc-pi",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> Interestingly, it seems I (as one of the Stuttgart guys) was not part of the conversation referenced here, or there may be some misunderstanding.\n\nIt was a thread in (one of) the slack channels in November-ish where some discussion took place before the issue was made more public. I believe Pedram was the main Stuttgart guy in the conversation but I think you might have chimed in towards the end. \n\n> I do agree that with the JWT Authorization Grant, there are additional preconditions, which likely reduce the risk of this vulnerability being exploited, but would argue to mitigate even small risk if it's cheap which seems to be the case here from my point of view. That said, I am in the comfortable position of not having to weigh compatibility, implementation changes, and more or less likely-to-be-exploited security issues. However, I do want to ensure any misunderstandings are clarified.\n\nThat's fair. From my perspective having some responsibility for currently deployed software using this stuff, changes to SAML or JWT authorization grants are not cheap at all. \n\n",
           "createdAt": "2025-02-10T23:42:43Z",
           "updatedAt": "2025-02-10T23:42:43Z"
@@ -397,6 +397,48 @@
           "body": "",
           "createdAt": "2024-11-26T01:21:35Z",
           "updatedAt": "2024-11-26T01:21:35Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDONPDDUs6PxXSq",
+      "title": "been using work email as of late",
+      "url": "https://github.com/selfissued/draft-ietf-oauth-rfc7523bis/pull/6",
+      "state": "MERGED",
+      "author": "bc-pi",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-23T17:42:51Z",
+      "updatedAt": "2025-03-23T20:26:50Z",
+      "baseRepository": "selfissued/draft-ietf-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "ab4b18703f95b711588b725b9c9fa47094da2fff",
+      "headRepository": "bc-pi/draft-ietf-oauth-rfc7523bis",
+      "headRefName": "patch-1",
+      "headRefOid": "ae2bb070cd1624881ceffdafcaf631cabe54c57b",
+      "closedAt": "2025-03-23T20:26:49Z",
+      "mergedAt": "2025-03-23T20:26:49Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "60edb6bcb31c51df7d4a49863e6593bdd73a8cb6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDONPDDUs6hdBbN",
+          "commit": {
+            "abbreviatedOid": "ae2bb07"
+          },
+          "author": "selfissued",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-23T20:24:39Z",
+          "updatedAt": "2025-03-23T20:24:39Z",
           "comments": []
         }
       ]
