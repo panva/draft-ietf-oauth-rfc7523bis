@@ -75,7 +75,7 @@
       </t>
       <t>
 	When performing a security analysis of a pre-final version of
-	the OpenID Federation <xref target="OpenID.Federation.ID4"/> specification,
+	the OpenID Federation specification <xref target="OpenID.Federation.ID4"/>,
 	University of Stuttgart security researchers
 	Pedram Hosseyni, Dr. Ralf Küsters, and Tim Würtele
 	discovered a vulnerability affecting multiple OpenID and OAuth
@@ -707,7 +707,7 @@
 	    <organization>University of Stuttgart</organization>
 	  </author>
 
-	  <date year="2025"/>
+	  <date month="April" year="2025"/>
 	</front>
 	<seriesInfo name="Cryptology ePrint Archive" value="Paper 2025/629" />
       </reference>
