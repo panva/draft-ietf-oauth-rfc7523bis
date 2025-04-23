@@ -41,7 +41,7 @@
       </address>
     </author>
 
-    <date day="21" month="April" year="2025" />
+    <date day="23" month="April" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -77,7 +77,7 @@
 	When performing a security analysis of a pre-final version of
 	the OpenID Federation <xref target="OpenID.Federation.ID4"/> specification,
 	University of Stuttgart security researchers
-	Dr. Ralf Küsters, Tim Würtele, and Pedram Hosseyni
+	Pedram Hosseyni, Dr. Ralf Küsters, and Tim Würtele
 	discovered a vulnerability affecting multiple OpenID and OAuth
 	specifications caused by ambiguities in the audience values
 	of tokens sent to authorization servers.
@@ -85,6 +85,8 @@
 	in an interim meeting in January 2025 called for that purpose,
 	including providing a description of the vulnerability
 	<xref target="private_key_jwt.Disclosure"/>.
+	A paper they published describing the attack is
+	<xref target="Audience.Injection"/>.
       </t>
       <t>
 	This specification updates the affected OAuth specifications
@@ -475,7 +477,8 @@
 	previously allowed by
 	<xref target="RFC7521"/>, <xref target="RFC7522"/>,
 	<xref target="RFC7523"/>, and <xref target="RFC9126"/>.
-	These attacks are described in <xref target="private_key_jwt.Disclosure"/>.
+	These attacks are described in <xref target="private_key_jwt.Disclosure"/>
+	and <xref target="Audience.Injection"/>.
       </t>
 
     </section>
@@ -687,6 +690,27 @@
     <references title="Informative References">
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2046.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6838.xml"/>
+
+      <reference anchor="Audience.Injection" target="https://eprint.iacr.org/2025/629">
+	<front>
+	  <title>Audience Injection Attacks: A New Class of Attacks on Web-Based Authorization and Authentication Standards</title>
+
+	  <author fullname="Pedram Hosseyni" initials="P." surname="Hosseyni">
+	    <organization>University of Stuttgart</organization>
+	  </author>
+
+	  <author fullname="Ralf Küsters" initials="R." surname="Küsters">
+	    <organization>University of Stuttgart</organization>
+	  </author>
+
+	  <author fullname="Tim Würtele" initials="T." surname="Würtele">
+	    <organization>University of Stuttgart</organization>
+	  </author>
+
+	  <date year="2025"/>
+	</front>
+	<seriesInfo name="Cryptology ePrint Archive" value="Paper 2025/629" />
+      </reference>
 
       <reference anchor="private_key_jwt.Disclosure" target="https://openid.net/wp-content/uploads/2025/01/OIDF-Responsible-Disclosure-Notice-on-Security-Vulnerability-for-private_key_jwt.pdf">
 	<front>
