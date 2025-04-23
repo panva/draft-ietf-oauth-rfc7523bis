@@ -801,6 +801,9 @@
 	  <t>
 	    Removed updates to RFC 9101.
 	  </t>
+	  <t>
+	    Added reference to the University of Stuttgart paper <xref target="Audience.Injection"/>.
+	  </t>
 	</list>
       </t>
 
