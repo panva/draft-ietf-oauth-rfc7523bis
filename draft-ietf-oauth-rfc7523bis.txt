@@ -557,6 +557,9 @@ Appendix A.  Document History
 
    *  Removed updates to RFC 9101.
 
+   *  Added reference to the University of Stuttgart paper
+      [Audience.Injection].
+
    -00
 
    *  Initial working group draft, replacing draft-jones-oauth-
