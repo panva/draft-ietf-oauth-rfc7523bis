@@ -82,7 +82,7 @@ Table of Contents
    (audience) claim.
 
    When performing a security analysis of a pre-final version of the
-   OpenID Federation [OpenID.Federation.ID4] specification, University
+   OpenID Federation specification [OpenID.Federation.ID4], University
    of Stuttgart security researchers Pedram Hosseyni, Dr. Ralf Küsters,
    and Tim Würtele discovered a vulnerability affecting multiple OpenID
    and OAuth specifications caused by ambiguities in the audience values
@@ -511,7 +511,7 @@ Table of Contents
               Hosseyni, P., Küsters, R., and T. Würtele, "Audience
               Injection Attacks: A New Class of Attacks on Web-Based
               Authorization and Authentication Standards", Cryptology
-              ePrint Archive Paper 2025/629, 2025,
+              ePrint Archive Paper 2025/629, April 2025,
               <https://eprint.iacr.org/2025/629>.
 
    [IANA.MediaTypes]
