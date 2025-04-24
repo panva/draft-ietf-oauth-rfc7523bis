@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-08T01:48:03.494700+00:00",
+  "timestamp": "2025-04-24T00:29:03.500723+00:00",
   "repo": "oauth-wg/draft-ietf-oauth-rfc7523bis",
   "labels": [
     {
@@ -150,6 +150,22 @@
           "updatedAt": "2025-02-11T00:06:14Z"
         }
       ]
+    },
+    {
+      "number": 8,
+      "id": "I_kwDONPDDUs6zt1k6",
+      "title": "Question about Strong Typing",
+      "url": "https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis/issues/8",
+      "state": "OPEN",
+      "author": "PieterKas",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I am generally in favour of strong typing - it makes it clear what the purpose of a token is and reduces risk of implementation errors or mix-ups where tokens are used inappropriately (at least, it makes it easier to detect and spot when that happens),\n \nMy understanding of the introduction of strongly typed tokens is that it is meant as a type of versioning in this case. It allows implementors to distinguish between tokens they should expect to have the audience constraints needed to mitigate the attack vs ones that may, or may not, have the correct audience constraints. Regardless, the authorization server still needs to check the constraint.\n \nI am concerned about the impact of a MUST on the eco-system of JWT token issuers that are deployed.\nFor example, Kubernetes Projected. Service Acccount Tokens (first deployed circa 2018) can be used for either workload authentication (now client-authentication+jwt in this draft) or authorisation grant flow (now client-authorization+jwt in this draft). Similarly, SPIFFE defines a JWT (JWT-SVID) that is either typed as JWT or untyped and used by workloads for authentication and authorization grant flows (first deployed circa 2016). Both systems are widely deployed and these tokens can be used with RFC 7523.\n \nThe strong typing proposed here appears to prohibit the use of tokens issued by those systems from being used in this specification, even if they strictly comply with the audience constraints needed to mitigate the attack.\nUpdating existing systems is not just a matter of adding typing to existing tokens being issued, but is a more fundamental change as a workload would now need two tokens, one of each type, depending on what the credential is being used for. It also creates complexity in code as applications now need to be aware of which token to use. In new implementations, this may be feasible. Retrofitting a large eco-system may be problematic with a very long tail.\n \nThe potential downside is that the remedies in this specification may not get deployed because of the practicalities of having to support multiple token types that are strongly typed. To put it another way, requiring strong typing may limit the deployment of the mitigation of stricter audience values.\n \nGiven that the intent of the typing is to act as a form of versioning which indicates that the audience constraint is applied, could we find language that allows an authorization server to still accept and untyped token, but still reject it if the audience constrain is not applied? There is language earlier in the specification indicating \"Furthermore, the authorization server MUST reject any such token that does not contain its own issuer identifier as the sole audience value.\", suggesting that this check needs to be performed in any event, regardless of typing.\n \nFor example, perhaps the MUST can be relaxed to a SHOULD, to allow for untyped JWTs that have the audience constraint applied? This way JWT typing does not become a barrier to deploying the audience constraint fix, but can still be used as a clear signal that an updated issuer is in fact limiting the audience appropriately.\n",
+      "createdAt": "2025-04-23T20:05:36Z",
+      "updatedAt": "2025-04-23T20:05:36Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -440,6 +456,109 @@
           "createdAt": "2025-03-23T20:24:39Z",
           "updatedAt": "2025-03-23T20:24:39Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDONPDDUs6TXHhW",
+      "title": "Rework to make updates to RFC 7523 rather than replacing it",
+      "url": "https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis/pull/7",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR updates the spec to only make changes to RFC 7523, rather than replacing it, as was decided at IETF 122.\r\n\r\nIt also removes the updates to RFC 9101, also per input at IETF 122.\r\n\r\nIt does not yet update the treatment of authorization grants or SAML.  That will happen in a subsequent set of changes.\r\n\r\nI wanted to get the structural changes to the spec in place first.\r\n\r\nCc: @RalphBragg @PedramHD @SECtim @ve7jtb ",
+      "createdAt": "2025-04-22T01:19:46Z",
+      "updatedAt": "2025-04-23T19:36:23Z",
+      "baseRepository": "oauth-wg/draft-ietf-oauth-rfc7523bis",
+      "baseRefName": "main",
+      "baseRefOid": "dd4c48cde8c98f3e55540effb50701e2de1b7d0b",
+      "headRepository": "oauth-wg/draft-ietf-oauth-rfc7523bis",
+      "headRefName": "mbj-update-rfc7523",
+      "headRefOid": "b4934e19c857596e952b153342e961c5f62836fb",
+      "closedAt": "2025-04-23T19:36:23Z",
+      "mergedAt": "2025-04-23T19:36:23Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "4f78ee0c37b1119e52c4ab914c41598bf9bebae3"
+      },
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for the link to the Audience Injection Attack paper, @bc-pi.  I've added it in https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis/pull/7/commits/b4934e19c857596e952b153342e961c5f62836fb.",
+          "createdAt": "2025-04-23T19:31:12Z",
+          "updatedAt": "2025-04-23T19:31:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDONPDDUs6l2vzr",
+          "commit": {
+            "abbreviatedOid": "da8641f"
+          },
+          "author": "ThisIsMissEm",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "I've had a read through, and whilst I'm not super familiar with this profile, the changes here make sense to me.",
+          "createdAt": "2025-04-22T02:16:15Z",
+          "updatedAt": "2025-04-22T02:16:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDONPDDUs6mGziZ",
+          "commit": {
+            "abbreviatedOid": "da8641f"
+          },
+          "author": "PieterKas",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-23T10:26:03Z",
+          "updatedAt": "2025-04-23T10:26:03Z",
+          "comments": [
+            {
+              "originalPosition": 495,
+              "body": "I am generally in favour of strong typing - it makes it clear what the purpose of a token is and reduces risk of implementation errors or mix-ups where tokens are used inappropriately (at least, it makes it easier to detect and spot when that happens).\r\n\r\nMy understanding of the introduction of strongly typed tokens is that it is meant as a type of versioning in this case. It allows implementors to distinguish between tokens they should expect to have the audience constraints needed to mitigate the attack vs ones that may, or may not, have the correct audience constraints. Regardless, the authorization server still needs to check the constraint.\r\n\r\nI am concerned about the impact of a MUST on the eco-system of JWT token issuers that are deployed. \r\n\r\nFor example, Kubernetes Projected. Service Acccount Tokens (first deployed circa 2018) can be used for either workload authentication (now client-authentication+jwt in this draft) or authorisation grant flow (now client-authorization+jwt in this draft). Similarly, SPIFFE defines a JWT (JWT-SVID) that is either typed as JWT or untyped and used by workloads for authentication and authorization grant flows (first deployed circa 2016). Both systems are widely deployed and these tokens can be used with RFC 7523. \r\n\r\nThe strong typing proposed here appears to prohibit the use of tokens issued by those systems from being used in this specification, even if they strictly comply with the audience constraints needed to mitigate the attack. \r\n\r\nUpdating existing systems is not just a matter of adding typing to existing tokens being issued, but is a more fundamental change as a workload would now need two tokens, one of each type, depending on what the credential is being used for. It also creates complexity in code as applications now need to be aware of which token to use. In new implementations, this may be feasible. Retrofitting a large eco-system may be problematic with a very long tail.\r\n\r\nThe potential downside is that the remedies in this specification may not get deployed because of the practicalities of having to support multiple token types that are strongly typed. To put it another way, requiring strong typing may limit the deployment of the mitigation of stricter audience values.\r\n\r\nGiven that the intent of the typing is to act as a form of versioning which indicates that the audience constraint is applied, could we find language that allows an authorization server to still accept and untyped token, but still reject it if the audience constrain is not applied? There is language earlier in the specification indicating \"Furthermore, the authorization server MUST reject any such token that does not contain its own issuer identifier as the sole audience value.\", suggesting that this check needs to be performed in any event, regardless of typing. \r\n\r\nFor example, perhaps the MUST can be relaxed to a SHOULD, to allow for untyped JWTs that have the audience constraint applied? This way JWT typing does not become a barrier to deploying the audience constraint fix, but can still be used as a clear signal that an updated issuer is in fact limiting the audience appropriately.",
+              "createdAt": "2025-04-23T10:26:03Z",
+              "updatedAt": "2025-04-23T19:05:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDONPDDUs6mM8Db",
+          "commit": {
+            "abbreviatedOid": "da8641f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Even from a structural standpoint, I still believe that it'd be more straightforward to build up from https://datatracker.ietf.org/doc/html/draft-campbell-oauth-rfc7523redux (acknowledging it's little more than an outline currently) rather than reworking.  But to the extent things are moving in that direction, I'm good with it. \r\n\r\nWe should update or add ref to https://eprint.iacr.org/2025/629 per Tim at some point too.",
+          "createdAt": "2025-04-23T18:49:43Z",
+          "updatedAt": "2025-04-23T18:49:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDONPDDUs6mNSoV",
+          "commit": {
+            "abbreviatedOid": "da8641f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-23T19:30:15Z",
+          "updatedAt": "2025-04-23T19:30:15Z",
+          "comments": [
+            {
+              "originalPosition": 495,
+              "body": "Please file an issue with your comment, @PieterKas.  Thanks!",
+              "createdAt": "2025-04-23T19:30:15Z",
+              "updatedAt": "2025-04-23T19:30:15Z"
+            }
+          ]
         }
       ]
     }
