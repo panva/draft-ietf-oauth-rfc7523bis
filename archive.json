@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-24T00:29:03.500723+00:00",
+  "timestamp": "2025-05-08T00:30:08.050533+00:00",
   "repo": "oauth-wg/draft-ietf-oauth-rfc7523bis",
   "labels": [
     {
@@ -163,7 +163,31 @@
       "labels": [],
       "body": "I am generally in favour of strong typing - it makes it clear what the purpose of a token is and reduces risk of implementation errors or mix-ups where tokens are used inappropriately (at least, it makes it easier to detect and spot when that happens),\n \nMy understanding of the introduction of strongly typed tokens is that it is meant as a type of versioning in this case. It allows implementors to distinguish between tokens they should expect to have the audience constraints needed to mitigate the attack vs ones that may, or may not, have the correct audience constraints. Regardless, the authorization server still needs to check the constraint.\n \nI am concerned about the impact of a MUST on the eco-system of JWT token issuers that are deployed.\nFor example, Kubernetes Projected. Service Acccount Tokens (first deployed circa 2018) can be used for either workload authentication (now client-authentication+jwt in this draft) or authorisation grant flow (now client-authorization+jwt in this draft). Similarly, SPIFFE defines a JWT (JWT-SVID) that is either typed as JWT or untyped and used by workloads for authentication and authorization grant flows (first deployed circa 2016). Both systems are widely deployed and these tokens can be used with RFC 7523.\n \nThe strong typing proposed here appears to prohibit the use of tokens issued by those systems from being used in this specification, even if they strictly comply with the audience constraints needed to mitigate the attack.\nUpdating existing systems is not just a matter of adding typing to existing tokens being issued, but is a more fundamental change as a workload would now need two tokens, one of each type, depending on what the credential is being used for. It also creates complexity in code as applications now need to be aware of which token to use. In new implementations, this may be feasible. Retrofitting a large eco-system may be problematic with a very long tail.\n \nThe potential downside is that the remedies in this specification may not get deployed because of the practicalities of having to support multiple token types that are strongly typed. To put it another way, requiring strong typing may limit the deployment of the mitigation of stricter audience values.\n \nGiven that the intent of the typing is to act as a form of versioning which indicates that the audience constraint is applied, could we find language that allows an authorization server to still accept and untyped token, but still reject it if the audience constrain is not applied? There is language earlier in the specification indicating \"Furthermore, the authorization server MUST reject any such token that does not contain its own issuer identifier as the sole audience value.\", suggesting that this check needs to be performed in any event, regardless of typing.\n \nFor example, perhaps the MUST can be relaxed to a SHOULD, to allow for untyped JWTs that have the audience constraint applied? This way JWT typing does not become a barrier to deploying the audience constraint fix, but can still be used as a clear signal that an updated issuer is in fact limiting the audience appropriately.\n",
       "createdAt": "2025-04-23T20:05:36Z",
-      "updatedAt": "2025-04-23T20:05:36Z",
+      "updatedAt": "2025-05-07T18:53:27Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "dhs-BI",
+          "authorAssociation": "NONE",
+          "body": "@PieterKas and I had a chance to discuss this on a call earlier today.  I'm in agreement that this risks breaking existing deployments and has the potential to limit deployments using stricter audience values.  \n\n> I am concerned about the impact of a MUST on the eco-system of JWT token issuers that are deployed. For example, Kubernetes Projected. Service Acccount Tokens (first deployed circa 2018) can be used for either workload authentication (now client-authentication+jwt in this draft) or authorisation grant flow (now client-authorization+jwt in this draft). Similarly, SPIFFE defines a JWT (JWT-SVID) that is either typed as JWT or untyped and used by workloads for authentication and authorization grant flows (first deployed circa 2016). Both systems are widely deployed and these tokens can be used with RFC 7523.\n\n[...]\n \n> For example, perhaps the MUST can be relaxed to a SHOULD, to allow for untyped JWTs that have the audience constraint applied? This way JWT typing does not become a barrier to deploying the audience constraint fix, but can still be used as a clear signal that an updated issuer is in fact limiting the audience appropriately.\n\nI support this approach if we can find clear, unambiguous language that allows for fixing the audience issue without breaking existing ecosystems through strong typing.",
+          "createdAt": "2025-05-07T18:53:26Z",
+          "updatedAt": "2025-05-07T18:53:26Z"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDONPDDUs61lOs3",
+      "title": "Given the suggested changes, how should a client use a SAML assertion as authorization grant?",
+      "url": "https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis/issues/9",
+      "state": "OPEN",
+      "author": "martin-lindstrom",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Given the suggested changes for SAML assertions, what remaining use case justifies a client passing a SAML assertion as an authorization grant?\n\nA common use case is a web application that acts as both a SAML Service Provider (SP) and an OAuth 2.0 client. It uses SAML to authenticate and log in users. After processing the SAML assertion and completing the login, the application can then pass the assertion to the Authorization Server (AS) using the SAML authorization grant to obtain an access token for backend API calls.\n\nIn such scenarios, the Identity Provider (IdP) is typically configured to recognize that the SP also intends to use the SAML assertion as an authorization grant. As a result, the assertion includes both the SP (client) and the AS as intended audiences.\n\nHowever, under the proposed changes\u2014where only one audience (the AS) is allowed\u2014the SP (client) would no longer be able to validate the assertion itself.\n\nAm I missing something, but I fail to see any sensible use cases for RFC 7522 if these changes are adopted.\n\n\n ",
+      "createdAt": "2025-05-07T15:45:17Z",
+      "updatedAt": "2025-05-07T15:45:17Z",
       "closedAt": null,
       "comments": []
     }
