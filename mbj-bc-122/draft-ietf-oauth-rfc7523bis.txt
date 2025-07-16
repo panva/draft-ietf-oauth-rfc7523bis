@@ -6,9 +6,9 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 25 October 2025                                    C. Mortimore
+Expires: 17 January 2026                                    C. Mortimore
                                                                   Disney
-                                                           23 April 2025
+                                                            16 July 2025
 
 
      Updates to Audience Values for OAuth 2.0 Authorization Servers
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2025.
+   This Internet-Draft will expire on 17 January 2026.
 
 Copyright Notice
 
@@ -60,6 +60,7 @@ Table of Contents
    2.  Updates to RFC 7521
    3.  Updates to RFC 7522
    4.  Updates to RFC 7523
+     4.1.  Client Authentication JWT Example
    5.  Updates to RFC 9126
    6.  Security Considerations
    7.  IANA Considerations
@@ -82,11 +83,11 @@ Table of Contents
    (audience) claim.
 
    When performing a security analysis of a pre-final version of the
-   OpenID Federation [OpenID.Federation.ID4] specification, University
-   of Stuttgart security researchers Pedram Hosseyni, Dr. Ralf Küsters,
-   and Tim Würtele discovered a vulnerability affecting multiple OpenID
-   and OAuth specifications caused by ambiguities in the audience values
-   of tokens sent to authorization servers.  The vulnerability was
+   OpenID Federation specification [OpenID.Federation], University of
+   Stuttgart security researchers Pedram Hosseyni, Dr. Ralf Küsters, and
+   Tim Würtele discovered a vulnerability affecting multiple OpenID and
+   OAuth specifications caused by ambiguities in the audience values of
+   tokens sent to authorization servers.  The vulnerability was
    disclosed to the OAuth working group in an interim meeting in January
    2025 called for that purpose, including providing a description of
    the vulnerability [private_key_jwt.Disclosure].  A paper they
@@ -245,33 +246,57 @@ Table of Contents
    Client Authentication and Authorization Grants" [RFC7523] to tighten
    its audience requirements.
 
+   In Section 2.2 of [RFC7523] (Using JWTs for Client Authentication),
+   the example is replaced by:
+
+    POST /token.oauth2 HTTP/1.1
+    Host: as.example.com
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=authorization_code&
+    code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+    client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
+      client-assertion-type%3Ajwt-bearer&
+    client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
+      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
+    e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
+    cC4hiUPo[...omitted for brevity...]
+
    In Section 3 of [RFC7523] (JWT Format and Processing Requirements),
    Item 3, which describes the audience value, is replaced by:
 
-      The JWT MUST contain an aud (audience) claim containing the issuer
-      identifier [RFC8414] of the authorization server as its sole
-      value.  The authorization server MUST have an issuer identifier to
-      be used with this specification.  Unlike the aud value specified
-      in [RFC7523], there MUST be no value other than the issuer
-      identifier of the intended authorization server used as the
-      audience of the JWT; this includes that the token endpoint URL of
-      the authorization server MUST NOT be used as an audience value.
-      To simplify implementations, the aud claim value MUST be a JSON
-      string, and not a single-valued JSON array.  The authorization
-      server MUST reject any JWT that does not contain its issuer
-      identifier as its sole audience value.  In the absence of an
-      application profile specifying otherwise, compliant applications
-      MUST compare the audience values using the Simple String
-      Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986].
+      The JWT MUST contain an aud (audience) claim containing a value
+      that identifies the authorization server as the intended audience.
+      Two cases are differentiated:
 
-   In Section 3.1 of [RFC7523] (Authorization Grant Processing), the
-   following requirement is added:
+      a.  For the authorization grant, it is the responsibility of the
+          client to use only aud values that are specific to the
+          authorization server being used.  This MAY be either the
+          issuer identifier of the authorization server or the token
+          endpoint URL of the authorization server.  The authorization
+          server MUST reject any JWT that does not contain its own
+          identity as the intended audience, and if the value of aud is
+          an array, all array values MUST identify the authorization
+          server as the intended audience.
 
-      Authorization grant JWTs MUST be explicitly typed by using the typ
-      header parameter value authorization-grant+jwt or another more
-      specific explicit type value defined by a specification profiling
-      this specification.  Authorization grant JWTs not using the
-      explicit type value MUST be rejected by the authorization server.
+      b.  For client authentication, the aud (audience) claim value MUST
+          use the issuer identifier [RFC8414] of the authorization
+          server as its sole value.  The authorization server MUST have
+          an issuer identifier to be used with this specification.
+          Unlike the aud value specified in [RFC7523], there MUST be no
+          value other than the issuer identifier of the intended
+          authorization server used as the audience of the JWT; this
+          includes that the token endpoint URL of the authorization
+          server MUST NOT be used as an audience value.  To simplify
+          implementations, the aud claim value MUST be a JSON string,
+          and not a single-valued JSON array.  The authorization server
+          MUST reject any JWT that does not contain its issuer
+          identifier as its sole audience value.
+
+      In the absence of an application profile specifying otherwise,
+      applications MUST compare the audience values using the Simple
+      String Comparison method defined in Section 6.2.1 of RFC 3986
+      [RFC3986].
 
    In Section 3.2 of [RFC7523] (Client Authentication Processing), the
    following requirement is added:
@@ -306,41 +331,63 @@ Table of Contents
 
                       Figure 2: Example JWT Claims Set
 
-   In the same section, the sentence:
-
-      The following example JSON object, used as the header of a JWT,
-      declares that the JWT is signed with the Elliptic Curve Digital
-      Signature Algorithm (ECDSA) P-256 SHA-256 using a key identified
-      by the kid value 16.
-
-   is replaced by:
-
-      The following example JSON object, used as the header parameters
-      of a JWT, declares that the JWT is an authorization grant JWT, is
-      signed with the Elliptic Curve Digital Signature Algorithm (ECDSA)
-      P-256 with SHA-256, and was signed with a key identified by the
-      kid value 16.
-
-   In the same section, the JOSE Header Parameters example is replaced
-   by:
-
-     {"typ":"authorization-grant+jwt","alg":"ES256","kid":"16"}
-
-                  Figure 3: Example JOSE Header Parameters
-
-   In the same section, the example POST body is replaced by:
-
-     grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-     &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
-       VTMjU2Iiwia2lkIjoiMTYifQ.
-     eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
-     J9l-ZhwP[...omitted for brevity...]
-
-                        Figure 4: Example POST Body
-
    In the list of agreements required by participants in Section 5 of
-   [RFC7523] (Interoperability Considerations), "audience identifiers"
-   is removed from the list.
+   [RFC7523] (Interoperability Considerations), an agreement on
+   "audience identifiers" is no longer needed for client authentication
+   JWTs.
+
+   The additional example in the following subsection is added after
+   Section 4 of [RFC7523]
+
+4.1.  Client Authentication JWT Example
+
+   The following example illustrates what a client authentication JWT
+   and token request using it would look like.
+
+   The example shows a JWT issued and signed by the system entity
+   identified as https://jwt-idp.example.com.  The subject of the JWT is
+   identified by email address as mike@example.com.  The intended
+   audience of the JWT is https://authz.example.net, which is the
+   authorization server's issuer identifier.  The JWT is sent as part of
+   a token request to the authorization server's token endpoint at
+   https://authz.example.net/token.oauth2.
+
+   Below is an example JSON object that could be encoded to produce the
+   JWT Claims Set for a client authentication JWT:
+
+     {"aud":"https://authz.example.net",
+      "iss":"https://jwt-idp.example.com",
+      "sub":"mailto:mike@example.com",
+      "iat":1752702206,
+      "exp":1752705806,
+      "http://claims.example.com/member":true
+     }
+
+   The following example JSON object, used as the header parameters of a
+   JWT, declares that the JWT is a client authentication JWT, is signed
+   with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256
+   with SHA-256, and was signed with a key identified by the kid value
+   16.
+
+     {"typ":"client-authentication+jwt","alg":"ES256","kid":"16"}
+
+   To present the JWT with the claims and header parameters shown above
+   as part of an access token request, for example, the client might
+   make the following HTTPS request (with extra line breaks for display
+   purposes only):
+
+    POST /token.oauth2 HTTP/1.1
+    Host: authz.example.net
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=authorization_code&
+    code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+    client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
+      client-assertion-type%3Ajwt-bearer&
+    client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
+      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
+    e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
+    J9l-ZhwP[...omitted for brevity...]
 
 5.  Updates to RFC 9126
 
@@ -353,13 +400,14 @@ Table of Contents
       This update resolves the potential ambiguity regarding the
       appropriate audience value to use when employing JWT client
       assertion-based authentication (as defined in Section 2.2 of
-      [RFC7523] with the private_key_jwt or client_secret_jwt
-      authentication method names per Section 9 of [OpenID.Core]) that
-      was described in [RFC9126].  To address that ambiguity, the issuer
-      identifier URL of the authorization server according to [RFC8414]
-      MUST be used as the sole value of the audience.  The authorization
-      server MUST reject any such JWT that does not contain its own
-      issuer identifier as the sole audience value.
+      [RFC7523] and as updated by Section 4 with the private_key_jwt or
+      client_secret_jwt authentication method names per Section 9 of
+      [OpenID.Core]) that was described in [RFC9126].  To address that
+      ambiguity, the issuer identifier URL of the authorization server
+      according to [RFC8414] MUST be used as the sole value of the
+      audience.  The authorization server MUST reject any such JWT that
+      does not contain its own issuer identifier as the sole audience
+      value.
 
 6.  Security Considerations
 
@@ -383,37 +431,11 @@ Table of Contents
 
 7.1.  Media Type Registration
 
-   This section registers the following media types [RFC2046] in the
+   This section registers the following media type [RFC2046] in the
    "Media Types" registry [IANA.MediaTypes] in the manner described in
    [RFC6838].
 
 7.1.1.  Registry Contents
-
-   *  Type name: application
-   *  Subtype name: authorization-grant+jwt
-   *  Required parameters: n/a
-   *  Optional parameters: n/a
-   *  Encoding considerations: binary; An authorization grant JWT is a
-      JWT; JWT values are encoded as a series of base64url-encoded
-      values (some of which may be the empty string) separated by period
-      ('.') characters.
-   *  Security considerations: See Section 6 of this specification
-   *  Interoperability considerations: n/a
-   *  Published specification: Section 4 of this specification
-   *  Applications that use this media type: Applications that use this
-      specification
-   *  Fragment identifier considerations: n/a
-   *  Additional information:
-         Magic number(s): n/a
-         File extension(s): n/a
-         Macintosh file type code(s): n/a
-   *  Person & email address to contact for further information:
-      Michael B.  Jones, michael_b_jones@hotmail.com
-   *  Intended usage: COMMON
-   *  Restrictions on usage: none
-   *  Author: Michael B.  Jones, michael_b_jones@hotmail.com
-   *  Change controller: IETF
-   *  Provisional registration?  No
 
    *  Type name: application
    *  Subtype name: client-authentication+jwt
@@ -511,7 +533,7 @@ Table of Contents
               Hosseyni, P., Küsters, R., and T. Würtele, "Audience
               Injection Attacks: A New Class of Attacks on Web-Based
               Authorization and Authentication Standards", Cryptology
-              ePrint Archive Paper 2025/629, 2025,
+              ePrint Archive Paper 2025/629, April 2025,
               <https://eprint.iacr.org/2025/629>.
 
    [IANA.MediaTypes]
@@ -524,11 +546,11 @@ Table of Contents
               errata set 2", 15 December 2023,
               <https://openid.net/specs/openid-connect-core-1_0.html>.
 
-   [OpenID.Federation.ID4]
+   [OpenID.Federation]
               Hedberg, R., Jones, M. B., Solberg, A., Bradley, J.,
-              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0",
-              31 May 2024,
-              <https://openid.net/specs/openid-federation-1_0-ID4.html>.
+              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0", 2
+              June 2025,
+              <https://openid.net/specs/openid-federation-1_0.html>.
 
    [private_key_jwt.Disclosure]
               OpenID Foundation, "OIDF Responsible Disclosure Notice on
@@ -551,11 +573,29 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -02
+
+   *  Applied Brian Campbell's suggestions made at IETF 122.
+      Specifically:
+
+   *  Focused RFC 7523 updates on JWT client authentication case.
+
+   *  Described client responsibilities for the audience value of
+      authorization grants.  No longer mandate that the audience for
+      authorization grants be the issuer identifier, so as to make a
+      minimum of breaking changes.
+
+   *  Deprecated SAML client authentication in RFC 7522. (still TBD in
+      this draft)
+
    -01
 
    *  Reworked to make updates to RFC 7523, rather than replacing it.
 
    *  Removed updates to RFC 9101.
+
+   *  Added reference to the University of Stuttgart paper
+      [Audience.Injection].
 
    -00
 
