@@ -1353,66 +1353,75 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3-1">
  This section updates
  "Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
- Client Authentication and Authorization Grants" <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>
- to tighten its audience requirements.<a href="#section-3-1" class="pilcrow">¶</a></p>
+ Client Authentication and Authorization Grants" <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>.
+ It tightens its audience requirements for SAML authorization grants and
+ it deprecates the use of SAML assertions for client authentication.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">
- The description of the Audience element in Item 2 of
- Section 3 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Assertion Format and Processing Requirements)
+ The text and example in Section 2.2 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>
+ (Using SAML Assertions for Client Authentication)
  is replaced by:<a href="#section-3-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-3-3.1">
           <p id="section-3-3.1.1">
+     It is RECOMMENDED that SAML Bearer Assertions
+     not be used for for client authentication.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-4">
+ The description of the Audience element in Item 2 of
+ Section 3 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Assertion Format and Processing Requirements)
+ is replaced by:<a href="#section-3-4" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3-5.1">
+          <p id="section-3-5.1.1">
      The Assertion MUST contain a &lt;Conditions&gt; element
      with an &lt;AudienceRestriction&gt; element
-     with a single &lt;Audience&gt; element that identifies the
+     with an &lt;Audience&gt; element that identifies the
      authorization server as the intended audience.
-     The value of the &lt;Audience&gt; element MUST be
-     the issuer identifier <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span> of the authorization server.
+     It is the responsibility of the client to use only
+     audience values that
+     are specific to the authorization server being used.
+     This MAY be
+     the issuer identifier of the authorization server,
+     the token endpoint URL of the authorization server, or
+     a SAML Entity ID.
      Section 2.5.1.4 of
      "Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"
      <span>[<a href="#OASIS.saml-core-2.0-os" class="cite xref">OASIS.saml-core-2.0-os</a>]</span>
      defines the &lt;AudienceRestriction&gt; and &lt;Audience&gt; elements.
-     Unlike the audience value specified in <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>,
-     there MUST be no value other than
-     the issuer identifier of the intended authorization server
-     used as the audience of the assertion;
-     this includes that the token endpoint URL of the authorization server
-     MUST NOT be used as an audience value.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
-<p id="section-3-3.1.2">
-
      The authorization server MUST reject any assertion that does not
-     contain its own issuer identifier as the sole audience value.<a href="#section-3-3.1.2" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-3-4">
- In Section 4 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Authorization Grant Example),
- the sentence:<a href="#section-3-4" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3-5.1">
-          <p id="section-3-5.1.1">
-     The intended audience of the Assertion is
-     <code>https://saml-sp.example.net</code>,
-     which is an identifier for a SAML Service Provider
-     with which the authorization server identifies itself.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
+     contain its own identity as the intended audience.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-3-6">
- is replaced by:<a href="#section-3-6" class="pilcrow">¶</a></p>
+ In Section 4 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Authorization Grant Example),
+ the sentence:<a href="#section-3-6" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-3-7.1">
           <p id="section-3-7.1.1">
      The intended audience of the Assertion is
-     <code>https://authz.example.net</code>,
-     which is the authorization server's issuer identifier.<a href="#section-3-7.1.1" class="pilcrow">¶</a></p>
+     <code>https://saml-sp.example.net</code>,
+     which is an identifier for a SAML Service Provider
+     with which the authorization server identifies itself.<a href="#section-3-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-3-8" class="keepWithNext">
-   In the same section, the SAML 2.0 Assertion example is replaced by:<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-8">
+ is replaced by:<a href="#section-3-8" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3-9.1">
+          <p id="section-3-9.1.1">
+     The intended audience of the Assertion is
+     <code>https://authz.example.net</code>,
+     which is the authorization server's issuer identifier.<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-10" class="keepWithNext">
+   In the same section, the SAML 2.0 Assertion example is replaced by:<a href="#section-3-10" class="pilcrow">¶</a></p>
 <span id="name-example-saml-20-assertion"></span><div id="assertion">
 <figure id="figure-1">
-        <div class="alignLeft art-text artwork" id="section-3-9.1">
+        <div class="alignLeft art-text artwork" id="section-3-11.1">
 <pre>
-  &lt;Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+  &lt;Assertion IssueInstant="2025-07-17T00:53:34.619Z"
     ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
     Version="2.0"
     xmlns="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
@@ -1428,7 +1437,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
     &lt;SubjectConfirmation
       Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
      &lt;SubjectConfirmationData
-       NotOnOrAfter="2024-11-17T00:58:34.619Z"
+       NotOnOrAfter="2025-07-17T00:58:34.619Z"
        Recipient="https://authz.example.net/token.oauth2"/&gt;
      &lt;/SubjectConfirmation&gt;
     &lt;/Subject&gt;
@@ -1437,7 +1446,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         &lt;Audience&gt;https://authz.example.net&lt;/Audience&gt;
       &lt;/AudienceRestriction&gt;
     &lt;/Conditions&gt;
-    &lt;AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z"&gt;
+    &lt;AuthnStatement AuthnInstant="2025-07-17T00:53:34.371Z"&gt;
       &lt;AuthnContext&gt;
         &lt;AuthnContextClassRef&gt;
           urn:oasis:names:tc:SAML:2.0:ac:classes:X509
@@ -1451,10 +1460,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-example-saml-20-assertion" class="selfRef">Example SAML 2.0 Assertion</a>
         </figcaption></figure>
 </div>
-<p id="section-3-10">
- In the list of agreements required by participants
- in Section 5 of <span>[<a href="#RFC7521" class="cite xref">RFC7521</a>]</span> (Interoperability Considerations),
- "audience identifiers" is removed from the list.<a href="#section-3-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="RFC7523Updates">
@@ -1966,7 +1971,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         <li class="normal" id="appendix-A-3.4">
           <p id="appendix-A-3.4.1">
-     Deprecated SAML client authentication in RFC 7522. (still TBD in this draft)<a href="#appendix-A-3.4.1" class="pilcrow">¶</a></p>
+     Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-3.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-4">
