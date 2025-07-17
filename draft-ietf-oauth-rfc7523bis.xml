@@ -147,14 +147,13 @@
 	  <t hangText="Audience">
 	    <vspace/>
             A value that identifies the party intended to process the assertion.
-	    The audience MUST contain the issuer identifier <xref target="RFC8414"/>
-	    of the authorization server as its sole value.
-	    Unlike the audience value specified
-	    in <xref target="RFC7521"/>, there MUST be no value other than
-	    the issuer identifier of the intended authorization server
-	    used as the audience of the assertion;
-	    this includes that the token endpoint URL of the authorization server
-	    MUST NOT be used as an audience value.
+	    The audience value MUST
+	    identify the authorization server as the intended audience.
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    This MAY be the issuer identifier of the authorization server.
+	    The authorization server MUST reject any assertion that does not
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
       </t>
@@ -164,19 +163,14 @@
 	is replaced by:
 	<list style="empty">
 	  <t>
-	    The assertion MUST contain an audience that identifies the
-            authorization server as the intended audience,
-	    with the issuer identifier <xref target="RFC8414"/>
-	    of the authorization server as its sole value.
-            The authorization server MUST reject any assertion that does not
-            contain its own issuer identifier as the sole audience value.
+	    The assertion MUST contain an audience value that identifies the
+	    authorization server as the intended audience.
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    The authorization server MUST reject any assertion that does not
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
-      </t>
-      <t>
-	In the list of agreements required by participants
-	in Section 7 of <xref target="RFC7521"/> (Interoperability Considerations),
-	"audience identifiers" is removed from the list.
       </t>
     </section>
 
@@ -209,11 +203,9 @@
 	    with an &lt;AudienceRestriction&gt; element
 	    with an &lt;Audience&gt; element that identifies the
 	    authorization server as the intended audience.
-	    It is the responsibility of the client to use only
-	    audience values that
-	    are specific to the authorization server being used.
-	    This MAY be
-	    the issuer identifier of the authorization server,
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    This MAY be the issuer identifier of the authorization server,
 	    the token endpoint URL of the authorization server, or
 	    a SAML Entity ID.
 	    Section 2.5.1.4 of
@@ -332,9 +324,8 @@
 	    <list style="letters">
 	      <t>
 		For the authorization grant,
-		it is the responsibility of the client to use only
-		<spanx style="verb">aud</spanx> values that
-		are specific to the authorization server being used.
+		it is the responsibility of the client to use only audience values
+		that are specific to the authorization server being used.
 		This MAY be either
 		the issuer identifier of the authorization server or
 		the token endpoint URL of the authorization server.
