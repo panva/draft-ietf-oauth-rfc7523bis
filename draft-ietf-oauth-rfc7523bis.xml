@@ -184,8 +184,20 @@
       <t>
 	This section updates
 	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
-	Client Authentication and Authorization Grants" <xref target="RFC7522"/>
-	to tighten its audience requirements.
+	Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
+	It tightens its audience requirements for SAML authorization grants and
+	it deprecates the use of SAML assertions for client authentication.
+      </t>
+      <t>
+	The text and example in Section 2.2 of <xref target="RFC7522"/>
+	(Using SAML Assertions for Client Authentication)
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    It is RECOMMENDED that SAML Bearer Assertions
+	    not be used for for client authentication.
+	  </t>
+	</list>
       </t>
       <t>
 	The description of the Audience element in Item 2 of
@@ -195,24 +207,21 @@
 	  <t>
 	    The Assertion MUST contain a &lt;Conditions&gt; element
 	    with an &lt;AudienceRestriction&gt; element
-	    with a single &lt;Audience&gt; element that identifies the
+	    with an &lt;Audience&gt; element that identifies the
 	    authorization server as the intended audience.
-	    The value of the &lt;Audience&gt; element MUST be
-	    the issuer identifier <xref target="RFC8414"/> of the authorization server.
+	    It is the responsibility of the client to use only
+	    audience values that
+	    are specific to the authorization server being used.
+	    This MAY be
+	    the issuer identifier of the authorization server,
+	    the token endpoint URL of the authorization server, or
+	    a SAML Entity ID.
 	    Section 2.5.1.4 of
 	    "Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"
 	    <xref target="OASIS.saml-core-2.0-os"/>
 	    defines the &lt;AudienceRestriction&gt; and &lt;Audience&gt; elements.
-	    Unlike the audience value specified in <xref target="RFC7522"/>,
-	    there MUST be no value other than
-	    the issuer identifier of the intended authorization server
-	    used as the audience of the assertion;
-	    this includes that the token endpoint URL of the authorization server
-	    MUST NOT be used as an audience value.
-	    <vspace blankLine="1"/>
-
 	    The authorization server MUST reject any assertion that does not
-	    contain its own issuer identifier as the sole audience value.
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
       </t>
@@ -241,7 +250,7 @@
 	  In the same section, the SAML 2.0 Assertion example is replaced by:
 	</preamble>
 	<artwork><![CDATA[
-  <Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+  <Assertion IssueInstant="2025-07-17T00:53:34.619Z"
     ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
     Version="2.0"
     xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
@@ -257,7 +266,7 @@
     <SubjectConfirmation
       Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
      <SubjectConfirmationData
-       NotOnOrAfter="2024-11-17T00:58:34.619Z"
+       NotOnOrAfter="2025-07-17T00:58:34.619Z"
        Recipient="https://authz.example.net/token.oauth2"/>
      </SubjectConfirmation>
     </Subject>
@@ -266,7 +275,7 @@
         <Audience>https://authz.example.net</Audience>
       </AudienceRestriction>
     </Conditions>
-    <AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z">
+    <AuthnStatement AuthnInstant="2025-07-17T00:53:34.371Z">
       <AuthnContext>
         <AuthnContextClassRef>
           urn:oasis:names:tc:SAML:2.0:ac:classes:X509
@@ -276,11 +285,7 @@
   </Assertion>
 ]]></artwork>
       </figure>
-      <t>
-	In the list of agreements required by participants
-	in Section 5 of <xref target="RFC7521"/> (Interoperability Considerations),
-	"audience identifiers" is removed from the list.
-      </t>
+
     </section>
 
     <section title="Updates to RFC 7523" anchor="RFC7523Updates">
@@ -811,7 +816,7 @@
 	    be the issuer identifier, so as to make a minimum of breaking changes.
 	  </t>
 	  <t>
-	    Deprecated SAML client authentication in RFC 7522. (still TBD in this draft)
+	    Deprecated the use of SAML assertions for client authentication.
 	  </t>
 	</list>
       </t>
