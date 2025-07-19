@@ -41,7 +41,14 @@
       </address>
     </author>
 
-    <date day="23" month="April" year="2025" />
+    <author fullname="Filip Skokan" initials="F." surname="Skokan">
+      <organization abbrev="Okta">Okta</organization>
+      <address>
+        <email>panva.ip@gmail.com</email>
+      </address>
+    </author>
+
+    <date day="20" month="July" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -793,6 +800,15 @@
       </t>
 
       <t>
+	-02
+	<list style="symbols">
+	  <t>
+	    Added Filip Skokan as an author.
+	  </t>
+	</list>
+      </t>
+
+      <t>
 	-01
 	<list style="symbols">
 	  <t>
@@ -827,7 +843,6 @@
 	Joseph Heenan,
 	Pedram Hosseyni,
 	Aaron Parecki,
-	Filip Skokan,
 	and
 	Tim Würtele.
       </t>
