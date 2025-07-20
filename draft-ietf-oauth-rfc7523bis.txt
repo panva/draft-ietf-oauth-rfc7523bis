@@ -6,9 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 25 October 2025                                    C. Mortimore
+Expires: 21 January 2026                                    C. Mortimore
                                                                   Disney
-                                                           23 April 2025
+                                                               F. Skokan
+                                                                    Okta
+                                                            20 July 2025
 
 
      Updates to Audience Values for OAuth 2.0 Authorization Servers
@@ -36,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2025.
+   This Internet-Draft will expire on 21 January 2026.
 
 Copyright Notice
 
@@ -551,6 +553,10 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -02
+
+   *  Added Filip Skokan as an author.
+
    -01
 
    *  Reworked to make updates to RFC 7523, rather than replacing it.
@@ -569,8 +575,7 @@ Acknowledgements
 
    We would like to acknowledge the contributions of the following
    people to this specification: John Bradley, Ralph Bragg, Joseph
-   Heenan, Pedram Hosseyni, Aaron Parecki, Filip Skokan, and Tim
-   Würtele.
+   Heenan, Pedram Hosseyni, Aaron Parecki, and Tim Würtele.
 
 Authors' Addresses
 
@@ -588,3 +593,8 @@ Authors' Addresses
    Chuck Mortimore
    Disney
    Email: charliemortimore@gmail.com
+
+
+   Filip Skokan
+   Okta
+   Email: panva.ip@gmail.com
