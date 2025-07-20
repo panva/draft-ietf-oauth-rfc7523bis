@@ -42,7 +42,14 @@
       </address>
     </author>
 
-    <date day="16" month="July" year="2025" />
+    <author fullname="Filip Skokan" initials="F." surname="Skokan">
+      <organization abbrev="Okta">Okta</organization>
+      <address>
+        <email>panva.ip@gmail.com</email>
+      </address>
+    </author>
+
+    <date day="20" month="July" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -795,19 +802,25 @@
 	-02
 	<list style="symbols">
 	  <t>
+	    Added Filip Skokan as an author.
+	  </t>
+	  <t>
 	    Applied Brian Campbell's suggestions made at IETF 122.  Specifically:
-	  </t>
-	  <t>
-	    Focused RFC 7523 updates on JWT client authentication case.
-	  </t>
-	  <t>
-	    Described client responsibilities for the audience value
-	    of authorization grants.
-	    No longer mandate that the audience for authorization grants
-	    be the issuer identifier, so as to make a minimum of breaking changes.
-	  </t>
-	  <t>
-	    Deprecated the use of SAML assertions for client authentication.
+
+	    <list style="symbols">
+	      <t>
+		Focused RFC 7523 updates on JWT client authentication case.
+	      </t>
+	      <t>
+		Described client responsibilities for the audience value
+		of authorization grants.
+		No longer mandate that the audience for authorization grants
+		be the issuer identifier, so as to make a minimum of breaking changes.
+	      </t>
+	      <t>
+		Deprecated the use of SAML assertions for client authentication.
+	      </t>
+	    </list>
 	  </t>
 	</list>
       </t>
@@ -847,7 +860,6 @@
 	Joseph Heenan,
 	Pedram Hosseyni,
 	Aaron Parecki,
-	Filip Skokan,
 	and
 	Tim Würtele.
       </t>
