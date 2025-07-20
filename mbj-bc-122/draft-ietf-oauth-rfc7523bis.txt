@@ -6,9 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 17 January 2026                                    C. Mortimore
+Expires: 21 January 2026                                    C. Mortimore
                                                                   Disney
-                                                            16 July 2025
+                                                               F. Skokan
+                                                                    Okta
+                                                            20 July 2025
 
 
      Updates to Audience Values for OAuth 2.0 Authorization Servers
@@ -36,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 January 2026.
+   This Internet-Draft will expire on 21 January 2026.
 
 Copyright Notice
 
@@ -572,17 +574,20 @@ Appendix A.  Document History
 
    -02
 
+   *  Added Filip Skokan as an author.
+
    *  Applied Brian Campbell's suggestions made at IETF 122.
       Specifically:
 
-   *  Focused RFC 7523 updates on JWT client authentication case.
+      -  Focused RFC 7523 updates on JWT client authentication case.
 
-   *  Described client responsibilities for the audience value of
-      authorization grants.  No longer mandate that the audience for
-      authorization grants be the issuer identifier, so as to make a
-      minimum of breaking changes.
+      -  Described client responsibilities for the audience value of
+         authorization grants.  No longer mandate that the audience for
+         authorization grants be the issuer identifier, so as to make a
+         minimum of breaking changes.
 
-   *  Deprecated the use of SAML assertions for client authentication.
+      -  Deprecated the use of SAML assertions for client
+         authentication.
 
    -01
 
@@ -602,8 +607,7 @@ Acknowledgements
 
    We would like to acknowledge the contributions of the following
    people to this specification: John Bradley, Ralph Bragg, Joseph
-   Heenan, Pedram Hosseyni, Aaron Parecki, Filip Skokan, and Tim
-   Würtele.
+   Heenan, Pedram Hosseyni, Aaron Parecki, and Tim Würtele.
 
 Authors' Addresses
 
@@ -621,3 +625,8 @@ Authors' Addresses
    Chuck Mortimore
    Disney
    Email: charliemortimore@gmail.com
+
+
+   Filip Skokan
+   Okta
+   Email: panva.ip@gmail.com
