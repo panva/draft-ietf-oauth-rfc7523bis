@@ -314,11 +314,9 @@
 	    used as the audience of the JWT;
 	    this includes that the token endpoint URL of the authorization server
 	    MUST NOT be used as an audience value.
-	    To simplify implementations,
-	    the <spanx style="verb">aud</spanx> claim value MUST
-	    be a JSON string, and not a single-valued JSON array.
 	    The authorization server MUST reject any JWT that does not
 	    contain its issuer identifier as its sole audience value.
+
 	    In the absence of an application profile specifying
 	    otherwise, compliant applications MUST compare the audience
 	    values using the Simple String Comparison method defined in Section
@@ -331,12 +329,12 @@
 	the following requirement is added:
 	<list style="empty">
 	  <t>
-	    Authorization grant JWTs MUST be explicitly typed by using the
+	    Authorization grant JWTs SHOULD be explicitly typed by using the
 	    <spanx style="verb">typ</spanx> header parameter value
 	    <spanx style="verb">authorization-grant+jwt</spanx> or
 	    another more specific explicit type value defined by a specification profiling this specification.
 	    Authorization grant JWTs not using the explicit type value
-	    MUST be rejected by the authorization server.
+	    MAY be rejected by the authorization server.
 	  </t>
 	</list>
       </t>
@@ -345,12 +343,12 @@
 	the following requirement is added:
 	<list style="empty">
 	  <t>
-	    Client authentication JWTs MUST be explicitly typed by using the
+	    Client authentication JWTs SHOULD be explicitly typed by using the
 	    <spanx style="verb">typ</spanx> header parameter value
 	    <spanx style="verb">client-authentication+jwt</spanx>
 	    another more specific explicit type value defined by a specification profiling this specification.
 	    Client authentication JWTs not using the explicit type value
-	    MUST be rejected by the authorization server.
+	    MAY be rejected by the authorization server.
 	  </t>
 	</list>
       </t>
@@ -486,6 +484,18 @@
 	<xref target="RFC7523"/>, and <xref target="RFC9126"/>.
 	These attacks are described in <xref target="private_key_jwt.Disclosure"/>
 	and <xref target="Audience.Injection"/>.
+      </t>
+      <t>
+	The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx> values)
+	serves as a signal to distinguish between tokens produced in accordance with
+	specifications published prior to these updates and those incorporating them.
+	However, the primary security protection comes from the tightened audience requirements.
+	Since strong typing alone does not fully prevent the attacks described in <xref target="private_key_jwt.Disclosure"/>
+	and <xref target="Audience.Injection"/>, the use of explicit typing is specified as
+	SHOULD for clients and MAY for authorization servers to reject when missing.
+	This approach balances security signaling with practical deployment considerations,
+	avoiding disruption to client deployments that already conform to the
+	tightened audience requirements but have not yet adopted explicit typing.
       </t>
 
     </section>
@@ -802,6 +812,15 @@
       <t>
 	-02
 	<list style="symbols">
+	  <t>
+			Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.
+	  </t>
+	  <t>
+			Relaxed server requirement to require strong typed JWTs. MAY instead of MUST.
+	  </t>
+	  <t>
+	    Do not restrict the "aud" claim's type. Allow it to be a an array with a single member.
+	  </t>
 	  <t>
 	    Added Filip Skokan as an author.
 	  </t>
