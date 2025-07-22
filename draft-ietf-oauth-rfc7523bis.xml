@@ -375,7 +375,7 @@
 	    Client authentication JWTs SHOULD be explicitly typed by using the
 	    <spanx style="verb">typ</spanx> header parameter value
 	    <spanx style="verb">client-authentication+jwt</spanx>
-	    another more specific explicit type value defined by a specification profiling this specification.
+	    or another more specific explicit type value defined by a specification profiling this specification.
 	  </t>
 	</list>
       </t>
