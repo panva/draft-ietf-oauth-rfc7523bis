@@ -653,7 +653,7 @@
                 Token Endpoint Authentication Method Name: private_key_jwt
               </t>
               <t>
-                Change Controller: IESG
+                Change Controller: IETF
               </t>
               <t>
                 Reference: Section 9 of <xref target="OpenID.Core"/>, [[this specification]]
