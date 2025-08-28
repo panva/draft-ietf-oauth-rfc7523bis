@@ -404,12 +404,13 @@
 	  In the same section, the JWT Claims Set example is replaced by:
 	</preamble>
 	<artwork><![CDATA[
-  {"aud":"https://authz.example.net",
-   "iss":"https://jwt-idp.example.com",
-   "sub":"mailto:mike@example.com",
-   "iat":1731721541,
-   "exp":1731725141,
-   "http://claims.example.com/member":true
+  {
+    "aud": "https://authz.example.net",
+    "iss": "https://jwt-idp.example.com",
+    "sub": "mailto:mike@example.com",
+    "iat": 1731721541,
+    "exp": 1731725141,
+    "http://claims.example.com/member": true
   }
 ]]></artwork>
       </figure>
@@ -447,12 +448,13 @@
 	    produce the JWT Claims Set for a client authentication JWT:
 	  </preamble>
 	  <artwork><![CDATA[
-  {"aud":"https://authz.example.net",
-   "iss":"https://jwt-idp.example.com",
-   "sub":"mailto:mike@example.com",
-   "iat":1752702206,
-   "exp":1752705806,
-   "http://claims.example.com/member":true
+  {
+    "aud": "https://authz.example.net",
+    "iss": "https://jwt-idp.example.com",
+    "sub": "mailto:mike@example.com",
+    "iat": 1752702206,
+    "exp": 1752705806,
+    "http://claims.example.com/member": true
   }
 ]]></artwork>
 	</figure>
@@ -466,7 +468,11 @@
 	    the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
 	  </preamble>
 	  <artwork><![CDATA[
-  {"typ":"client-authentication+jwt","alg":"ES256","kid":"16"}
+  {
+    "typ": "client-authentication+jwt",
+    "alg": "ES256",
+    "kid": "16"
+  }
 ]]></artwork>
 	</figure>
 
