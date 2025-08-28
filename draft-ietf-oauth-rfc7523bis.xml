@@ -646,6 +646,47 @@
         </section>
 
       </section>
+
+      <section title="OAuth Token Endpoint Authentication Methods" anchor="MethodsReg">
+        <t>
+          This section updates entries in the "OAuth Token Endpoint Authentication Methods" registry <xref target="IANA.OAuthParameters"/>
+        </t>
+
+        <section title="Registry Contents" anchor="MethodsContents">
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Token Endpoint Authentication Method Name: private_key_jwt
+              </t>
+              <t>
+                Change Controller: IETF
+              </t>
+              <t>
+                Reference: Section 9 of <xref target="OpenID.Core"/>, [[this specification]]
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+          <t></t>
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style="symbols">
+              <t>
+                Token Endpoint Authentication Method Name: client_secret_jwt
+              </t>
+              <t>
+                Change Controller: IETF
+              </t>
+              <t>
+                Reference: Section 9 of <xref target="OpenID.Core"/>, [[this specification]]
+              </t>
+            </list>
+            <?rfc subcompact="no"?>
+          </t>
+        </section>
+
+      </section>
     </section>
 
   </middle>
@@ -798,6 +839,16 @@
 	</front>
       </reference>
 
+      <reference anchor="IANA.OAuthParameters" target="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml">
+	<front>
+	  <title>OAuth Parameters</title>
+	  <author>
+	    <organization>IANA</organization>
+	  </author>
+	  <date/>
+	</front>
+      </reference>
+
     </references>
 
     <section title="Document History" anchor="History">
@@ -808,7 +859,10 @@
       <t>
 	-03
 	<list style="symbols">
-	   <t>
+	  <t>
+	    Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification
+    </t>
+    <t>
 	    Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.
 	  </t>
 	  <t>
